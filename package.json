@@ -1,22 +1,23 @@
 {
-  "name": "sanity-plugin-icon-manager",
-  "version": "1.2.2",
-  "description": "A Sanity plugin for selecting, managing, and customizing icons.",
+  "name": "sanity-plugin-inline-icon-manager",
+  "version": "1.0.0",
+  "description": "A Sanity plugin for selecting, managing, and customizing icons. Based on sanity-plugin-icon-manager, but can be configured to use the inline svg by default",
   "keywords": [
     "sanity",
     "sanity-plugin",
-    "sanity-plugin-icon-manager"
+    "sanity-plugin-icon-manager",
+    "sanity-plugin-inline-icon-manager"
   ],
-  "homepage": "https://github.com/williamiommi/sanity-plugin-icon-manager#readme",
+  "homepage": "https://github.com/evelan-de/sanity-plugin-inline-icon-manager#readme",
   "bugs": {
-    "url": "https://github.com/williamiommi/sanity-plugin-icon-manager/issues"
+    "url": "https://github.com/evelan-de/sanity-plugin-inline-icon-manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/williamiommi/sanity-plugin-icon-manager.git"
+    "url": "git+ssh://git@github.com/evelan-de/sanity-plugin-inline-icon-manager.git"
   },
   "license": "MIT",
-  "author": "William Iommi <william.iommi@gmail.com>",
+  "author": "Evelan",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
