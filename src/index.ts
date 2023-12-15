@@ -8,4 +8,4 @@ export {IconManager} from './ext/plugin'
 export * from './types/IconManagerType'
 
 // export components
-export * from './components'
+export {IconInlineRenderer} from './ext/components/IconInlineRenderer'

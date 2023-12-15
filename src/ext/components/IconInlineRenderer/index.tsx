@@ -1,13 +1,19 @@
 import parse from 'html-react-parser'
 import {sanitize} from 'isomorphic-dompurify'
 import {FC} from 'react'
-import {IconManagerType} from '../../types/IconManagerType'
+import {IconManagerType} from '../../../types/IconManagerType'
 
-interface IconRendererProps extends IconManagerType {
+interface IconInlineRendererProps extends Partial<IconManagerType> {
   className?: string
 }
 
-const IconRenderer: FC<IconRendererProps> = (props) => {
+/**
+ * Component for rendering the icon using the inline svg metadata string.
+ *
+ * Sample usage:
+ * <IconInlineRenderer metadata={metadata} className="my-className" />
+ */
+export const IconInlineRenderer: FC<IconInlineRendererProps> = (props) => {
   const {icon, metadata, className} = props
 
   if (icon && metadata?.inlineSvg) {
@@ -19,5 +25,3 @@ const IconRenderer: FC<IconRendererProps> = (props) => {
 
   return null
 }
-
-export default IconRenderer
