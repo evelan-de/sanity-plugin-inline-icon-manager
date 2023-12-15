@@ -51,3 +51,7 @@ export const iconManagerSchema = z.object({
 })
 
 export type IconManagerType = z.infer<typeof iconManagerSchema>
+
+export const iconManagerPartialSchema = iconManagerSchema.deepPartial()
+
+export type IconManagerPartialType = z.infer<typeof iconManagerPartialSchema>

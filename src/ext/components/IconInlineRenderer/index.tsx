@@ -1,9 +1,9 @@
 import parse from 'html-react-parser'
 import {sanitize} from 'isomorphic-dompurify'
 import {FC} from 'react'
-import {IconManagerType} from '../../../types/IconManagerType'
+import {IconManagerPartialType} from '../../../types/IconManagerType'
 
-interface IconInlineRendererProps extends Partial<IconManagerType> {
+interface IconInlineRendererProps extends IconManagerPartialType {
   className?: string
 }
 
