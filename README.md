@@ -1,4 +1,4 @@
-# Sanity Icon Manager
+# Sanity Inline Icon Manager
 
 <p align="center">
   <img width="200" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/SanityIconManager.png" alt="Hero"/>
@@ -7,10 +7,10 @@
   <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/hero.jpg" alt="Hero"/>
 </p>
 
-A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
+A Sanity plugin for selecting, managing, and customizing icons. Based on [sanity-plugin-icon-manager](https://github.com/williamiommi/sanity-plugin-icon-manager), but can be configured to use the inline svg by default for a better support for SSR.\
 Powered by [Iconify](https://iconify.design/)
 
-- [Sanity Icon Manager](#sanity-icon-manager)
+- [Sanity Inline Icon Manager](#sanity-inline-icon-manager)
   - [⚡️ Features](#️-features)
   - [🔌 Installation](#-installation)
   - [🧑‍💻 Usage](#-usage)
@@ -26,7 +26,6 @@ Powered by [Iconify](https://iconify.design/)
   - [🌎 Basic Hosting](#-basic-hosting)
   - [🗃️ Data model](#️-data-model)
   - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
-  - [🛣️ Roadmap](#️-roadmap)
   - [📝 License](#-license)
   - [🧪 Develop \& test](#-develop--test)
     - [Release new version](#release-new-version)
@@ -42,15 +41,15 @@ Powered by [Iconify](https://iconify.design/)
 - Custom Diff View
 - Provide your own color palette for monochrome icons
 - Basic API Hosting
-- v1.1.0+: Search filter 'Collection'
-- v1.2.0+: Collections tab
+- Search filter 'Collection'
+- Collections tab
 
 <br /><br />
 
 ## 🔌 Installation
 
 ```sh
-npm install sanity-plugin-icon-manager
+npm install sanity-plugin-inline-icon-manager
 ```
 
 <br /><br />
@@ -430,18 +429,9 @@ const MyComponent = (props) => {
 
 <br /><br />
 
-## 🛣️ Roadmap
-
-- ~~Filter by Collection~~ (v1.1.0+)
-- ~~Search within an entire collection~~ (v1.2.0+)
-- Analyze the possibility of adding [custom icon sets](https://iconify.design/docs/icons/custom.html) via configuration
-- 🤔
-
-<br /><br />
-
 ## 📝 License
 
-[MIT](LICENSE) © William Iommi
+[MIT](LICENSE) © Evelan De
 
 ## 🧪 Develop & test
 
