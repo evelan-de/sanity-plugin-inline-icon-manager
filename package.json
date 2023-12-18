@@ -26,13 +26,6 @@
       "import": "./dist/index.esm.js",
       "default": "./dist/index.esm.js"
     },
-    "./plugin": {
-      "types": "./dist/plugin.d.ts",
-      "source": "./src/exports/plugin/index.ts",
-      "require": "./dist/plugin.js",
-      "import": "./dist/plugin.esm.js",
-      "default": "./dist/plugin.esm.js"
-    },
     "./types": {
       "types": "./dist/types.d.ts",
       "source": "./src/exports/types/index.ts",
@@ -53,8 +46,20 @@
   "module": "./dist/index.esm.js",
   "source": "./src/index.ts",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "types": [
+        "./dist/types.d.ts"
+      ],
+      "IconInlineRenderer": [
+        "./dist/IconInlineRenderer.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist",
+    "IconInlineRenderer.js",
+    "types.js",
     "sanity.json",
     "src",
     "v2-incompatible.js"

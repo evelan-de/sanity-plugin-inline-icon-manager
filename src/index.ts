@@ -1,2 +1,5 @@
-// export the plugin as default for the root index.ts
-export * from './exports/plugin/index'
+// export the mediaPreview function
+export {mediaPreview} from './plugin/mediaPreview'
+
+// export the plugin
+export {IconManager} from './plugin/plugin'
