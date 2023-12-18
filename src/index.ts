@@ -1,11 +1,2 @@
-// export the mediaPreview function
-export {mediaPreview} from './ext/mediaPreview'
-
-// export the plugin
-export {IconManager} from './ext/plugin'
-
-// export types
-export * from './types/IconManagerType'
-
-// export components
-export {IconInlineRenderer} from './ext/components/IconInlineRenderer'
+// export the plugin as default for the root index.ts
+export * from './exports/plugin/index'

@@ -26,6 +26,27 @@
       "import": "./dist/index.esm.js",
       "default": "./dist/index.esm.js"
     },
+    "./plugin": {
+      "types": "./dist/plugin.d.ts",
+      "source": "./src/exports/plugin/index.ts",
+      "require": "./dist/plugin.js",
+      "import": "./dist/plugin.esm.js",
+      "default": "./dist/plugin.esm.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "source": "./src/exports/types/index.ts",
+      "require": "./dist/types.js",
+      "import": "./dist/types.esm.js",
+      "default": "./dist/types.esm.js"
+    },
+    "./IconInlineRenderer": {
+      "types": "./dist/IconInlineRenderer.d.ts",
+      "source": "./src/exports/components/IconInlineRenderer/index.ts",
+      "require": "./dist/IconInlineRenderer.js",
+      "import": "./dist/IconInlineRenderer.esm.js",
+      "default": "./dist/IconInlineRenderer.esm.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",

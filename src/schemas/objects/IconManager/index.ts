@@ -4,7 +4,7 @@ import IconManagerInlineBlockComponent, {
   IconManagerInlineBlockComponentProps,
 } from '../../../components/IconManagerInlineBlockComponent'
 import IconManagerInputComponent from '../../../components/IconManagerInputComponent'
-import {mediaPreview} from '../../../ext/mediaPreview'
+import {mediaPreview} from '../../../plugin/mediaPreview'
 import IconManagerPluginOptions from '../../../types/IconManagerPluginOptions'
 import {IconManagerType} from '../../../types/IconManagerType'
 import extraFields from './extra.fields'
