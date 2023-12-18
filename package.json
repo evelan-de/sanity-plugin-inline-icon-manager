@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-inline-icon-manager",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Sanity plugin for selecting, managing, and customizing icons. Based on sanity-plugin-icon-manager, but can be configured to use the inline svg by default",
   "keywords": [
     "sanity",

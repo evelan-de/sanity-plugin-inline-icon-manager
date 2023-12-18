@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.0.0...v1.1.0) (2023-12-18)
+
+### Features
+
+- **icon-renderer:** add icon renderer component and export it ([0492d4b](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/0492d4be578bd077de793e3f2ef9e5dc0db71199))
+- **types:** create a separate partial schema and type for icon manager ([0d1380d](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/0d1380d350639bcb57196fa22bb85f9c9af2fbd0))
+
+### Bug Fixes
+
+- **types:** added "\_type" to icon manager schema ([4d5b2cd](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/4d5b2cded905c7ee2d9b911ab45d40e73723f780))
+
 ## 1.0.0 (2023-12-14)
 
 ### Features
