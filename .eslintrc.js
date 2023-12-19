@@ -74,6 +74,8 @@ module.exports = {
       rules: {
         "@typescript-eslint/explicit-module-boundary-types": ["off"],
         "@typescript-eslint/consistent-type-assertions": ["off"],
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "react/require-default-props": ["off"],
         "import/no-cycle": ["off"],
       },
     },
