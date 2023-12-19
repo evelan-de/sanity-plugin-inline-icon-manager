@@ -1,4 +1,5 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
+
 import IconManagerMetadata from '../objects/IconManager/metadata'
 
 const IconManagerTestDocument = defineType({
@@ -20,7 +21,7 @@ const IconManagerTestDocument = defineType({
     defineField({
       type: 'array',
       name: 'iconManagerFieldArray',
-      of: [{type: IconManagerMetadata.name}],
+      of: [{ type: IconManagerMetadata.name }],
     }),
     defineField({
       name: 'content',
@@ -29,7 +30,7 @@ const IconManagerTestDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: IconManagerMetadata.name, title: 'Inline Icon'}],
+          of: [{ type: IconManagerMetadata.name, title: 'Inline Icon' }],
         },
         {
           type: IconManagerMetadata.name,

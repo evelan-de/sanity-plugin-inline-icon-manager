@@ -1,9 +1,11 @@
-import {StateCreator} from 'zustand'
-import {CollectionsSlice} from './CollectionsSlice'
-import {ConfigureSlice} from './ConfigureSlice'
-import {DEFAULT_FILTER_LIMIT, FiltersSlice} from './FiltersSlice'
-import {ResultsSlice} from './ResultsSlice'
-import {SanitySlice} from './SanitySlice'
+/* eslint-disable import/no-cycle */
+import { StateCreator } from 'zustand'
+
+import { CollectionsSlice } from './CollectionsSlice'
+import { ConfigureSlice } from './ConfigureSlice'
+import { DEFAULT_FILTER_LIMIT, FiltersSlice } from './FiltersSlice'
+import { ResultsSlice } from './ResultsSlice'
+import { SanitySlice } from './SanitySlice'
 
 export interface DialogSlice {
   isSearchDialogOpen?: boolean
@@ -32,7 +34,7 @@ export const createDialogSlice: StateCreator<
   openSearchDialog: () => {
     get().setSanityPresence()
     get().fetchCollections()
-    set(() => ({isSearchDialogOpen: true}))
+    set(() => ({ isSearchDialogOpen: true }))
   },
   closeSearchDialog: () =>
     set(() => ({
@@ -47,18 +49,18 @@ export const createDialogSlice: StateCreator<
       limit: DEFAULT_FILTER_LIMIT,
     })),
 
-  openInfoDialog: () => set(() => ({isInfoDialogOpen: true})),
-  closeInfoDialog: () => set(() => ({isInfoDialogOpen: false})),
+  openInfoDialog: () => set(() => ({ isInfoDialogOpen: true })),
+  closeInfoDialog: () => set(() => ({ isInfoDialogOpen: false })),
 
   openConfigDialog: () => {
     get().setSanityPresence()
-    set(() => ({isConfigDialogOpen: true}))
+    set(() => ({ isConfigDialogOpen: true }))
   },
   closeConfigDialog: () => {
     get().resetConfiguration()
-    set(() => ({isConfigDialogOpen: false}))
+    set(() => ({ isConfigDialogOpen: false }))
   },
 
-  openRemoveDialog: () => set(() => ({isRemoveDialogOpen: true})),
-  closeRemoveDialog: () => set(() => ({isRemoveDialogOpen: false})),
+  openRemoveDialog: () => set(() => ({ isRemoveDialogOpen: true })),
+  closeRemoveDialog: () => set(() => ({ isRemoveDialogOpen: false })),
 })

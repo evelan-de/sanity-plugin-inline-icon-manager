@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
-import {WarningOutlineIcon} from '@sanity/icons'
-import {Badge, Card, Grid} from '@sanity/ui'
+import { WarningOutlineIcon } from '@sanity/icons'
+import { Badge, Card, Grid } from '@sanity/ui'
+
 import usePagination from '../../hooks/usePagination'
-import {useAppStoreContext} from '../../store/context'
-import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
-import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
+import { useAppStoreContext } from '../../store/context'
+import { IconifyInfoEnhanced } from '../../types/IconifyInfoEnhanced'
+import { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
 import Pagination from '../Pagination'
 import ResultsGridItem from './ResultsGridItem'
 
@@ -13,8 +14,8 @@ interface ResultsGridProps {
   collection?: IconifyInfoEnhanced
 }
 
-const ResultsGrid = ({items, collection}: ResultsGridProps) => {
-  const {currentItems, ...paginationBag} = usePagination<IconManagerIconInfo>(items)
+const ResultsGrid = ({ items, collection }: ResultsGridProps) => {
+  const { currentItems, ...paginationBag } = usePagination<IconManagerIconInfo>(items)
   const saveIcon = useAppStoreContext((s) => s.saveIcon)
 
   if (!items) return null
@@ -50,7 +51,7 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
               icon={item.icon}
               iconName={item.iconName}
               collectionName={collection?.name || item.collection?.name || ''}
-              onClick={() => saveIcon({...item, collection: collection || item.collection})}
+              onClick={() => saveIcon({ ...item, collection: collection || item.collection })}
             />
           ))}
         </Grid>

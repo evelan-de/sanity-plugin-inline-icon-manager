@@ -1,6 +1,6 @@
-import {SVGProps} from 'react'
+import { SVGProps } from 'react'
 
-interface DownloadIconProps extends SVGProps<SVGSVGElement> {}
+type DownloadIconProps = SVGProps<SVGSVGElement>
 
 const DownloadIcon = (props: DownloadIconProps) => (
   <svg
@@ -8,7 +8,7 @@ const DownloadIcon = (props: DownloadIconProps) => (
     width={props.width || 20}
     height={props.height || 20}
     viewBox='0 0 20 20'
-    style={{display: 'block'}}
+    style={{ display: 'block' }}
   >
     <path
       fill={props.color || 'currentColor'}

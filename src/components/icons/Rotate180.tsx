@@ -1,6 +1,6 @@
-import {SVGProps} from 'react'
+import { SVGProps } from 'react'
 
-interface Rotate180Props extends SVGProps<SVGSVGElement> {}
+type Rotate180Props = SVGProps<SVGSVGElement>
 
 const Rotate180 = (props: Rotate180Props) => (
   <svg

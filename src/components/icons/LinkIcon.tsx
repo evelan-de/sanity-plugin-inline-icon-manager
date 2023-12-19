@@ -1,6 +1,6 @@
-import {SVGProps} from 'react'
+import { SVGProps } from 'react'
 
-interface LinkIconProps extends SVGProps<SVGSVGElement> {}
+type LinkIconProps = SVGProps<SVGSVGElement>
 
 const LinkIcon = (props: LinkIconProps) => (
   <svg

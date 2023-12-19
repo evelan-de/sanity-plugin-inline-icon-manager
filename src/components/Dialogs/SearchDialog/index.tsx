@@ -1,5 +1,6 @@
-import {Dialog} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { Dialog } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 import Tabs from '../../Tabs'
 import Header from './Header'
 

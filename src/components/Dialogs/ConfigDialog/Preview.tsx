@@ -1,8 +1,9 @@
-import {Icon} from '@iconify/react'
-import {InfoOutlineIcon} from '@sanity/icons'
-import {Card, Flex, Text, Tooltip, useTheme} from '@sanity/ui'
-import {useMemo} from 'react'
-import {useAppStoreContext} from '../../../store/context'
+import { Icon } from '@iconify/react'
+import { InfoOutlineIcon } from '@sanity/icons'
+import { Card, Flex, Text, Tooltip, useTheme } from '@sanity/ui'
+import { useMemo } from 'react'
+
+import { useAppStoreContext } from '../../../store/context'
 
 const PREVIEW_SIZE_LIMIT = 300
 
@@ -25,7 +26,7 @@ const Preview = () => {
     <Card marginTop={5}>
       <Tooltip
         content={
-          <Text size={0} style={{padding: '5px'}}>
+          <Text size={0} style={{ padding: '5px' }}>
             Preview limited to 300x300, but your custom size is preserved.
           </Text>
         }
@@ -51,7 +52,7 @@ const Preview = () => {
         <Card
           tone={previewBorder ? 'positive' : 'default'}
           border
-          style={{overflow: 'hidden', borderColor: 'transparent'}}
+          style={{ overflow: 'hidden', borderColor: 'transparent' }}
         >
           <Icon
             icon={sanityValue.icon}
@@ -59,7 +60,7 @@ const Preview = () => {
             rotate={rotate}
             width={size.width <= PREVIEW_SIZE_LIMIT ? size.width : PREVIEW_SIZE_LIMIT}
             height={size.height <= PREVIEW_SIZE_LIMIT ? size.height : PREVIEW_SIZE_LIMIT}
-            style={{display: 'block', ...(color?.hex && {color: color.hex})}}
+            style={{ display: 'block', ...(color?.hex && { color: color.hex }) }}
           />
         </Card>
       </Flex>

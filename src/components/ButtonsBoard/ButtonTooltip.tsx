@@ -1,12 +1,12 @@
-import {Card, Text, Tooltip} from '@sanity/ui'
-import {ReactElement} from 'react'
+import { Card, Text, Tooltip } from '@sanity/ui'
+import { ReactElement } from 'react'
 
 interface ButtonTooltipProps {
   tooltipText: string
   children: ReactElement
 }
 
-const ButtonTooltip = ({tooltipText, children}: ButtonTooltipProps) => {
+const ButtonTooltip = ({ tooltipText, children }: ButtonTooltipProps) => {
   return (
     <Tooltip
       portal

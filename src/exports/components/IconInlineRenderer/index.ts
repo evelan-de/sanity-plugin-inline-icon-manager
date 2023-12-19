@@ -1,2 +1,2 @@
 // export IconInlineRenderer component
-export {IconInlineRenderer} from '../../../components/IconInlineRenderer'
+export { IconInlineRenderer } from '../../../components/IconInlineRenderer'

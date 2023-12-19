@@ -1,6 +1,7 @@
-import {Flex, Text, Tooltip} from '@sanity/ui'
-import {BlockProps} from 'sanity'
-import {IconManagerType} from '../../types/IconManagerType'
+import { Flex, Text, Tooltip } from '@sanity/ui'
+import { BlockProps } from 'sanity'
+
+import { IconManagerType } from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
 export type IconManagerInlineBlockComponentProps = BlockProps & IconManagerType
@@ -25,9 +26,9 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
         </Flex>
       }
     >
-      <div style={{padding: '0 10px'}}>
+      <div style={{ padding: '0 10px' }}>
         <IconPreview
-          value={{icon: value.icon, metadata: value.metadata}}
+          value={{ icon: value.icon, metadata: value.metadata }}
           width='1rem'
           height='1rem'
           hideText

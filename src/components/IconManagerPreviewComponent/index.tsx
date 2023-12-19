@@ -1,5 +1,6 @@
-import {PreviewProps} from 'sanity'
-import {IconManagerType} from '../../types/IconManagerType'
+import { PreviewProps } from 'sanity'
+
+import { IconManagerType } from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
 export type IconManagerPreviewComponentProps = PreviewProps & IconManagerType
@@ -12,7 +13,7 @@ const IconManagerPreviewComponent = (props: IconManagerPreviewComponentProps) =>
     title: props.icon,
     media: (
       <IconPreview
-        value={{icon: props.icon, metadata: props.metadata}}
+        value={{ icon: props.icon, metadata: props.metadata }}
         width='80%'
         height='80%'
         hideText

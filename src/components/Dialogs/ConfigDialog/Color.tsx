@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
-import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
-import {useRef, useState} from 'react'
-import {useAppStoreContext} from '../../../store/context'
+import { Button, Flex, Grid, Popover, Text } from '@sanity/ui'
+import { useRef, useState } from 'react'
+
+import { useAppStoreContext } from '../../../store/context'
 import ColorPicker from './ColorPicker'
 
 const Color = () => {
@@ -18,13 +19,13 @@ const Color = () => {
       direction={['column', 'column', 'row']}
       gap={[2, 2, 1]}
       align={['flex-start', 'flex-start', 'center']}
-      style={{width: '100%'}}
+      style={{ width: '100%' }}
       ref={ref}
     >
-      <Text weight='bold' size={1} style={{width: '100px'}}>
+      <Text weight='bold' size={1} style={{ width: '100px' }}>
         Color:
       </Text>
-      <Grid columns={1} style={{width: '100%'}}>
+      <Grid columns={1} style={{ width: '100%' }}>
         <Flex gap={1} align='center'>
           <Popover
             placement='right'
@@ -55,7 +56,7 @@ const Color = () => {
               title='Set the color to "currentColor"'
               fontSize={0}
               padding={1}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
               onClick={clearColor}
             />
           )}

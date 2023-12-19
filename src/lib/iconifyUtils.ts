@@ -1,4 +1,4 @@
-import IconManagerQueryResponse, {IconManagerIconInfo} from '../types/IconManagerQueryResponse'
+import IconManagerQueryResponse, { IconManagerIconInfo } from '../types/IconManagerQueryResponse'
 
 export type Flip = 'horizontal' | 'vertical' | 'horizontal,vertical' | undefined
 
@@ -19,8 +19,8 @@ export const stringifyHeight = (str?: number | number[]): string => {
 export const parseSearchResults = (results: IconManagerQueryResponse): IconManagerIconInfo[] => {
   return results.icons.reduce((acc, curr) => {
     const iconInfo = curr.split(':')
-    const collection = {code: iconInfo[0], ...results.collections[iconInfo[0]]}
-    acc.push({icon: curr, iconName: iconInfo[1], collection})
+    const collection = { code: iconInfo[0], ...results.collections[iconInfo[0]] }
+    acc.push({ icon: curr, iconName: iconInfo[1], collection })
     return acc
   }, [] as IconManagerIconInfo[])
 }

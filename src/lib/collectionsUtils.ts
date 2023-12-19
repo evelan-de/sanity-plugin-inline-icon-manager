@@ -1,6 +1,6 @@
+import { IconifyInfoEnhanced } from '../types/IconifyInfoEnhanced'
 import IconManagerCollectionResponse from '../types/IconManagerCollectionResponse'
-import {IconManagerIconInfo} from '../types/IconManagerQueryResponse'
-import {IconifyInfoEnhanced} from '../types/IconifyInfoEnhanced'
+import { IconManagerIconInfo } from '../types/IconManagerQueryResponse'
 
 const sort = (arr: any[], comparator: string) => {
   return arr.sort((a, b) => {
@@ -56,7 +56,7 @@ export const filterCollections = (
 ): Record<string, IconifyInfoEnhanced[]> | undefined => {
   if (!searchTerm || !groupedCollections) return groupedCollections
 
-  const clonedItems = {...groupedCollections}
+  const clonedItems = { ...groupedCollections }
 
   const lowerCaseSearchTerm = searchTerm.toLowerCase()
   Object.keys(clonedItems).forEach((group) => {
@@ -80,13 +80,13 @@ export const getIconsFromCollection = (
   // loop trough uncategorized
   if (collection.uncategorized)
     collection.uncategorized?.forEach((icon) => {
-      output.push({icon: `${collection.prefix}:${icon}`, iconName: icon})
+      output.push({ icon: `${collection.prefix}:${icon}`, iconName: icon })
     })
   if (collection.categories) {
     Object.keys(collection.categories).forEach((category) => {
       if (collection.categories) {
         collection.categories[category].forEach((icon) => {
-          output.push({icon: `${collection.prefix}:${icon}`, iconName: icon})
+          output.push({ icon: `${collection.prefix}:${icon}`, iconName: icon })
         })
       }
     })
@@ -103,7 +103,7 @@ export const filterIcons = (
 
   const lowerCaseSearchTerm = searchTerm.toLowerCase()
   return icons.filter(
-    ({icon, iconName}) =>
+    ({ icon, iconName }) =>
       icon.toLowerCase().includes(lowerCaseSearchTerm) ||
       iconName.toLowerCase().includes(lowerCaseSearchTerm),
   )

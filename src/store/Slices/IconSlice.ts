@@ -1,5 +1,6 @@
-import {set as patchSet, unset as patchUnset} from 'sanity'
-import {StateCreator} from 'zustand'
+import { set as patchSet, unset as patchUnset } from 'sanity'
+import { StateCreator } from 'zustand'
+
 import {
   INITIAL_HEIGHT,
   INITIAL_HFLIP,
@@ -12,12 +13,12 @@ import {
   generateInitialSvgHttpUrl,
   generateSvgHtml,
 } from '../../lib/svgUtils'
-import {toastError} from '../../lib/toastUtils'
-import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
-import {ConfigureSlice} from './ConfigureSlice'
-import {DialogSlice} from './DialogSlice'
-import {PluginOptionsSlice} from './PluginOptionsSlice'
-import {SanitySlice} from './SanitySlice'
+import { toastError } from '../../lib/toastUtils'
+import { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
+import { ConfigureSlice } from './ConfigureSlice'
+import { DialogSlice } from './DialogSlice'
+import { PluginOptionsSlice } from './PluginOptionsSlice'
+import { SanitySlice } from './SanitySlice'
 
 export interface IconSlice {
   saveIcon: (item: IconManagerIconInfo) => void
@@ -30,7 +31,7 @@ export const createIconSlice: StateCreator<
   [],
   IconSlice
 > = (set, get) => ({
-  saveIcon: async ({icon, iconName, collection}: IconManagerIconInfo) => {
+  saveIcon: async ({ icon, iconName, collection }: IconManagerIconInfo) => {
     try {
       const patches = []
       patches.push(patchSet(icon, ['icon']))
@@ -42,7 +43,7 @@ export const createIconSlice: StateCreator<
             collectionId: collection?.code,
             collectionName: collection?.name || '',
             iconName,
-            size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
+            size: { width: INITIAL_WIDTH, height: INITIAL_HEIGHT },
             hFlip: INITIAL_HFLIP,
             vFlip: INITIAL_VFLIP,
             flip: '',

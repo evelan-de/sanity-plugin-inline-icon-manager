@@ -1,4 +1,5 @@
-import {Flex} from '@sanity/ui'
+import { Flex } from '@sanity/ui'
+
 import IconifySmile from '../../icons/IconifySmile'
 
 const Header = () => (

@@ -1,6 +1,7 @@
-import {Icon} from '@iconify/react'
-import {Flex, Text} from '@sanity/ui'
-import {IconManagerType} from '../../types/IconManagerType'
+import { Icon } from '@iconify/react'
+import { Flex, Text } from '@sanity/ui'
+
+import { IconManagerType } from '../../types/IconManagerType'
 
 interface IconPreviewProps {
   value?: IconManagerType
@@ -34,26 +35,26 @@ const IconPreview = ({
   if (!value?.icon) return null
 
   const {
-    metadata: {flip, rotate, color, size},
+    metadata: { flip, rotate, color, size },
   } = value
 
   return (
     <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
         icon={value.icon}
-        {...(flip && {flip})}
-        {...(rotate && {rotate})}
+        {...(flip && { flip })}
+        {...(rotate && { rotate })}
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          ...(color && color.hex && {color: color.hex}),
+          ...(color && color.hex && { color: color.hex }),
         }}
         width={width}
         height={height}
       />
       {!hideText && (
-        <Text size={0} style={{opacity: 0.8}}>
+        <Text size={0} style={{ opacity: 0.8 }}>
           {size.width} x {size.height}
         </Text>
       )}

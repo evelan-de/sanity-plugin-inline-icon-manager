@@ -1,4 +1,5 @@
-import {useDeferredValue, useState} from 'react'
+import { useDeferredValue, useState } from 'react'
+
 import CollectionsGrid from './CollectionsGrid'
 import Input from './Input'
 

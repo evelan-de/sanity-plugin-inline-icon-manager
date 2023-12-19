@@ -1,4 +1,4 @@
-import {z} from 'zod'
+import { z } from 'zod'
 
 export const iconManagerColorSchema = z.object({
   hex: z.string(),
@@ -54,6 +54,6 @@ export type IconManagerType = z.infer<typeof iconManagerSchema>
 
 export const iconManagerPartialSchema = iconManagerSchema
   .deepPartial()
-  .extend({_type: z.literal('icon.manager')})
+  .extend({ _type: z.literal('icon.manager') })
 
 export type IconManagerPartialType = z.infer<typeof iconManagerPartialSchema>

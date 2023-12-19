@@ -1,6 +1,7 @@
-import {HelpCircleIcon} from '@sanity/icons'
-import {Box, Dialog, Text} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { HelpCircleIcon } from '@sanity/icons'
+import { Box, Dialog, Text } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 import Footer from './Footer'
 
 interface RemoveDialogProps {}

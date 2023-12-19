@@ -1,6 +1,6 @@
-import {SVGProps} from 'react'
+import { SVGProps } from 'react'
 
-interface HtmlIconProps extends SVGProps<SVGSVGElement> {}
+type HtmlIconProps = SVGProps<SVGSVGElement>
 
 const HtmlIcon = (props: HtmlIconProps) => (
   <svg
@@ -8,7 +8,7 @@ const HtmlIcon = (props: HtmlIconProps) => (
     width={props.width || 256}
     height={props.height || 256}
     viewBox='0 0 256 256'
-    style={{display: 'block'}}
+    style={{ display: 'block' }}
   >
     <path
       fill='currentColor'

@@ -1,4 +1,5 @@
-import {definePlugin} from 'sanity'
+import { definePlugin } from 'sanity'
+
 import iconManagerSetup from '../lib/iconManagerSetup'
 import IconManagerObject from '../schemas/objects/IconManager'
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'

@@ -1,4 +1,4 @@
-import {defineField} from 'sanity'
+import { defineField } from 'sanity'
 
 const metadataFields = [
   defineField({
