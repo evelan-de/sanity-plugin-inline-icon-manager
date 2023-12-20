@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.0...v1.1.1) (2023-12-20)
+
+### Bug Fixes
+
+- **ColorPicker:** handle undefined color values in setColor function ([f67ab64](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/f67ab64d25644c69f4665d94ac724fd68548ac8b))
+- run prettier format ([82b5f27](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/82b5f27699f53d49c1c9d3d2e2426b4498b40318))
+- upgrade eslint version to fix build dependency error ([643f355](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/643f3552db6e05de5ac601f6430fdb3c4398db2c))
+
 ## [1.1.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.0.0...v1.1.0) (2023-12-18)
 
 ### Features
