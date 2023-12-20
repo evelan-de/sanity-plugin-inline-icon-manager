@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
-import {Card, Dialog, Flex} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { Card, Dialog, Flex } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 import Color from './Color'
 import Flip from './Flip'
 import Footer from './Footer'

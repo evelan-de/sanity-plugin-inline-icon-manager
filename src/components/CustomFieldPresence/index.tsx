@@ -1,12 +1,13 @@
-import {Flex} from '@sanity/ui'
-import {FieldMember, FieldPresenceWithOverlay, ObjectInputProps} from 'sanity'
-import {useAppStoreContext} from '../../store/context'
+import { Flex } from '@sanity/ui'
+import { FieldMember, FieldPresenceWithOverlay, ObjectInputProps } from 'sanity'
+
+import { useAppStoreContext } from '../../store/context'
 
 interface CustomFieldPresenceProps {
   objectInputProps: ObjectInputProps
 }
 
-const CustomFieldPresence = ({objectInputProps}: CustomFieldPresenceProps) => {
+const CustomFieldPresence = ({ objectInputProps }: CustomFieldPresenceProps) => {
   const sanityFieldPath = useAppStoreContext((s) => s.sanityFieldPath)
   const members = objectInputProps.members as FieldMember[]
 

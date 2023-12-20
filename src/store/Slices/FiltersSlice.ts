@@ -1,4 +1,4 @@
-import {StateCreator} from 'zustand'
+import { StateCreator } from 'zustand'
 
 export const DEFAULT_FILTER_LIMIT = 999
 
@@ -7,7 +7,7 @@ export interface FiltersSlice {
   isFiltersOpen?: boolean
   filterStyle: string
   filterPalette: string
-  filterCollection?: {code: string; name: string}
+  filterCollection?: { code: string; name: string }
   countFiltersApplied: () => number
   toggleFilters: (force?: boolean) => void
   setLimit: (limit: number) => void
@@ -29,12 +29,12 @@ export const createFiltersSlice: StateCreator<FiltersSlice, [], [], FiltersSlice
     return count
   },
   toggleFilters: (force?: boolean) =>
-    set((s) => ({isFiltersOpen: force === undefined ? !s.isFiltersOpen : force})),
-  setLimit: (limit: number) => set(() => ({limit})),
-  setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
-  setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
+    set((s) => ({ isFiltersOpen: force === undefined ? !s.isFiltersOpen : force })),
+  setLimit: (limit: number) => set(() => ({ limit })),
+  setFilterStyle: (filterStyle: string) => set(() => ({ filterStyle })),
+  setFilterPalette: (filterPalette: string) => set(() => ({ filterPalette })),
   setFilterCollection: (code: string, name: string) => {
-    const newCollection = code ? {code, name} : undefined
-    set(() => ({filterCollection: newCollection}))
+    const newCollection = code ? { code, name } : undefined
+    set(() => ({ filterCollection: newCollection }))
   },
 })

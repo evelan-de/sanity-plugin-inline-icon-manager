@@ -1,4 +1,5 @@
-import {Button} from '@sanity/ui'
+import { Button } from '@sanity/ui'
+
 import DataUrlIcon from '../icons/DataURLIcon'
 import DownloadIcon from '../icons/DownloadIcon'
 import HtmlIcon from '../icons/HtmlIcon'
@@ -25,7 +26,7 @@ const SvgButtonsBoard = ({
           mode='bleed'
           tone='primary'
           icon={<HtmlIcon width='25px' height='25px' />}
-          style={{cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
           onClick={onCopyHtmlToClipboard}
         />
       </ButtonTooltip>
@@ -33,8 +34,8 @@ const SvgButtonsBoard = ({
         <Button
           mode='bleed'
           tone='primary'
-          icon={<DataUrlIcon width='25px' height='25px' style={{paddingTop: '6px'}} />}
-          style={{cursor: 'pointer'}}
+          icon={<DataUrlIcon width='25px' height='25px' style={{ paddingTop: '6px' }} />}
+          style={{ cursor: 'pointer' }}
           onClick={onCopyDataUrlToClipboard}
         />
       </ButtonTooltip>

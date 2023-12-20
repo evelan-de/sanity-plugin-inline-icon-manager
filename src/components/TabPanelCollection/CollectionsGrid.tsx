@@ -1,17 +1,18 @@
 /* eslint-disable react/jsx-no-bind */
-import {Icon} from '@iconify/react'
-import {Box, Card, Flex, Grid, Text} from '@sanity/ui'
-import {memo, useMemo} from 'react'
-import {filterCollections} from '../../lib/collectionsUtils'
-import {stringifyHeight} from '../../lib/iconifyUtils'
-import {useAppStoreContext} from '../../store/context'
+import { Icon } from '@iconify/react'
+import { Box, Card, Flex, Grid, Text } from '@sanity/ui'
+import { memo, useMemo } from 'react'
+
+import { filterCollections } from '../../lib/collectionsUtils'
+import { stringifyHeight } from '../../lib/iconifyUtils'
+import { useAppStoreContext } from '../../store/context'
 import HeightLightIcon from '../icons/HeightLightIcon'
 
 interface CollectionsGridProps {
   searchTerm?: string
 }
 
-const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
+const CollectionsGrid = ({ searchTerm }: CollectionsGridProps) => {
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
   const searchCollection = useAppStoreContext((s) => s.searchCollection)
   const filteredCollections = useMemo(() => {
@@ -21,7 +22,7 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
   if (!filteredCollections) return null
 
   return (
-    <Box style={{height: '400px', overflowY: 'scroll'}} paddingTop={1}>
+    <Box style={{ height: '400px', overflowY: 'scroll' }} paddingTop={1}>
       <Flex direction='column' margin={4} marginTop={0} gap={6}>
         {Object.keys(filteredCollections).map((collectionCode) => {
           const items = filteredCollections[collectionCode]
@@ -40,10 +41,10 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
                       role='button'
                       key={collection.code}
                       border
-                      style={{cursor: 'pointer'}}
+                      style={{ cursor: 'pointer' }}
                       onClick={() => searchCollection(collection.code)}
                     >
-                      <Flex direction='column' style={{height: '100%'}} justify='space-between'>
+                      <Flex direction='column' style={{ height: '100%' }} justify='space-between'>
                         <Flex direction='column' paddingX={3} paddingY={4} gap={2}>
                           <Text weight='bold' size={2}>
                             {collection.name}

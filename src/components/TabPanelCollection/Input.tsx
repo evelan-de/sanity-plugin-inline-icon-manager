@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-no-bind */
-import {SearchIcon} from '@sanity/icons'
-import {Box, TextInput} from '@sanity/ui'
-import {FormEvent, useCallback} from 'react'
+import { SearchIcon } from '@sanity/icons'
+import { Box, TextInput } from '@sanity/ui'
+import { FormEvent, useCallback } from 'react'
 
-interface InputProps {
+type InputProps = {
   placeholder: string
   term?: string
   onChange: (searchTerm: string) => void
 }
 
-const Input = ({placeholder, term, onChange}: InputProps) => {
+const Input = ({ placeholder, term, onChange }: InputProps) => {
   const handleOnChange = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
       onChange(e.currentTarget.value)

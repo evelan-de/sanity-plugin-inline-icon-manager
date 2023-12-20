@@ -1,11 +1,12 @@
-import {StateCreator} from 'zustand'
-import {getIconsFromCollection, groupAndSortCollections} from '../../lib/collectionsUtils'
-import {toastError} from '../../lib/toastUtils'
+import { StateCreator } from 'zustand'
+
+import { getIconsFromCollection, groupAndSortCollections } from '../../lib/collectionsUtils'
+import { toastError } from '../../lib/toastUtils'
+import { IconifyInfoEnhanced } from '../../types/IconifyInfoEnhanced'
 import IconManagerCollectionResponse from '../../types/IconManagerCollectionResponse'
-import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
-import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
-import {PluginOptionsSlice} from './PluginOptionsSlice'
-import {SanitySlice} from './SanitySlice'
+import { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
+import { PluginOptionsSlice } from './PluginOptionsSlice'
+import { SanitySlice } from './SanitySlice'
 
 let cacheCollections: Record<string, IconifyInfoEnhanced>
 let cacheGroupedCollections: Record<string, IconifyInfoEnhanced[]>
@@ -14,7 +15,7 @@ export interface CollectionsSlice {
   collections?: Record<string, IconifyInfoEnhanced>
   groupedCollections?: Record<string, IconifyInfoEnhanced[]>
   hasSelectedCollection?: boolean
-  selectedCollection?: {icons: IconManagerIconInfo[]; collection: IconifyInfoEnhanced}
+  selectedCollection?: { icons: IconManagerIconInfo[]; collection: IconifyInfoEnhanced }
   fetchCollections: () => void
   searchCollection: (prefix: string) => void
   clearSelectedCollection: () => void
@@ -29,7 +30,7 @@ export const createCollectionsSlice: StateCreator<
   fetchCollections: async () => {
     try {
       if (cacheCollections && cacheGroupedCollections) {
-        set(() => ({collections: cacheCollections, groupedCollections: cacheGroupedCollections}))
+        set(() => ({ collections: cacheCollections, groupedCollections: cacheGroupedCollections }))
       } else {
         const url = `${get().iconifyEndpoint}/collections`
         const res = await fetch(url)
@@ -41,7 +42,7 @@ export const createCollectionsSlice: StateCreator<
         const collections = (await res.json()) as Record<string, IconifyInfoEnhanced>
         cacheCollections = collections
         cacheGroupedCollections = groupAndSortCollections(collections)
-        set(() => ({collections, groupedCollections: cacheGroupedCollections}))
+        set(() => ({ collections, groupedCollections: cacheGroupedCollections }))
       }
     } catch (e: any) {
       toastError(get().sanityToast, e)
@@ -61,7 +62,7 @@ export const createCollectionsSlice: StateCreator<
       set(() => ({
         selectedCollection: {
           icons: getIconsFromCollection(collection),
-          collection: {...collections![prefix], code: prefix},
+          collection: { ...collections![prefix], code: prefix },
         },
         hasSelectedCollection: true,
       }))
@@ -70,5 +71,5 @@ export const createCollectionsSlice: StateCreator<
     }
   },
   clearSelectedCollection: () =>
-    set(() => ({hasSelectedCollection: false, selectedCollection: undefined})),
+    set(() => ({ hasSelectedCollection: false, selectedCollection: undefined })),
 })

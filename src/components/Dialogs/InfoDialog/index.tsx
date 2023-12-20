@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
-import {Dialog, Flex} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { Dialog, Flex } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 import Footer from './Footer'
 import Header from './Header'
 import Row from './Row'

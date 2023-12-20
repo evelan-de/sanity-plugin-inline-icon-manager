@@ -1,6 +1,7 @@
-import {ToastContextValue} from '@sanity/ui'
-import {AppStoreTypePartial, generateSvgDataUrl, generateSvgHtml} from './svgUtils'
-import {toastError, toastSuccess} from './toastUtils'
+import { ToastContextValue } from '@sanity/ui'
+
+import { AppStoreTypePartial, generateSvgDataUrl, generateSvgHtml } from './svgUtils'
+import { toastError, toastSuccess } from './toastUtils'
 
 export const copy2Clipboard = async (
   text: string,
@@ -8,7 +9,7 @@ export const copy2Clipboard = async (
 ): Promise<boolean> => {
   try {
     await navigator.clipboard.writeText(text)
-    toastSuccess({sanityToast, title: 'Copied to clipboard'})
+    toastSuccess({ sanityToast, title: 'Copied to clipboard' })
     return true
   } catch (e: unknown) {
     toastError(sanityToast, e)

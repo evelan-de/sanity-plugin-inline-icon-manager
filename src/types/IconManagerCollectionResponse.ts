@@ -1,4 +1,4 @@
-import {IconifyInfo, IconifyJSON} from '@iconify/types'
+import { IconifyInfo, IconifyJSON } from '@iconify/types'
 
 export default interface IconManagerCollectionResponse {
   // Icon set prefix

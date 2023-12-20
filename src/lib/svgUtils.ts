@@ -1,7 +1,9 @@
-import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify/react'
-import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
+import { buildIcon, IconifyIconCustomisations, loadIcon } from '@iconify/react'
+import { iconToHTML, replaceIDs, svgToData } from '@iconify/utils'
 import DomPurify from 'dompurify'
-import {AppStoreType} from '../store/context'
+
+// eslint-disable-next-line import/no-cycle
+import { AppStoreType } from '../store/context'
 import {
   INITIAL_HEIGHT,
   INITIAL_HFLIP,
@@ -9,7 +11,7 @@ import {
   INITIAL_VFLIP,
   INITIAL_WIDTH,
 } from './constants'
-import {toastError} from './toastUtils'
+import { toastError } from './toastUtils'
 
 export type AppStoreTypePartial = Pick<
   AppStoreType,

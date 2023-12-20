@@ -1,6 +1,7 @@
-import {StateCreator} from 'zustand'
-import {isValidHex} from '../../lib/colorUtils'
-import {PluginCustomColor, PluginCustomPalette} from '../../types/IconManagerPluginOptions'
+import { StateCreator } from 'zustand'
+
+import { isValidHex } from '../../lib/colorUtils'
+import { PluginCustomColor, PluginCustomPalette } from '../../types/IconManagerPluginOptions'
 
 export interface PluginOptionsSlice {
   iconifyEndpoint?: string
@@ -17,7 +18,7 @@ export const createPluginOptionsSlice: StateCreator<
   [],
   PluginOptionsSlice
 > = (set) => ({
-  setIconifyEndpoint: (iconifyEndpoint: string) => set(() => ({iconifyEndpoint})),
+  setIconifyEndpoint: (iconifyEndpoint: string) => set(() => ({ iconifyEndpoint })),
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => {
     if (!customPalette) return // do nothing
     const paletteSet = new Set()
@@ -29,12 +30,12 @@ export const createPluginOptionsSlice: StateCreator<
 
       if (!paletteSet.has(hex)) {
         paletteSet.add(hex)
-        acc.push({hex, title: currIsString ? hex : curr?.title || hex})
+        acc.push({ hex, title: currIsString ? hex : curr?.title || hex })
       }
       return acc
     }, [])
 
-    set(() => ({customPalette: finalPalette}))
+    set(() => ({ customPalette: finalPalette }))
   },
-  setPluginOptionStoreInlineSvg: (storeInlineSvg: boolean) => set(() => ({storeInlineSvg})),
+  setPluginOptionStoreInlineSvg: (storeInlineSvg: boolean) => set(() => ({ storeInlineSvg })),
 })

@@ -1,6 +1,7 @@
-import {BookIcon} from '@sanity/icons'
-import {Button} from '@sanity/ui'
-import {useAppStoreContext} from '../../store/context'
+import { BookIcon } from '@sanity/icons'
+import { Button } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../store/context'
 
 const EmptyState = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)

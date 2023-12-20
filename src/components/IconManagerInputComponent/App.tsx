@@ -1,9 +1,10 @@
-import {Box} from '@sanity/ui'
-import {ObjectInputProps} from 'sanity'
+import { Box } from '@sanity/ui'
+import { ObjectInputProps } from 'sanity'
+
 import useInputSetup from '../../hooks/useInputSetup'
-import {useAppStoreContext} from '../../store/context'
+import { useAppStoreContext } from '../../store/context'
 import IconManagerPluginOptions from '../../types/IconManagerPluginOptions'
-import {IconManagerType} from '../../types/IconManagerType'
+import { IconManagerType } from '../../types/IconManagerType'
 import EmptyState from '../AppStates/EmptyState'
 import FilledState from '../AppStates/FilledState'
 import ChangeIndicatorWrapper from '../ChangeIndicatorWrapper'
@@ -26,7 +27,7 @@ const IconManagerInputComponent = ({
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
 
   return (
-    <Box style={{position: 'relative'}}>
+    <Box style={{ position: 'relative' }}>
       <CustomFieldPresence objectInputProps={objectInputProps} />
 
       {/* App States */}

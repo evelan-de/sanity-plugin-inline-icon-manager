@@ -1,6 +1,6 @@
-import {SVGProps} from 'react'
+import { SVGProps } from 'react'
 
-interface HeightLightIconProps extends SVGProps<SVGSVGElement> {}
+type HeightLightIconProps = SVGProps<SVGSVGElement>
 
 const HeightLightIcon = (props: HeightLightIconProps) => (
   <svg

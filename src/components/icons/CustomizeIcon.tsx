@@ -1,6 +1,6 @@
-import {SVGProps} from 'react'
+import { SVGProps } from 'react'
 
-interface CustomizeIconProps extends SVGProps<SVGSVGElement> {}
+type CustomizeIconProps = SVGProps<SVGSVGElement>
 
 const CustomizeIcon = (props: CustomizeIconProps) => (
   <svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24' {...props}>

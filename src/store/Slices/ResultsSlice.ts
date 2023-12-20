@@ -1,13 +1,14 @@
-import {FormEvent} from 'react'
-import {StateCreator} from 'zustand'
-import {parseSearchResults} from '../../lib/iconifyUtils'
-import {toastError} from '../../lib/toastUtils'
-import IconManagerQueryResponse, {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
-import {ConfigureSlice} from './ConfigureSlice'
-import {DialogSlice} from './DialogSlice'
-import {FiltersSlice} from './FiltersSlice'
-import {PluginOptionsSlice} from './PluginOptionsSlice'
-import {SanitySlice} from './SanitySlice'
+import { FormEvent } from 'react'
+import { StateCreator } from 'zustand'
+
+import { parseSearchResults } from '../../lib/iconifyUtils'
+import { toastError } from '../../lib/toastUtils'
+import IconManagerQueryResponse, { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
+import { ConfigureSlice } from './ConfigureSlice'
+import { DialogSlice } from './DialogSlice'
+import { FiltersSlice } from './FiltersSlice'
+import { PluginOptionsSlice } from './PluginOptionsSlice'
+import { SanitySlice } from './SanitySlice'
 
 const cacheResults = new Map<string, IconManagerIconInfo[]>()
 
@@ -26,8 +27,8 @@ export const createResultsSlice: StateCreator<
   ResultsSlice
 > = (set, get) => ({
   setSearchTerm: (event: FormEvent<HTMLInputElement>) =>
-    set(() => ({searchTerm: event.currentTarget.value})),
-  setSearchResults: (searchResults?: IconManagerIconInfo[]) => set(() => ({searchResults})),
+    set(() => ({ searchTerm: event.currentTarget.value })),
+  setSearchResults: (searchResults?: IconManagerIconInfo[]) => set(() => ({ searchResults })),
   searchIcons: async () => {
     try {
       if (!get().searchTerm) return

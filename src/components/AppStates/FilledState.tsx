@@ -1,5 +1,6 @@
-import {Badge, Card, Flex, Text, Tooltip} from '@sanity/ui'
-import {useAppStoreContext} from '../../store/context'
+import { Badge, Card, Flex, Text, Tooltip } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../store/context'
 import ButtonsBoard from '../ButtonsBoard'
 import IconPreview from '../IconPreview'
 import CustomizeIcon from '../icons/CustomizeIcon'
@@ -13,7 +14,7 @@ const FilledState = () => {
   return (
     <Flex direction='row' align='center' gap={1}>
       <ButtonsBoard />
-      <Card border paddingX={4} paddingY={3} style={{position: 'relative'}}>
+      <Card border paddingX={4} paddingY={3} style={{ position: 'relative' }}>
         {hasBeenCustomized && (
           <Tooltip
             content={
@@ -26,7 +27,7 @@ const FilledState = () => {
               radius={0}
               mode='outline'
               tone='primary'
-              style={{position: 'absolute', top: 0, right: 0, opacity: 0.5, cursor: 'help'}}
+              style={{ position: 'absolute', top: 0, right: 0, opacity: 0.5, cursor: 'help' }}
             >
               <CustomizeIcon width={15} height={15} />
             </Badge>

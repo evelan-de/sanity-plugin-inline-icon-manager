@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 interface usePaginationResponse<T> {
   itemsPerPage: number
@@ -39,7 +39,15 @@ const usePagination = <T>(items?: T[], itemsPerPage = 40): usePaginationResponse
     }
   }, [items])
 
-  return {currentPage, itemsPerPage, totalPages, totalItems, currentItems, setNextPage, setPrevPage}
+  return {
+    currentPage,
+    itemsPerPage,
+    totalPages,
+    totalItems,
+    currentItems,
+    setNextPage,
+    setPrevPage,
+  }
 }
 
 export default usePagination

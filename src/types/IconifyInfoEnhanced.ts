@@ -1,3 +1,3 @@
-import {IconifyInfo} from '@iconify/types'
+import { IconifyInfo } from '@iconify/types'
 
-export type IconifyInfoEnhanced = IconifyInfo & {code: string}
+export type IconifyInfoEnhanced = IconifyInfo & { code: string }

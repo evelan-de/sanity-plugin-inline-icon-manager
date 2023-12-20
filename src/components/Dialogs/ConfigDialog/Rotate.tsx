@@ -1,5 +1,6 @@
-import {Button, Flex, Grid, Text} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { Button, Flex, Grid, Text } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 
 const Rotate = () => {
   const rotate = useAppStoreContext((s) => s.rotate)
@@ -13,12 +14,12 @@ const Rotate = () => {
       direction={['column', 'column', 'row']}
       gap={[2, 2, 1]}
       align={['flex-start', 'flex-start', 'center']}
-      style={{width: '100%'}}
+      style={{ width: '100%' }}
     >
-      <Text weight='bold' size={1} style={{width: '100px'}}>
+      <Text weight='bold' size={1} style={{ width: '100px' }}>
         Rotate:
       </Text>
-      <Grid columns={[2, 2, 4]} gap={1} style={{width: '100%'}}>
+      <Grid columns={[2, 2, 4]} gap={1} style={{ width: '100%' }}>
         <Button
           text='0°'
           mode={`${rotate === 0 ? 'default' : 'ghost'}`}
@@ -26,7 +27,7 @@ const Rotate = () => {
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%', cursor: 'pointer'}}
+          style={{ width: '100%', cursor: 'pointer' }}
           data-value={0}
           onClick={setRotate0}
         />
@@ -37,7 +38,7 @@ const Rotate = () => {
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%', cursor: 'pointer'}}
+          style={{ width: '100%', cursor: 'pointer' }}
           data-value={1}
           onClick={setRotate90}
         />
@@ -48,7 +49,7 @@ const Rotate = () => {
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%', cursor: 'pointer'}}
+          style={{ width: '100%', cursor: 'pointer' }}
           data-value={2}
           onClick={setRotate180}
         />
@@ -59,7 +60,7 @@ const Rotate = () => {
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%', cursor: 'pointer'}}
+          style={{ width: '100%', cursor: 'pointer' }}
           data-value={3}
           onClick={setRotate270}
         />

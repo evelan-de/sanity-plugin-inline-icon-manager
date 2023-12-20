@@ -1,6 +1,7 @@
-import {Flex, Select, Text} from '@sanity/ui'
-import {FormEvent, useCallback} from 'react'
-import {useAppStoreContext} from '../../store/context'
+import { Flex, Select, Text } from '@sanity/ui'
+import { FormEvent, useCallback } from 'react'
+
+import { useAppStoreContext } from '../../store/context'
 
 interface FilterStyleProps {}
 
@@ -17,10 +18,10 @@ const FilterStyle = (props: FilterStyleProps) => {
 
   return (
     <Flex align='center'>
-      <Text weight='bold' size={1} style={{width: '100px'}}>
+      <Text weight='bold' size={1} style={{ width: '100px' }}>
         Style:
       </Text>
-      <Flex style={{width: '100%'}}>
+      <Flex style={{ width: '100%' }}>
         <Select onChange={onSetFilterStyle} value={filterStyle} fontSize={1}>
           <option value=''>Select...</option>
           <option value='stroke'>Stroke</option>

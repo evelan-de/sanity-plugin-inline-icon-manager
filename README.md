@@ -59,8 +59,8 @@ npm install sanity-plugin-inline-icon-manager
 Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
-import {defineConfig} from 'sanity'
-import {IconManager} from 'sanity-plugin-icon-manager'
+import { defineConfig } from 'sanity'
+import { IconManager } from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
@@ -76,7 +76,7 @@ export default defineConfig({
 The plugin introduces one new object type called: `icon.manager`. You can define a new field with this type inside your documents.
 
 ```ts
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 const SampleDocument = defineType({
   type: 'document',
@@ -173,7 +173,7 @@ export default SampleDocument
 You can easily use the plugin inside your Portable Text, both for inline or block components. The preview will shows the rendered icon and its related name.
 
 ```ts
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 const SampleDocument = defineType({
   type: 'document',
@@ -188,7 +188,7 @@ const SampleDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: 'icon.manager', title: 'Inline Icon'}],
+          of: [{ type: 'icon.manager', title: 'Inline Icon' }],
         },
         {
           type: 'icon.manager',
@@ -216,8 +216,8 @@ You need to provide a list of valid hex colors (with an optional title).\
 As a result, you will have access to these colors within the color picker when customizing a monochrome icon.
 
 ```ts
-import {defineConfig} from 'sanity'
-import {IconManager} from 'sanity-plugin-icon-manager'
+import { defineConfig } from 'sanity'
+import { IconManager } from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
@@ -317,8 +317,8 @@ The Iconify project allows you to host the API on your server. You can learn mor
 This plugin offers a basic customization through the `customEndpoint` option. If you pass a valid URL, hosting a custom Iconify implementation, the plugin will use it as the base path for all the interactions (searching and rendering).
 
 ```ts
-import {defineConfig} from 'sanity'
-import {IconManager} from 'sanity-plugin-icon-manager'
+import { defineConfig } from 'sanity'
+import { IconManager } from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
