@@ -33,7 +33,7 @@
       "import": "./dist/types.esm.js",
       "default": "./dist/types.esm.js"
     },
-    "./IconInlineRenderer": {
+    "./renderer": {
       "types": "./dist/IconInlineRenderer.d.ts",
       "source": "./src/exports/components/IconInlineRenderer/index.ts",
       "require": "./dist/IconInlineRenderer.js",
