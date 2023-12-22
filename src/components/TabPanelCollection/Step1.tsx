@@ -1,8 +1,9 @@
-import {Icon} from '@iconify/react'
-import {LaunchIcon} from '@sanity/icons'
-import {Box, Flex, Text} from '@sanity/ui'
-import {useDeferredValue, useState} from 'react'
-import {useAppStoreContext} from '../../store/context'
+import { Icon } from '@iconify/react'
+import { LaunchIcon } from '@sanity/icons'
+import { Box, Flex, Text } from '@sanity/ui'
+import { useDeferredValue, useState } from 'react'
+
+import { useAppStoreContext } from '../../store/context'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
@@ -17,7 +18,7 @@ const Step1 = () => {
         <Box
           role='button'
           onClick={clearSelectedCollection}
-          style={{cursor: 'pointer', fontSize: '22px'}}
+          style={{ cursor: 'pointer', fontSize: '22px' }}
         >
           ←
         </Box>
@@ -41,12 +42,12 @@ const Step1 = () => {
             as='a'
             href={selectedCollection?.collection.author.url}
             target='_blank'
-            style={{textDecoration: 'none', fontStyle: 'italic'}}
+            style={{ textDecoration: 'none', fontStyle: 'italic' }}
           >
             <Text muted size={2}>
               by {selectedCollection?.collection.author.name}
             </Text>
-            <LaunchIcon width={12} style={{color: 'initial'}} />
+            <LaunchIcon width={12} style={{ color: 'initial' }} />
           </Flex>
         </Flex>
       </Flex>

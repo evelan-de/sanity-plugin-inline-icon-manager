@@ -1,8 +1,10 @@
-import {FormEvent} from 'react'
-import {RgbaColor} from 'react-colorful'
-import {set as patchSet, unset as patchUnset} from 'sanity'
-import {StateCreator} from 'zustand'
-import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/colorUtils'
+/* eslint-disable import/no-cycle */
+import { FormEvent } from 'react'
+import { RgbaColor } from 'react-colorful'
+import { set as patchSet, unset as patchUnset } from 'sanity'
+import { StateCreator } from 'zustand'
+
+import { hexToRgba, isValidHex, rgbaToHex } from '../../lib/colorUtils'
 import {
   INITIAL_HEIGHT,
   INITIAL_HFLIP,
@@ -10,13 +12,13 @@ import {
   INITIAL_VFLIP,
   INITIAL_WIDTH,
 } from '../../lib/constants'
-import {getFlipValue} from '../../lib/iconifyUtils'
-import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../../lib/svgUtils'
-import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
-import {IconManagerColor, IconManagerSize} from '../../types/IconManagerType'
-import {DialogSlice} from './DialogSlice'
-import {SanitySlice} from './SanitySlice'
-import {PluginOptionsSlice} from './PluginOptionsSlice'
+import { getFlipValue } from '../../lib/iconifyUtils'
+import { generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl } from '../../lib/svgUtils'
+import { toastError, toastSuccess, toastWarning } from '../../lib/toastUtils'
+import { IconManagerColor, IconManagerSize } from '../../types/IconManagerType'
+import { DialogSlice } from './DialogSlice'
+import { PluginOptionsSlice } from './PluginOptionsSlice'
+import { SanitySlice } from './SanitySlice'
 
 const initialState = {
   hFlip: INITIAL_HFLIP,
@@ -24,7 +26,7 @@ const initialState = {
   flip: '',
   rotate: INITIAL_ROTATE,
   inlineSvg: '',
-  size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
+  size: { width: INITIAL_WIDTH, height: INITIAL_HEIGHT },
   uniqueSize: false,
   color: undefined,
   previewBorder: false,
@@ -96,29 +98,29 @@ export const createConfigureSlice: StateCreator<
       uniqueSize: false,
     }))
   },
-  setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip, flip: getFlipValue(hFlip, vFlip)})),
-  toggleHFlip: () => set((s) => ({hFlip: !s.hFlip, flip: getFlipValue(!s.hFlip, get().vFlip)})),
-  toggleVFlip: () => set((s) => ({vFlip: !s.vFlip, flip: getFlipValue(get().hFlip, !s.vFlip)})),
-  setRotate: (rotate: number) => set(() => ({rotate})),
-  setRotate0: () => set(() => ({rotate: 0})),
-  setRotate90: () => set((s) => ({rotate: s.rotate === 1 ? 0 : 1})),
-  setRotate180: () => set((s) => ({rotate: s.rotate === 2 ? 0 : 2})),
-  setRotate270: () => set((s) => ({rotate: s.rotate === 3 ? 0 : 3})),
-  setInlineSvg: (inlineSvg?: string) => set(() => ({inlineSvg})),
+  setFlip: (hFlip, vFlip) => set(() => ({ hFlip, vFlip, flip: getFlipValue(hFlip, vFlip) })),
+  toggleHFlip: () => set((s) => ({ hFlip: !s.hFlip, flip: getFlipValue(!s.hFlip, get().vFlip) })),
+  toggleVFlip: () => set((s) => ({ vFlip: !s.vFlip, flip: getFlipValue(get().hFlip, !s.vFlip) })),
+  setRotate: (rotate: number) => set(() => ({ rotate })),
+  setRotate0: () => set(() => ({ rotate: 0 })),
+  setRotate90: () => set((s) => ({ rotate: s.rotate === 1 ? 0 : 1 })),
+  setRotate180: () => set((s) => ({ rotate: s.rotate === 2 ? 0 : 2 })),
+  setRotate270: () => set((s) => ({ rotate: s.rotate === 3 ? 0 : 3 })),
+  setInlineSvg: (inlineSvg?: string) => set(() => ({ inlineSvg })),
   setWidth: (event: FormEvent<HTMLInputElement> | number) =>
     set((s) => {
       const width = typeof event === 'number' ? event : Number(event.currentTarget.value)
       const height = get().uniqueSize ? width : s.size.height
-      return {size: {width, height}}
+      return { size: { width, height } }
     }),
   setHeight: (event: FormEvent<HTMLInputElement> | number) =>
     set((s) => {
       const height = typeof event === 'number' ? event : Number(event.currentTarget.value)
       const width = get().uniqueSize ? height : s.size.width
-      return {size: {width, height}}
+      return { size: { width, height } }
     }),
-  toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
-  togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
+  toggleUniqueSize: () => set((s) => ({ uniqueSize: !s.uniqueSize })),
+  togglePreviewBorder: () => set((s) => ({ previewBorder: !s.previewBorder })),
   setColor: (color: RgbaColor | string) =>
     set(() => {
       let hex: string
@@ -130,9 +132,9 @@ export const createConfigureSlice: StateCreator<
         rgba = color
         hex = rgbaToHex(color)
       }
-      return {color: {hex, rgba}}
+      return { color: { hex, rgba } }
     }),
-  clearColor: () => set((s) => ({color: undefined})),
+  clearColor: () => set((s) => ({ color: undefined })),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch
@@ -209,7 +211,7 @@ export const createConfigureSlice: StateCreator<
 
           await sanityPatch(patches)
           get().closeConfigDialog()
-          toastSuccess({sanityToast: get().sanityToast, title: 'Configuration Saved'})
+          toastSuccess({ sanityToast: get().sanityToast, title: 'Configuration Saved' })
         } else {
           toastWarning({
             sanityToast: get().sanityToast,

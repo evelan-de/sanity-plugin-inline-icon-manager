@@ -1,4 +1,4 @@
-import {Badge, Card, Text} from '@sanity/ui'
+import { Badge, Card, Text } from '@sanity/ui'
 import styled from 'styled-components'
 
 export const PaginationButton = styled.button`

@@ -1,5 +1,5 @@
-import {CogIcon} from '@sanity/icons'
-import {Flex} from '@sanity/ui'
+import { CogIcon } from '@sanity/icons'
+import { Flex } from '@sanity/ui'
 
 const Header = () => (
   <Flex align='center' gap={3}>

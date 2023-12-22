@@ -1,10 +1,11 @@
-import {useToast} from '@sanity/ui'
-import {useEffect} from 'react'
-import {ObjectInputProps} from 'sanity'
-import {DEFAULT_API_URL} from '../lib/constants'
-import {useAppStoreContext} from '../store/context'
+import { useToast } from '@sanity/ui'
+import { useEffect } from 'react'
+import { ObjectInputProps } from 'sanity'
+
+import { DEFAULT_API_URL } from '../lib/constants'
+import { useAppStoreContext } from '../store/context'
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
-import {IconManagerType} from '../types/IconManagerType'
+import { IconManagerType } from '../types/IconManagerType'
 
 const useInputSetup = (
   objectInputProps: ObjectInputProps,

@@ -1,12 +1,13 @@
-import {ObjectInputProps, defineField, defineType} from 'sanity'
+import { defineField, defineType, ObjectInputProps } from 'sanity'
+
 import IconManagerDiffComponent from '../../../components/IconManagerDiffComponent'
 import IconManagerInlineBlockComponent, {
   IconManagerInlineBlockComponentProps,
 } from '../../../components/IconManagerInlineBlockComponent'
 import IconManagerInputComponent from '../../../components/IconManagerInputComponent'
-import {mediaPreview} from '../../../plugin/mediaPreview'
+import { mediaPreview } from '../../../plugin/mediaPreview'
 import IconManagerPluginOptions from '../../../types/IconManagerPluginOptions'
-import {IconManagerType} from '../../../types/IconManagerType'
+import { IconManagerType } from '../../../types/IconManagerType'
 import extraFields from './extra.fields'
 import IconManagerMetadata from './metadata'
 

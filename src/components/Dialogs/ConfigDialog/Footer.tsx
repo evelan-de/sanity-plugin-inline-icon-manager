@@ -1,10 +1,12 @@
-import {Button, Flex} from '@sanity/ui'
+import { Button, Flex } from '@sanity/ui'
+
 import useSvgUtils from '../../../hooks/useSvgUtils'
-import {useAppStoreContext} from '../../../store/context'
+import { useAppStoreContext } from '../../../store/context'
 import SvgButtonsBoard from '../../SvgButtonsBoard'
 
 const Footer = () => {
-  const {onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard} = useSvgUtils()
+  const { onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard } =
+    useSvgUtils()
   const downloadableUrl = useAppStoreContext(() => onGenerateSvgDownloadUrl())
   const clearConfiguration = useAppStoreContext((s) => s.clearConfiguration)
   const saveConfiguration = useAppStoreContext((s) => s.saveConfiguration)
@@ -30,7 +32,7 @@ const Footer = () => {
           mode='bleed'
           tone='critical'
           fontSize={2}
-          style={{cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
           onClick={clearConfiguration}
         />
         <Button
@@ -39,7 +41,7 @@ const Footer = () => {
           mode='bleed'
           tone='positive'
           fontSize={2}
-          style={{cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
           onClick={saveConfiguration}
         />
       </Flex>

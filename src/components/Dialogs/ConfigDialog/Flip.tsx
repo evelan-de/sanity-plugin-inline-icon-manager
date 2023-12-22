@@ -1,5 +1,6 @@
-import {Button, Flex, Text} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { Button, Flex, Text } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 import HeightIcon from '../../icons/HeightIcon'
 import WidthIcon from '../../icons/WidthIcon'
 
@@ -14,12 +15,12 @@ const Flip = () => {
       direction={['column', 'column', 'row']}
       gap={[2, 2, 1]}
       align={['flex-start', 'flex-start', 'center']}
-      style={{width: '100%'}}
+      style={{ width: '100%' }}
     >
-      <Text weight='bold' size={1} style={{width: '100px'}}>
+      <Text weight='bold' size={1} style={{ width: '100px' }}>
         Flip:
       </Text>
-      <Flex gap={1} style={{width: '100%'}}>
+      <Flex gap={1} style={{ width: '100%' }}>
         <Button
           icon={<WidthIcon width={15} height={15} />}
           title='Horizontal'
@@ -28,7 +29,7 @@ const Flip = () => {
           fontSize={1}
           padding={2}
           onClick={toggleHFlip}
-          style={{cursor: 'pointer', width: '100%'}}
+          style={{ cursor: 'pointer', width: '100%' }}
         />
         <Button
           icon={<HeightIcon width={15} height={15} />}
@@ -38,7 +39,7 @@ const Flip = () => {
           fontSize={1}
           padding={2}
           onClick={toggleVFlip}
-          style={{cursor: 'pointer', width: '100%'}}
+          style={{ cursor: 'pointer', width: '100%' }}
         />
       </Flex>
     </Flex>

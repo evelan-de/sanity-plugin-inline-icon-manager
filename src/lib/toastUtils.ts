@@ -1,4 +1,5 @@
-import {ToastContextValue} from '@sanity/ui'
+import { ToastContextValue } from '@sanity/ui'
+
 import SimpleHtmlRenderer from '../components/SimpleHtmlRenderer'
 
 interface ToastProps {
@@ -14,7 +15,7 @@ export const toastSuccess = ({
   description,
   duration = 1000,
 }: ToastProps): void => {
-  if (sanityToast) sanityToast.push({status: 'success', title, description, duration})
+  if (sanityToast) sanityToast.push({ status: 'success', title, description, duration })
 }
 
 export const toastWarning = ({
@@ -23,7 +24,7 @@ export const toastWarning = ({
   description,
   duration = 3000,
 }: ToastProps): void => {
-  if (sanityToast) sanityToast.push({status: 'warning', title, description, duration})
+  if (sanityToast) sanityToast.push({ status: 'warning', title, description, duration })
 }
 
 export const toastError = (sanityToast: ToastContextValue | undefined, e: unknown): void => {
@@ -39,6 +40,6 @@ export const toastError = (sanityToast: ToastContextValue | undefined, e: unknow
     sanityToast.push({
       status: 'error',
       title: 'Icon Manager Plugin',
-      description: SimpleHtmlRenderer({html: message}),
+      description: SimpleHtmlRenderer({ html: message }),
     })
 }

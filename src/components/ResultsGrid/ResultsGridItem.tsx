@@ -1,4 +1,5 @@
-import {Button, Flex, Text, Tooltip} from '@sanity/ui'
+import { Button, Flex, Text, Tooltip } from '@sanity/ui'
+
 import IconPreview from '../IconPreview'
 
 interface ResultsGridItemProps {
@@ -8,13 +9,13 @@ interface ResultsGridItemProps {
   onClick: () => void
 }
 
-const ResultsGridItem = ({icon, iconName, collectionName, onClick}: ResultsGridItemProps) => {
+const ResultsGridItem = ({ icon, iconName, collectionName, onClick }: ResultsGridItemProps) => {
   return (
     <Flex
       justify='center'
       as='li'
       key={icon}
-      style={{width: 50, height: 50, justifySelf: 'center'}}
+      style={{ width: 50, height: 50, justifySelf: 'center' }}
     >
       <Tooltip
         portal
@@ -38,7 +39,7 @@ const ResultsGridItem = ({icon, iconName, collectionName, onClick}: ResultsGridI
           icon={<IconPreview icon={icon} width='30' height='30' />}
           data-value={icon}
           onClick={onClick}
-          style={{cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
         />
       </Tooltip>
     </Flex>

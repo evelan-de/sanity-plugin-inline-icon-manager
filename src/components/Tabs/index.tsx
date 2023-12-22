@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
-import {BookIcon, SearchIcon} from '@sanity/icons'
-import {Tab, TabList} from '@sanity/ui'
-import {useState} from 'react'
+import { BookIcon, SearchIcon } from '@sanity/icons'
+import { Tab, TabList } from '@sanity/ui'
+import { useState } from 'react'
+
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'
 

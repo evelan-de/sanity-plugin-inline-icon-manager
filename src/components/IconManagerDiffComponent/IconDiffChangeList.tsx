@@ -1,7 +1,8 @@
-import {Box, Button} from '@sanity/ui'
-import {useCallback, useState} from 'react'
-import {ChangeList, DiffProps, ObjectDiff} from 'sanity'
-import {IconManagerType} from '../../types/IconManagerType'
+import { Box, Button } from '@sanity/ui'
+import { useCallback, useState } from 'react'
+import { ChangeList, DiffProps, ObjectDiff } from 'sanity'
+
+import { IconManagerType } from '../../types/IconManagerType'
 
 const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
@@ -20,7 +21,7 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
         tone='primary'
         text={`${isDetailsOpen ? 'Hide' : 'Show'} details`}
         onClick={onClickDetailsHandler}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       />
       {isDetailsOpen && (
         <Box marginTop={5}>

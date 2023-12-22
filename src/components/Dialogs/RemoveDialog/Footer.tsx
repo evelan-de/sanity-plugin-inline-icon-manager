@@ -1,5 +1,6 @@
-import {Button, Flex} from '@sanity/ui'
-import {useAppStoreContext} from '../../../store/context'
+import { Button, Flex } from '@sanity/ui'
+
+import { useAppStoreContext } from '../../../store/context'
 
 const Footer = () => {
   const closeRemoveDialog = useAppStoreContext((s) => s.closeRemoveDialog)
@@ -12,7 +13,7 @@ const Footer = () => {
         mode='bleed'
         tone='critical'
         fontSize={2}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
         onClick={closeRemoveDialog}
       />
       <Button
@@ -20,7 +21,7 @@ const Footer = () => {
         mode='bleed'
         tone='positive'
         fontSize={2}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
         onClick={removeIcon}
       />
     </Flex>

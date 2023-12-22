@@ -1,5 +1,6 @@
-import {Flex, Text} from '@sanity/ui'
-import {PaginationButton} from '../../style'
+import { Flex, Text } from '@sanity/ui'
+
+import { PaginationButton } from '../../style'
 
 interface PaginationProps {
   totalItems: number
@@ -25,7 +26,7 @@ const Pagination = ({
       marginY={1}
       gap={2}
       align='center'
-      style={{minHeight: '22px'}}
+      style={{ minHeight: '22px' }}
     >
       <Text as='i' size={1}>
         {totalItems} {totalItems === 1 ? 'icon' : 'icons'} found
