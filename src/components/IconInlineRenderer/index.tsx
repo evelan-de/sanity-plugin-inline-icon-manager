@@ -19,7 +19,9 @@ export const IconInlineRenderer: FC<IconInlineRendererProps> = (props) => {
 
   if (icon && metadata?.inlineSvg) {
     const { inlineSvg } = metadata
-    const svgRender = inlineSvg.replace('<svg', `<svg class="${className}"`) // Add in the classNames to the inline svg string
+
+    // Add in the classNames to the inline svg string
+    const svgRender = inlineSvg.replace('<svg', `<svg class="${className}"`)
 
     return parse(sanitize(svgRender))
   }
