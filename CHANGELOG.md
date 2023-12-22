@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.2...v1.1.3) (2023-12-22)
+
+### Bug Fixes
+
+- add space to fix semantic release not committing new package version ([fe8da8f](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/fe8da8fafd7022a1b17b08fbbdb5bba15db18f27))
+
+### Reverts
+
+- Revert "chore: add commit analyzer and new release rules" ([d8f9fe8](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/d8f9fe879a73f026c3e3b7488a0074b369a6f0ed))
+
 ## [1.1.1](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.0...v1.1.1) (2023-12-20)
 
 ### Bug Fixes
