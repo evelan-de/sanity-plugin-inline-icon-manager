@@ -44,6 +44,7 @@ Powered by [Iconify](https://iconify.design/)
 - Basic API Hosting
 - Search filter 'Collection'
 - Collections tab
+- Icon Inline Renderer component
 
 <br /><br />
 
