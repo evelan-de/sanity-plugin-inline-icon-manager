@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.3...v1.1.4) (2023-12-26)
+
+### Bug Fixes
+
+- change export name for inline icon renderer ([e8f4970](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/e8f4970474760d44c4f54e16fd25c730094a0519))
+- change typeVersions and files for icon renderer ([aab2fc1](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/aab2fc189273be641e1eb2b04adc4d0b5867f98e))
+
 ## [1.1.3](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.2...v1.1.3) (2023-12-22)
 
 ### Bug Fixes
