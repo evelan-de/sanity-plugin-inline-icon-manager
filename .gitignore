@@ -58,7 +58,7 @@ yalc.lock
 
 # Compiled plugin
 dist
-IconInlineRenderer.js
+renderer.js
 types.js
 
 sanity-install.sh

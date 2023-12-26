@@ -51,14 +51,14 @@
       "types": [
         "./dist/types.d.ts"
       ],
-      "IconInlineRenderer": [
-        "./dist/IconInlineRenderer.d.ts"
+      "renderer": [
+        "./dist/renderer.d.ts"
       ]
     }
   },
   "files": [
     "dist",
-    "IconInlineRenderer.js",
+    "renderer.js",
     "types.js",
     "sanity.json",
     "src",
