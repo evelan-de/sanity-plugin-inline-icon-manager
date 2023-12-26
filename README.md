@@ -14,6 +14,8 @@ Powered by [Iconify](https://iconify.design/)
   - [⚡️ Features](#️-features)
   - [🔌 Installation](#-installation)
   - [🧑‍💻 Usage](#-usage)
+  - [❗ IMPORTANT NOTE:](#-important-note)
+  - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
   - [⚙️ Plugin Configuration](#️-plugin-configuration)
   - [👀 Document List Preview](#-document-list-preview)
   - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
@@ -25,7 +27,6 @@ Powered by [Iconify](https://iconify.design/)
   - [🗂️ Collections Tab](#️-collections-tab)
   - [🌎 Basic Hosting](#-basic-hosting)
   - [🗃️ Data model](#️-data-model)
-  - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
   - [📝 License](#-license)
   - [🧪 Develop \& test](#-develop--test)
     - [Release new version](#release-new-version)
@@ -94,6 +95,73 @@ const SampleDocument = defineType({
 })
 
 export default SampleDocument
+```
+
+<br /><br />
+
+## ❗ IMPORTANT NOTE:
+
+If you are using `Next.js` framework and are using the `IconInlineRenderer`. It's important to add this into your `next.config.js` file so to avoid the warnings and errors that isomorphic dompurify brings to have a better support for SSR pages
+
+```ts
+const webpack = require('webpack')
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ... your other configurations
+  webpack: (config, { isServer, nextRuntime }) => {
+    // Your other code for webpack
+
+    // !!! Add this to make the isomorphic-dompurify sanitize work with SSR !!!
+    config.externals = [...config.externals, 'canvas', 'jsdom']
+
+    return config
+  },
+  // ... your other configurations
+}
+```
+
+<br /><br />
+
+## 🎬 How to render the icon on your website
+
+You can use the exported `IconInlineRenderer` component to render the icon as an inline SVG. This way it supports SSR pages as it just parses the inline SVG string and renders it.
+
+```ts
+// Let's assume that we have retrieved the following data from Sanity
+
+{
+  icon: 'bi:check2-circle',
+  metadata: {
+    flip: 'horizontal',
+    size: {
+      width: 20,
+      height: 20,
+    },
+    rotate: 0,
+    color: {
+      hex: '#6aceeb'
+    },
+    // ...more metadata
+  }
+}
+
+------------------------------------------------------------------------------------
+
+import { IconInlineRenderer} from "sanity-plugin-inline-icon-manager/renderer";
+
+const MyComponent = (props) => {
+  const {icon, metadata } = props
+
+  return (
+    <IconInlineRenderer
+      _type="icon.manager"
+      icon={icon}
+      metadata={metadata}
+      className="some-custom-classname"
+    />
+  )
+}
 ```
 
 <br /><br />
@@ -374,57 +442,6 @@ export default defineConfig({
       }
     }
   }
-```
-
-<br /><br />
-
-## 🎬 How to render the icon on your website
-
-Regardless of how you retrieve data from Sanity, you can render the icon in different ways.\
-You can use the inline option to render the SVG directly. Alternatively, Iconify provides various rendering possibilities:
-
-- [React](https://iconify.design/docs/icon-components/react/)
-- [Vue](https://iconify.design/docs/icon-components/vue/)
-- [Svelte](https://iconify.design/docs/icon-components/svelte/)
-- [More...](https://iconify.design/docs/usage/)
-
-Here an example with the React package:
-
-```ts
-// Let's assume that we have retrieved the following data from Sanity
-
-{
-  icon: 'bi:check2-circle',
-  metadata: {
-    flip: 'horizontal',
-    size: {
-      width: 20,
-      height: 20,
-    },
-    rotate: 0,
-    color: {
-      hex: '#6aceeb'
-    }
-  }
-}
-
-------------------------------------------------------------------------------------
-
-import {Icon} from '@iconify/react'
-
-const MyComponent = (props) => {
-  const {icon, metadata: {flip, rotate, size, color} } = props
-  return (
-    <Icon
-      icon={icon}
-      flip={flip}
-      rotate={rotate}
-      width={size.width}
-      height={size.height}
-      style={{color: color.hex}}
-    />
-  )
-}
 ```
 
 <br /><br />
