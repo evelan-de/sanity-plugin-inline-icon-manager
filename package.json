@@ -34,11 +34,11 @@
       "default": "./dist/types.esm.js"
     },
     "./renderer": {
-      "types": "./dist/IconInlineRenderer.d.ts",
+      "types": "./dist/renderer.d.ts",
       "source": "./src/exports/components/IconInlineRenderer/index.ts",
-      "require": "./dist/IconInlineRenderer.js",
-      "import": "./dist/IconInlineRenderer.esm.js",
-      "default": "./dist/IconInlineRenderer.esm.js"
+      "require": "./dist/renderer.js",
+      "import": "./dist/renderer.esm.js",
+      "default": "./dist/renderer.esm.js"
     },
     "./package.json": "./package.json"
   },
