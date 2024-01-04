@@ -1,4 +1,5 @@
 import { Button, Card, Flex, Text, TextInput, useTheme } from '@sanity/ui'
+import { useTranslation } from 'sanity'
 
 import { useAppStoreContext } from '../../../store/context'
 import BorderIcon from '../../icons/BorderIcon'
@@ -8,6 +9,7 @@ import UnlinkIcon from '../../icons/UnlinkIcon'
 import WidthIcon from '../../icons/WidthIcon'
 
 const Size = () => {
+  const { t } = useTranslation('sanity-plugin-inline-icon-manager')
   const { sanity: theme } = useTheme()
   const size = useAppStoreContext((s) => s.size)
   const uniqueSize = useAppStoreContext((s) => s.uniqueSize)
@@ -54,7 +56,7 @@ const Size = () => {
           />
         </Card>
         <Button
-          title='Constrain proportions'
+          title={t('config-dialog.size.button.constrain.text')}
           tone='primary'
           mode={uniqueSize ? 'default' : 'ghost'}
           icon={
@@ -66,7 +68,7 @@ const Size = () => {
           onClick={toggleUniqueSize}
         />
         <Button
-          title='Show boundaries'
+          title={t('config-dialog.size.button.boundaries.title')}
           tone='primary'
           mode={previewBorder ? 'default' : 'ghost'}
           icon={<BorderIcon width={14} height={14} />}

@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import { Button, Flex, Grid, Popover, Text } from '@sanity/ui'
 import { useRef, useState } from 'react'
+import { useTranslation } from 'sanity'
 
 import { useAppStoreContext } from '../../../store/context'
 import ColorPicker from './ColorPicker'
 
 const Color = () => {
+  const { t } = useTranslation('sanity-plugin-inline-icon-manager')
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const color = useAppStoreContext((s) => s.color)
   const clearColor = useAppStoreContext((s) => s.clearColor)
@@ -50,10 +52,10 @@ const Color = () => {
           </Popover>
           {color && (
             <Button
-              text='Clear color'
+              text={t('config-dialog.color.button.text')}
               mode='bleed'
               tone='primary'
-              title='Set the color to "currentColor"'
+              title={t('config-dialog.color.button.title')}
               fontSize={0}
               padding={1}
               style={{ cursor: 'pointer' }}

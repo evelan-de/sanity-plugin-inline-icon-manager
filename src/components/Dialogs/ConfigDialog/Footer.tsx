@@ -1,10 +1,12 @@
 import { Button, Flex } from '@sanity/ui'
+import { useTranslation } from 'sanity'
 
 import useSvgUtils from '../../../hooks/useSvgUtils'
 import { useAppStoreContext } from '../../../store/context'
 import SvgButtonsBoard from '../../SvgButtonsBoard'
 
 const Footer = () => {
+  const { t } = useTranslation('sanity-plugin-inline-icon-manager')
   const { onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard } =
     useSvgUtils()
   const downloadableUrl = useAppStoreContext(() => onGenerateSvgDownloadUrl())
@@ -27,8 +29,8 @@ const Footer = () => {
       </Flex>
       <Flex align='center' gap={2}>
         <Button
-          text='Clear'
-          title='Clear Configuration'
+          text={t('config-dialog.footer.button.clear.text')}
+          title={t('config-dialog.footer.button.clear.title')}
           mode='bleed'
           tone='critical'
           fontSize={2}
@@ -36,8 +38,8 @@ const Footer = () => {
           onClick={clearConfiguration}
         />
         <Button
-          text='Save'
-          title='Save Configuration'
+          text={t('config-dialog.footer.button.save.text')}
+          title={t('config-dialog.footer.button.save.title')}
           mode='bleed'
           tone='positive'
           fontSize={2}
