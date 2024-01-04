@@ -30,7 +30,7 @@ export default {
   'search-dialog.header.text': 'Find your icon',
 
   // Icon Manager Diff Component
-  'icon-manager-diff.tooltip.removed': 'REMOVED',
-  'icon-manager-diff.tooltip.empty': 'EMPTY',
+  'icon-manager-diff.tooltip.removed.text': 'REMOVED',
+  'icon-manager-diff.tooltip.empty.text': 'EMPTY',
   'icon-manager-diff.tooltip.untitled.text': 'Untitled',
 }
