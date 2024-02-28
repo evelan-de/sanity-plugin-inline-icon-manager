@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.4...v1.1.5) (2024-02-28)
+
+### Bug Fixes
+
+- add empty string to "flip" field in iconManagerSchema ([b4e55c8](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/b4e55c81bfe34b7d04237f78004645c3594fe942))
+
 ## [1.1.4](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.3...v1.1.4) (2023-12-26)
 
 ### Bug Fixes
