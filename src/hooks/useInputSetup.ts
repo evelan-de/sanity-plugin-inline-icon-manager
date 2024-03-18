@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useToast } from '@sanity/ui'
 import { useEffect } from 'react'
 import { ObjectInputProps } from 'sanity'
@@ -15,6 +16,7 @@ const useInputSetup = (
   const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
   const setPluginOptionCustomPalette = useAppStoreContext((s) => s.setPluginOptionCustomPalette)
   const setPluginOptionStoreInlineSvg = useAppStoreContext((s) => s.setPluginOptionStoreInlineSvg)
+  const setAvailableCollectionsOption = useAppStoreContext((s) => s.setAvailableCollectionsOption)
   const setSanityFieldPath = useAppStoreContext((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStoreContext((s) => s.setSanityValue)
   const setSanityPatch = useAppStoreContext((s) => s.setSanityPatch)
@@ -55,6 +57,9 @@ const useInputSetup = (
     if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
     if (pluginOptions?.storeInlineSvg) {
       setPluginOptionStoreInlineSvg(pluginOptions.storeInlineSvg)
+    }
+    if (pluginOptions?.availableCollections) {
+      setAvailableCollectionsOption(pluginOptions.availableCollections)
     }
   }, [])
 }
