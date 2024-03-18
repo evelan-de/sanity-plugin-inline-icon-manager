@@ -45,6 +45,7 @@ Powered by [Iconify](https://iconify.design/)
 - Search filter 'Collection'
 - Collections tab
 - Icon Inline Renderer component
+- Limit Collections option
 
 <br /><br />
 
@@ -173,6 +174,9 @@ This is the main configuration of the plugin. The available options are:
 
 ```ts
 {
+  // An array of strings containing a subset of collection IDs (e.g., ['ant-design', 'material-']). This can be used when you want to limit access to only specific collections. It utilizes the 'prefixes' query parameter available on the Iconify API. More information can be found here (https://iconify.design/docs/api/collections.html).
+  availableCollections?: string[]
+
   // This is the endpoint if you decide to host your icon sets on your own server. For more details, see the dedicated session below
   customEndpoint?: string
 

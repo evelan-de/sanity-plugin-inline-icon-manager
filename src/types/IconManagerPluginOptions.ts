@@ -9,4 +9,5 @@ export default interface IconManagerPluginOptions {
   customEndpoint?: string
   customPalette?: PluginCustomPalette
   storeInlineSvg?: boolean
+  availableCollections?: string[]
 }

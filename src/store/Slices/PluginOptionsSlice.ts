@@ -4,12 +4,14 @@ import { isValidHex } from '../../lib/colorUtils'
 import { PluginCustomColor, PluginCustomPalette } from '../../types/IconManagerPluginOptions'
 
 export interface PluginOptionsSlice {
+  availableCollectionsOption?: string
   iconifyEndpoint?: string
   customPalette?: PluginCustomColor[]
   storeInlineSvg?: boolean
   setIconifyEndpoint: (iconifyEndpoint: string) => void
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => void
   setPluginOptionStoreInlineSvg: (storeInlineSvg: boolean) => void
+  setAvailableCollectionsOption: (availableCollectionsOption: string[]) => void
 }
 
 export const createPluginOptionsSlice: StateCreator<
@@ -38,4 +40,6 @@ export const createPluginOptionsSlice: StateCreator<
     set(() => ({ customPalette: finalPalette }))
   },
   setPluginOptionStoreInlineSvg: (storeInlineSvg: boolean) => set(() => ({ storeInlineSvg })),
+  setAvailableCollectionsOption: (availableCollectionsOption: string[]) =>
+    set(() => ({ availableCollectionsOption: availableCollectionsOption.join(',') })),
 })

@@ -36,14 +36,16 @@ export const createResultsSlice: StateCreator<
       const searchParams = new URLSearchParams()
       const keywordStyle = get().filterStyle ? ` style=${get().filterStyle}` : ''
       const keywordPalette = get().filterPalette ? ` palette=${get().filterPalette}` : ''
-      const keywordPrefix = get().filterCollection?.code
-        ? ` prefix=${get().filterCollection?.code}`
-        : ''
-      searchParams.append(
-        'query',
-        `${get().searchTerm}${keywordStyle}${keywordPalette}${keywordPrefix}`,
-      )
+      searchParams.append('query', `${get().searchTerm}${keywordStyle}${keywordPalette}`)
       searchParams.append('limit', get().limit.toString())
+
+      const filterCollectionCode = get().filterCollection?.code
+      const availableCollectionsOption = get().availableCollectionsOption
+      if (filterCollectionCode) {
+        searchParams.set('prefix', filterCollectionCode)
+      } else if (availableCollectionsOption) {
+        searchParams.set('prefixes', availableCollectionsOption)
+      }
 
       let results
       let searchResults
