@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.5...v1.2.0) (2024-03-18)
+
+### Features
+
+- **collections limit:** add global option to limit the available collections ([87c4d46](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/87c4d46798f53f306f6eb95815a4a9cf945e1992))
+
 ## [1.1.5](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.4...v1.1.5) (2024-02-28)
 
 ### Bug Fixes
