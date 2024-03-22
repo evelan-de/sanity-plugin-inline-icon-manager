@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.0...v1.2.1) (2024-03-22)
+
+### Bug Fixes
+
+- make color zod schema type to be nullable ([e6a112e](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/e6a112e29e23d84c6c9012d1f5878390a7945609))
+
 ## [1.2.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.1.5...v1.2.0) (2024-03-18)
 
 ### Features
