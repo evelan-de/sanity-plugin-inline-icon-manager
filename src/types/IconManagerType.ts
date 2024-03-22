@@ -1,14 +1,16 @@
 import { z } from 'zod'
 
-export const iconManagerColorSchema = z.object({
-  hex: z.string(),
-  rgba: z.object({
-    r: z.number(),
-    g: z.number(),
-    b: z.number(),
-    a: z.number(),
-  }),
-})
+export const iconManagerColorSchema = z
+  .object({
+    hex: z.string(),
+    rgba: z.object({
+      r: z.number(),
+      g: z.number(),
+      b: z.number(),
+      a: z.number(),
+    }),
+  })
+  .nullable()
 
 export type IconManagerColor = z.infer<typeof iconManagerColorSchema>
 
