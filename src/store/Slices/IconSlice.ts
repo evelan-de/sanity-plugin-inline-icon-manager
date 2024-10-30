@@ -48,15 +48,6 @@ export const createIconSlice: StateCreator<
             vFlip: INITIAL_VFLIP,
             flip: '',
             rotate: INITIAL_ROTATE,
-            palette: collection?.palette,
-            author: {
-              name: collection?.author.name,
-              url: collection?.author.url,
-            },
-            license: {
-              name: collection?.license.title,
-              url: collection?.license.url,
-            },
           },
           ['metadata'],
         ),

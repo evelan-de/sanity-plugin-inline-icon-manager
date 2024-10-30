@@ -32,45 +32,6 @@ const metadataFields = [
     title: 'Icon Name',
   }),
   defineField({
-    type: 'boolean',
-    name: 'palette',
-    title: 'Palette',
-  }),
-  defineField({
-    type: 'object',
-    name: 'license',
-    title: 'License Info',
-    fields: [
-      defineField({
-        type: 'string',
-        name: 'name',
-        title: 'License Name',
-      }),
-      defineField({
-        type: 'string',
-        name: 'url',
-        title: 'License Url',
-      }),
-    ],
-  }),
-  defineField({
-    type: 'object',
-    name: 'author',
-    title: 'Author Info',
-    fields: [
-      defineField({
-        type: 'string',
-        name: 'name',
-        title: 'Author Name',
-      }),
-      defineField({
-        type: 'string',
-        name: 'url',
-        title: 'Author Url',
-      }),
-    ],
-  }),
-  defineField({
     type: 'object',
     name: 'size',
     title: 'Custom Size',

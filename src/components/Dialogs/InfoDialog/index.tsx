@@ -24,16 +24,6 @@ const InfoDialog = () => {
       <Flex direction='column' margin={4} gap={3}>
         <Row heading='Name:' value={sanityValue?.metadata?.iconName} />
         <Row heading='Collection:' value={sanityValue?.metadata?.collectionName} />
-        <Row
-          heading='Author:'
-          href={sanityValue?.metadata?.author?.url}
-          value={sanityValue?.metadata?.author?.name}
-        />
-        <Row
-          heading='License:'
-          href={sanityValue?.metadata?.license?.url}
-          value={sanityValue?.metadata?.license?.name}
-        />
       </Flex>
     </Dialog>
   )
