@@ -436,15 +436,6 @@ export default defineConfig({
           a: number
         }
       }
-      palette: boolean
-      author: {
-        name: string
-        url: string
-      },
-      license: {
-        name: string
-        url: string
-      }
     }
   }
 ```
