@@ -12,7 +12,7 @@ const Color = () => {
   const [isColorOpen, setIsColorOpen] = useState(false)
   const ref = useRef(null)
 
-  if (!sanityValue || sanityValue.metadata.palette) return null
+  if (!sanityValue) return null
 
   return (
     <Flex

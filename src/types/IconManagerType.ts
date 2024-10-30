@@ -30,19 +30,6 @@ export const iconManagerSchema = z.object({
     collectionId: z.string(),
     collectionName: z.string(),
     iconName: z.string(),
-    palette: z.boolean().optional(),
-    license: z
-      .object({
-        name: z.string().optional(),
-        url: z.string().optional(),
-      })
-      .optional(),
-    author: z
-      .object({
-        name: z.string().optional(),
-        url: z.string().optional(),
-      })
-      .optional(),
     size: iconManagerSizeSchema,
     hFlip: z.boolean(),
     vFlip: z.boolean(),
