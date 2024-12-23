@@ -24,7 +24,6 @@ const useInputSetup = (
   const setSanityToast = useAppStoreContext((s) => s.setSanityToast)
   const setSanityUserCanEdit = useAppStoreContext((s) => s.setSanityUserCanEdit)
   const setRotate = useAppStoreContext((s) => s.setRotate)
-  const setFlip = useAppStoreContext((s) => s.setFlip)
   const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
   const setWidth = useAppStoreContext((s) => s.setWidth)
   const setHeight = useAppStoreContext((s) => s.setHeight)
@@ -38,7 +37,6 @@ const useInputSetup = (
 
     if (value?.metadata) {
       // setup configure slice
-      setFlip(value.metadata.hFlip, value.metadata.vFlip)
       setRotate(value.metadata.rotate)
       setWidth(value.metadata.size.width)
       setHeight(value.metadata.size.height)

@@ -135,7 +135,6 @@ You can use the exported `IconInlineRenderer` component to render the icon as an
 {
   icon: 'bi:check2-circle',
   metadata: {
-    flip: 'horizontal',
     size: {
       width: 20,
       height: 20,
@@ -414,14 +413,9 @@ export default defineConfig({
     icon: string
     metadata: {
       iconName: string
-      collectionId: string
-      collectionName: string
       url: string
       downloadUrl: string
       inlineSvg: string
-      hFlip: boolean
-      vFlip: boolean
-      flip: 'horizontal' | 'vertical' | 'horizontal,vertical'
       rotate: 0 | 1 | 2 | 3
       size: {
         width: number

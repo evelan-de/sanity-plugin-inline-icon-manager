@@ -5,14 +5,7 @@ import { set as patchSet, unset as patchUnset } from 'sanity'
 import { StateCreator } from 'zustand'
 
 import { hexToRgba, isValidHex, rgbaToHex } from '../../lib/colorUtils'
-import {
-  INITIAL_HEIGHT,
-  INITIAL_HFLIP,
-  INITIAL_ROTATE,
-  INITIAL_VFLIP,
-  INITIAL_WIDTH,
-} from '../../lib/constants'
-import { getFlipValue } from '../../lib/iconifyUtils'
+import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from '../../lib/constants'
 import { generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl } from '../../lib/svgUtils'
 import { toastError, toastSuccess, toastWarning } from '../../lib/toastUtils'
 import { IconManagerColor, IconManagerSize } from '../../types/IconManagerType'
@@ -21,9 +14,6 @@ import { PluginOptionsSlice } from './PluginOptionsSlice'
 import { SanitySlice } from './SanitySlice'
 
 const initialState = {
-  hFlip: INITIAL_HFLIP,
-  vFlip: INITIAL_VFLIP,
-  flip: '',
   rotate: INITIAL_ROTATE,
   inlineSvg: '',
   size: { width: INITIAL_WIDTH, height: INITIAL_HEIGHT },
@@ -33,9 +23,6 @@ const initialState = {
 }
 
 export interface ConfigureSlice {
-  hFlip: boolean
-  vFlip: boolean
-  flip: string
   rotate: number
   size: IconManagerSize
   inlineSvg: string
@@ -45,9 +32,6 @@ export interface ConfigureSlice {
   hasBeenCustomized: () => boolean
   clearConfiguration: () => void
   resetConfiguration: () => void
-  setFlip: (hFlip: boolean, vFlip: boolean) => void
-  toggleHFlip: () => void
-  toggleVFlip: () => void
   setRotate: (rotate: number) => void
   setRotate0: () => void
   setRotate90: () => void
@@ -75,8 +59,6 @@ export const createConfigureSlice: StateCreator<
     const SV = get().sanityValue
     if (!SV || !SV.metadata) return false
     if (SV.metadata.inlineSvg) count++
-    if (SV.metadata.hFlip) count++
-    if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
     if (SV.metadata.size.width !== INITIAL_WIDTH) count++
     if (SV.metadata.size.height !== INITIAL_HEIGHT) count++
@@ -87,9 +69,6 @@ export const createConfigureSlice: StateCreator<
   resetConfiguration: () => {
     const sanityValue = get().sanityValue
     set(() => ({
-      hFlip: sanityValue?.metadata.hFlip,
-      vFlip: sanityValue?.metadata.vFlip,
-      flip: getFlipValue(sanityValue?.metadata.hFlip, sanityValue?.metadata.vFlip),
       rotate: sanityValue?.metadata.rotate,
       size: sanityValue?.metadata.size,
       color: sanityValue?.metadata.color,
@@ -98,9 +77,6 @@ export const createConfigureSlice: StateCreator<
       uniqueSize: false,
     }))
   },
-  setFlip: (hFlip, vFlip) => set(() => ({ hFlip, vFlip, flip: getFlipValue(hFlip, vFlip) })),
-  toggleHFlip: () => set((s) => ({ hFlip: !s.hFlip, flip: getFlipValue(!s.hFlip, get().vFlip) })),
-  toggleVFlip: () => set((s) => ({ vFlip: !s.vFlip, flip: getFlipValue(get().hFlip, !s.vFlip) })),
   setRotate: (rotate: number) => set(() => ({ rotate })),
   setRotate0: () => set(() => ({ rotate: 0 })),
   setRotate90: () => set((s) => ({ rotate: s.rotate === 1 ? 0 : 1 })),
@@ -144,12 +120,6 @@ export const createConfigureSlice: StateCreator<
 
         const patches = []
 
-        if (get().hFlip !== sanityValue.metadata.hFlip)
-          patches.push(patchSet(get().hFlip, ['metadata.hFlip']))
-        if (get().vFlip !== sanityValue.metadata.vFlip)
-          patches.push(patchSet(get().vFlip, ['metadata.vFlip']))
-        if (get().flip !== sanityValue.metadata.flip)
-          patches.push(patchSet(get().flip, ['metadata.flip']))
         if (get().rotate !== sanityValue.metadata.rotate)
           patches.push(patchSet(get().rotate, ['metadata.rotate']))
         if (get().size.width !== sanityValue.metadata.size.width)

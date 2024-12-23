@@ -11,7 +11,6 @@ const Preview = () => {
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
-  const flip = useAppStoreContext((s) => s.flip)
   const rotate = useAppStoreContext((s) => s.rotate)
   const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)
@@ -56,7 +55,6 @@ const Preview = () => {
         >
           <Icon
             icon={sanityValue.icon}
-            flip={flip}
             rotate={rotate}
             width={size.width <= PREVIEW_SIZE_LIMIT ? size.width : PREVIEW_SIZE_LIMIT}
             height={size.height <= PREVIEW_SIZE_LIMIT ? size.height : PREVIEW_SIZE_LIMIT}

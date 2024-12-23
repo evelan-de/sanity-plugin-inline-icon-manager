@@ -18,16 +18,6 @@ const metadataFields = [
   }),
   defineField({
     type: 'string',
-    name: 'collectionId',
-    title: 'Collection Id',
-  }),
-  defineField({
-    type: 'string',
-    name: 'collectionName',
-    title: 'Collection Name',
-  }),
-  defineField({
-    type: 'string',
     name: 'iconName',
     title: 'Icon Name',
   }),
@@ -49,16 +39,6 @@ const metadataFields = [
         validation: (Rule) => Rule.min(0),
       }),
     ],
-  }),
-  defineField({
-    type: 'boolean',
-    name: 'hFlip',
-    title: 'H Flip',
-  }),
-  defineField({
-    type: 'boolean',
-    name: 'vFlip',
-    title: 'V Flip',
   }),
   defineField({
     type: 'number',

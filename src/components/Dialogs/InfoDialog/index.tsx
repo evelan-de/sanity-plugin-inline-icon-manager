@@ -23,7 +23,6 @@ const InfoDialog = () => {
     >
       <Flex direction='column' margin={4} gap={3}>
         <Row heading='Name:' value={sanityValue?.metadata?.iconName} />
-        <Row heading='Collection:' value={sanityValue?.metadata?.collectionName} />
       </Flex>
     </Dialog>
   )

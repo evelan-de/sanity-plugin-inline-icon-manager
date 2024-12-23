@@ -3,7 +3,6 @@ import { Card, Dialog, Flex } from '@sanity/ui'
 
 import { useAppStoreContext } from '../../../store/context'
 import Color from './Color'
-import Flip from './Flip'
 import Footer from './Footer'
 import Header from './Header'
 import InlineSvg from './InlineSvg'
@@ -28,7 +27,6 @@ const ConfigDialog = () => {
     >
       <Card marginY={4} marginX={[4, 4, 6, 7]}>
         <Flex direction='column' gap={4}>
-          <Flip />
           <Rotate />
           <Size />
           {storeInlineSvg ? null : <InlineSvg />}
