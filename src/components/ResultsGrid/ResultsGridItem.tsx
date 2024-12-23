@@ -25,6 +25,7 @@ const ResultsGridItem = ({ icon, iconName, collectionName, onClick }: ResultsGri
             <Text size={1} weight='bold'>
               {iconName || icon}
             </Text>
+            {/* Should I remove collectionName here ? */}
             {collectionName && (
               <Text size={1} muted>
                 {collectionName}

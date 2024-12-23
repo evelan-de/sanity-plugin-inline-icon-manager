@@ -1,13 +1,7 @@
 import { set as patchSet, unset as patchUnset } from 'sanity'
 import { StateCreator } from 'zustand'
 
-import {
-  INITIAL_HEIGHT,
-  INITIAL_HFLIP,
-  INITIAL_ROTATE,
-  INITIAL_VFLIP,
-  INITIAL_WIDTH,
-} from '../../lib/constants'
+import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from '../../lib/constants'
 import {
   generateInitialSvgDownloadUrl,
   generateInitialSvgHttpUrl,
@@ -31,7 +25,7 @@ export const createIconSlice: StateCreator<
   [],
   IconSlice
 > = (set, get) => ({
-  saveIcon: async ({ icon, iconName, collection }: IconManagerIconInfo) => {
+  saveIcon: async ({ icon, iconName }: IconManagerIconInfo) => {
     try {
       const patches = []
       patches.push(patchSet(icon, ['icon']))
@@ -40,13 +34,8 @@ export const createIconSlice: StateCreator<
           {
             downloadUrl: generateInitialSvgDownloadUrl(get().iconifyEndpoint!, icon),
             url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, icon),
-            collectionId: collection?.code,
-            collectionName: collection?.name || '',
             iconName,
             size: { width: INITIAL_WIDTH, height: INITIAL_HEIGHT },
-            hFlip: INITIAL_HFLIP,
-            vFlip: INITIAL_VFLIP,
-            flip: '',
             rotate: INITIAL_ROTATE,
           },
           ['metadata'],

@@ -51,6 +51,7 @@ const ResultsGrid = ({ items, collection }: ResultsGridProps) => {
               collectionName={collection?.name || item.collection?.name || ''}
               onClick={() => saveIcon({ ...item, collection: collection || item.collection })}
             />
+            // should I remove collectionName here ?
           ))}
         </Grid>
       </Card>

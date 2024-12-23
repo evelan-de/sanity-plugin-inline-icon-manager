@@ -18,11 +18,6 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
           <Text size={1} weight='bold'>
             {value.metadata.iconName || value.icon}
           </Text>
-          {value.metadata.collectionName && (
-            <Text size={1} muted>
-              {value.metadata.collectionName}
-            </Text>
-          )}
         </Flex>
       }
     >
