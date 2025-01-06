@@ -24,7 +24,7 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any 
       prepare(value) {
         return {
           title: value.metadata?.iconName || value.icon || '???',
-          subtitle: value.metadata.collectionName || undefined, // should I remove collectionName here ?
+          subtitle: value.metadata.collectionName || undefined,
           media: mediaPreview(value),
         }
       },
