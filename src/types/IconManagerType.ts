@@ -21,6 +21,7 @@ export const iconManagerSizeSchema = z.object({
 
 export type IconManagerSize = z.infer<typeof iconManagerSizeSchema>
 
+// removed collenctionName, collectionId, flip, hflip, vflip, downloadUrl 6:48 01/07/25
 export const iconManagerSchema = z.object({
   icon: z.string(),
   metadata: z.object({
