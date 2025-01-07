@@ -414,7 +414,6 @@ export default defineConfig({
     metadata: {
       iconName: string
       url: string
-      downloadUrl: string
       inlineSvg: string
       rotate: 0 | 1 | 2 | 3
       size: {

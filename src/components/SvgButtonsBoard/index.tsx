@@ -1,26 +1,20 @@
 import { Button } from '@sanity/ui'
 
 import DataUrlIcon from '../icons/DataURLIcon'
-import DownloadIcon from '../icons/DownloadIcon'
 import HtmlIcon from '../icons/HtmlIcon'
 import ButtonTooltip from './ButtonTooltip'
 
 interface SvgButtonsBoardProps {
-  downloadUrl: string
   onCopyHtmlToClipboard: () => void
   onCopyDataUrlToClipboard: () => void
 }
 
 const SvgButtonsBoard = ({
-  downloadUrl,
   onCopyHtmlToClipboard,
   onCopyDataUrlToClipboard,
 }: SvgButtonsBoardProps) => {
   return (
     <>
-      <ButtonTooltip tooltipText='Download SVG'>
-        <Button as='a' mode='bleed' tone='primary' href={downloadUrl} icon={<DownloadIcon />} />
-      </ButtonTooltip>
       <ButtonTooltip tooltipText='Copy svg html to clipboard'>
         <Button
           mode='bleed'

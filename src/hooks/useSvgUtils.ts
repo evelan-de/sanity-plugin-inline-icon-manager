@@ -1,5 +1,5 @@
 import { copyDataUrlToClipboard, copyHtmlToClipboard } from '../lib/clipboardUtils'
-import { generateSvgDownloadUrl, generateSvgHtml } from '../lib/svgUtils'
+import { generateSvgHtml } from '../lib/svgUtils'
 import { useAppStoreContext } from '../store/context'
 
 const useSvgUtils = () => {
@@ -21,13 +21,6 @@ const useSvgUtils = () => {
     })
   }
 
-  const onGenerateSvgDownloadUrl = (original?: boolean) => {
-    return generateSvgDownloadUrl(
-      { sanityValue, rotate, size, color, iconifyEndpoint, sanityToast },
-      original,
-    )
-  }
-
   const onCopyHtmlToClipboard = (original?: boolean) => {
     copyHtmlToClipboard(
       { sanityValue, rotate, size, color, iconifyEndpoint, sanityToast },
@@ -44,7 +37,6 @@ const useSvgUtils = () => {
 
   return {
     onGenerateSvgHtml,
-    onGenerateSvgDownloadUrl,
     onCopyHtmlToClipboard,
     onCopyDataUrlToClipboard,
   }
