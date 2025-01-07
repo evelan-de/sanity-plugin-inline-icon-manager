@@ -4,26 +4,12 @@ import DomPurify from 'dompurify'
 
 // eslint-disable-next-line import/no-cycle
 import { AppStoreType } from '../store/context'
-import {
-  INITIAL_HEIGHT,
-  INITIAL_HFLIP,
-  INITIAL_ROTATE,
-  INITIAL_VFLIP,
-  INITIAL_WIDTH,
-} from './constants'
+import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from './constants'
 import { toastError } from './toastUtils'
 
 export type AppStoreTypePartial = Pick<
   AppStoreType,
-  | 'sanityValue'
-  | 'hFlip'
-  | 'vFlip'
-  | 'flip'
-  | 'rotate'
-  | 'size'
-  | 'color'
-  | 'sanityToast'
-  | 'iconifyEndpoint'
+  'sanityValue' | 'rotate' | 'size' | 'color' | 'sanityToast' | 'iconifyEndpoint'
 >
 
 const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisations) => {
@@ -40,8 +26,6 @@ const getIconCustomisations = (value?: AppStoreTypePartial, saveIcon?: string) =
     width: saveIcon ? INITIAL_WIDTH : value.size.width,
     height: saveIcon ? INITIAL_HEIGHT : value.size.height,
     rotate: saveIcon ? INITIAL_ROTATE : value.rotate,
-    hFlip: saveIcon ? INITIAL_HFLIP : value.hFlip,
-    vFlip: saveIcon ? INITIAL_VFLIP : value.vFlip,
   }
 
   return customisations
@@ -57,7 +41,6 @@ const generateSearchParams = (
     if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
     if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
     if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
-    if (appState.flip) searchParams.append('flip', appState.flip)
     if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
   }
   if (download) {
@@ -95,22 +78,6 @@ export const generateSvgHttpUrl = (
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, false)
-    return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
-  } catch (e: any) {
-    toastError(appState.sanityToast, e)
-    return '#'
-  }
-}
-
-export const generateSvgDownloadUrl = (
-  appState: AppStoreTypePartial,
-  original: boolean = false,
-): string => {
-  try {
-    const icon = appState.sanityValue?.icon
-    if (!icon) throw Error('Unable to find the icon.')
-
-    const searchParams = generateSearchParams(original, appState, true)
     return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(appState.sanityToast, e)

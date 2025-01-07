@@ -48,8 +48,7 @@ const ResultsGrid = ({ items, collection }: ResultsGridProps) => {
               key={item.icon}
               icon={item.icon}
               iconName={item.iconName}
-              collectionName={collection?.name || item.collection?.name || ''}
-              onClick={() => saveIcon({ ...item, collection: collection || item.collection })}
+              onClick={() => saveIcon({ ...item, collection: collection ?? item.collection })}
             />
           ))}
         </Grid>

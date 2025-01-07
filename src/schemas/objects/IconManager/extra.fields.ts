@@ -3,11 +3,6 @@ import { defineField } from 'sanity'
 const metadataFields = [
   defineField({
     type: 'string',
-    name: 'downloadUrl',
-    title: 'Download Url',
-  }),
-  defineField({
-    type: 'string',
     name: 'url',
     title: 'Url',
   }),
@@ -15,16 +10,6 @@ const metadataFields = [
     type: 'string',
     name: 'inlineSvg',
     title: 'Inline Svg',
-  }),
-  defineField({
-    type: 'string',
-    name: 'collectionId',
-    title: 'Collection Id',
-  }),
-  defineField({
-    type: 'string',
-    name: 'collectionName',
-    title: 'Collection Name',
   }),
   defineField({
     type: 'string',
@@ -49,16 +34,6 @@ const metadataFields = [
         validation: (Rule) => Rule.min(0),
       }),
     ],
-  }),
-  defineField({
-    type: 'boolean',
-    name: 'hFlip',
-    title: 'H Flip',
-  }),
-  defineField({
-    type: 'boolean',
-    name: 'vFlip',
-    title: 'V Flip',
   }),
   defineField({
     type: 'number',

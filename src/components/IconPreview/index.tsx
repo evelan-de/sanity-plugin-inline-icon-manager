@@ -35,14 +35,13 @@ const IconPreview = ({
   if (!value?.icon) return null
 
   const {
-    metadata: { flip, rotate, color, size },
+    metadata: { rotate, color, size },
   } = value
 
   return (
     <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
         icon={value.icon}
-        {...(flip && { flip })}
         {...(rotate && { rotate })}
         style={{
           display: 'flex',

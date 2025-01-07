@@ -1,12 +1,9 @@
 import { copyDataUrlToClipboard, copyHtmlToClipboard } from '../lib/clipboardUtils'
-import { generateSvgDownloadUrl, generateSvgHtml } from '../lib/svgUtils'
+import { generateSvgHtml } from '../lib/svgUtils'
 import { useAppStoreContext } from '../store/context'
 
 const useSvgUtils = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
-  const hFlip = useAppStoreContext((s) => s.hFlip)
-  const vFlip = useAppStoreContext((s) => s.vFlip)
-  const flip = useAppStoreContext((s) => s.flip)
   const rotate = useAppStoreContext((s) => s.rotate)
   const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)
@@ -16,9 +13,6 @@ const useSvgUtils = () => {
   const onGenerateSvgHtml = () => {
     return generateSvgHtml({
       sanityValue,
-      hFlip,
-      vFlip,
-      flip,
       rotate,
       size,
       color,
@@ -27,30 +21,22 @@ const useSvgUtils = () => {
     })
   }
 
-  const onGenerateSvgDownloadUrl = (original?: boolean) => {
-    return generateSvgDownloadUrl(
-      { sanityValue, hFlip, vFlip, flip, rotate, size, color, iconifyEndpoint, sanityToast },
-      original,
-    )
-  }
-
   const onCopyHtmlToClipboard = (original?: boolean) => {
     copyHtmlToClipboard(
-      { sanityValue, hFlip, vFlip, flip, rotate, size, color, iconifyEndpoint, sanityToast },
+      { sanityValue, rotate, size, color, iconifyEndpoint, sanityToast },
       original,
     )
   }
 
   const onCopyDataUrlToClipboard = (original?: boolean) => {
     copyDataUrlToClipboard(
-      { sanityValue, hFlip, vFlip, flip, rotate, size, color, iconifyEndpoint, sanityToast },
+      { sanityValue, rotate, size, color, iconifyEndpoint, sanityToast },
       original,
     )
   }
 
   return {
     onGenerateSvgHtml,
-    onGenerateSvgDownloadUrl,
     onCopyHtmlToClipboard,
     onCopyDataUrlToClipboard,
   }
