@@ -85,22 +85,6 @@ export const generateSvgHttpUrl = (
   }
 }
 
-export const generateSvgDownloadUrl = (
-  appState: AppStoreTypePartial,
-  original: boolean = false,
-): string => {
-  try {
-    const icon = appState.sanityValue?.icon
-    if (!icon) throw Error('Unable to find the icon.')
-
-    const searchParams = generateSearchParams(original, appState, true)
-    return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
-  } catch (e: any) {
-    toastError(appState.sanityToast, e)
-    return '#'
-  }
-}
-
 export const generateSvgHtml = async (
   appState: AppStoreTypePartial,
   original?: boolean,

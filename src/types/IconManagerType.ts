@@ -25,7 +25,6 @@ export const iconManagerSchema = z.object({
   icon: z.string(),
   metadata: z.object({
     url: z.string(),
-    downloadUrl: z.string(),
     inlineSvg: z.string().optional(),
     iconName: z.string(),
     size: iconManagerSizeSchema,

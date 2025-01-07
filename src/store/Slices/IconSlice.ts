@@ -2,11 +2,7 @@ import { set as patchSet, unset as patchUnset } from 'sanity'
 import { StateCreator } from 'zustand'
 
 import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from '../../lib/constants'
-import {
-  generateInitialSvgDownloadUrl,
-  generateInitialSvgHttpUrl,
-  generateSvgHtml,
-} from '../../lib/svgUtils'
+import { generateInitialSvgHttpUrl, generateSvgHtml } from '../../lib/svgUtils'
 import { toastError } from '../../lib/toastUtils'
 import { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
 import { ConfigureSlice } from './ConfigureSlice'
@@ -32,7 +28,6 @@ export const createIconSlice: StateCreator<
       patches.push(
         patchSet(
           {
-            downloadUrl: generateInitialSvgDownloadUrl(get().iconifyEndpoint!, icon),
             url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, icon),
             iconName,
             size: { width: INITIAL_WIDTH, height: INITIAL_HEIGHT },

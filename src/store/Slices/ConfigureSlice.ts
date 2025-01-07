@@ -6,7 +6,7 @@ import { StateCreator } from 'zustand'
 
 import { hexToRgba, isValidHex, rgbaToHex } from '../../lib/colorUtils'
 import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from '../../lib/constants'
-import { generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl } from '../../lib/svgUtils'
+import { generateSvgHtml, generateSvgHttpUrl } from '../../lib/svgUtils'
 import { toastError, toastSuccess, toastWarning } from '../../lib/toastUtils'
 import { IconManagerColor, IconManagerSize } from '../../types/IconManagerType'
 import { DialogSlice } from './DialogSlice'
@@ -177,7 +177,6 @@ export const createConfigureSlice: StateCreator<
         if (patches.length > 0) {
           // update urls too if something has changed
           patches.push(patchSet(generateSvgHttpUrl(get()), ['metadata.url']))
-          patches.push(patchSet(generateSvgDownloadUrl(get()), ['metadata.downloadUrl']))
 
           await sanityPatch(patches)
           get().closeConfigDialog()
