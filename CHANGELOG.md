@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.3...v1.2.4) (2025-01-07)
+
+### Bug Fixes
+
+- removed icon properties marker ([c20ed01](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/c20ed01adaebee0ef655b18bbfc0d67d007ac778))
+
 ## [1.2.3](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.2...v1.2.3) (2024-10-30)
 
 ### Bug Fixes
