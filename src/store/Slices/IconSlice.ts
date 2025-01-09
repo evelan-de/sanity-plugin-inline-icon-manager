@@ -1,8 +1,7 @@
 import { set as patchSet, unset as patchUnset } from 'sanity'
 import { StateCreator } from 'zustand'
 
-import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from '../../lib/constants'
-import { generateInitialSvgHttpUrl, generateSvgHtml } from '../../lib/svgUtils'
+import { generateSvgHtml } from '../../lib/svgUtils'
 import { toastError } from '../../lib/toastUtils'
 import { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
 import { ConfigureSlice } from './ConfigureSlice'
@@ -21,26 +20,15 @@ export const createIconSlice: StateCreator<
   [],
   IconSlice
 > = (set, get) => ({
-  saveIcon: async ({ icon, iconName }: IconManagerIconInfo) => {
+  saveIcon: async ({ icon }: IconManagerIconInfo) => {
     try {
       const patches = []
       patches.push(patchSet(icon, ['icon']))
-      patches.push(
-        patchSet(
-          {
-            url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, icon),
-            iconName,
-            size: { width: INITIAL_WIDTH, height: INITIAL_HEIGHT },
-            rotate: INITIAL_ROTATE,
-          },
-          ['metadata'],
-        ),
-      )
 
       const storeInlineSvg = get().storeInlineSvg
       if (storeInlineSvg) {
         // Add inline svg when saving the icon
-        const inlineSvg = await generateSvgHtml(get(), undefined, icon)
+        const inlineSvg = await generateSvgHtml(get(), icon)
         patches.push(patchSet(inlineSvg, ['metadata.inlineSvg']))
       }
 

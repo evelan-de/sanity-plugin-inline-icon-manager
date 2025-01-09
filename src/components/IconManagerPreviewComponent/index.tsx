@@ -16,7 +16,6 @@ const IconManagerPreviewComponent = (props: IconManagerPreviewComponentProps) =>
         value={{ icon: props.icon, metadata: props.metadata }}
         width='80%'
         height='80%'
-        hideText
       />
     ),
   })

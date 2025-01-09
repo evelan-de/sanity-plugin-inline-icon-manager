@@ -1,7 +1,6 @@
 import { Icon } from '@iconify/react'
 import { InfoOutlineIcon } from '@sanity/icons'
 import { Card, Flex, Text, Tooltip, useTheme } from '@sanity/ui'
-import { useMemo } from 'react'
 
 import { useAppStoreContext } from '../../../store/context'
 
@@ -11,13 +10,7 @@ const Preview = () => {
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
-  const rotate = useAppStoreContext((s) => s.rotate)
-  const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)
-  const infoWarning = useMemo(
-    () => size.width > PREVIEW_SIZE_LIMIT || size.height > PREVIEW_SIZE_LIMIT,
-    [size.width, size.height],
-  )
 
   if (!sanityValue) return null
 
@@ -39,7 +32,6 @@ const Preview = () => {
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            color: infoWarning ? theme.sanity.color.solid.critical.enabled.bg : 'currentColor',
           }}
         >
           <InfoOutlineIcon />
@@ -55,9 +47,6 @@ const Preview = () => {
         >
           <Icon
             icon={sanityValue.icon}
-            rotate={rotate}
-            width={size.width <= PREVIEW_SIZE_LIMIT ? size.width : PREVIEW_SIZE_LIMIT}
-            height={size.height <= PREVIEW_SIZE_LIMIT ? size.height : PREVIEW_SIZE_LIMIT}
             style={{ display: 'block', ...(color?.hex && { color: color.hex }) }}
           />
         </Card>
