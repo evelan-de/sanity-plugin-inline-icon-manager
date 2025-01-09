@@ -16,7 +16,7 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
       content={
         <Flex padding={2} direction='column' gap={2}>
           <Text size={1} weight='bold'>
-            {value.metadata.iconName || value.icon}
+            {value.icon}
           </Text>
         </Flex>
       }
@@ -26,7 +26,6 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
           value={{ icon: value.icon, metadata: value.metadata }}
           width='1rem'
           height='1rem'
-          hideText
         />
       </div>
     </Tooltip>

@@ -23,10 +23,7 @@ const useInputSetup = (
   const setSanityPathFocus = useAppStoreContext((s) => s.setSanityPathFocus)
   const setSanityToast = useAppStoreContext((s) => s.setSanityToast)
   const setSanityUserCanEdit = useAppStoreContext((s) => s.setSanityUserCanEdit)
-  const setRotate = useAppStoreContext((s) => s.setRotate)
   const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
-  const setWidth = useAppStoreContext((s) => s.setWidth)
-  const setHeight = useAppStoreContext((s) => s.setHeight)
   const setColor = useAppStoreContext((s) => s.setColor)
 
   useEffect(() => {
@@ -37,9 +34,6 @@ const useInputSetup = (
 
     if (value?.metadata) {
       // setup configure slice
-      setRotate(value.metadata.rotate)
-      setWidth(value.metadata.size.width)
-      setHeight(value.metadata.size.height)
       setInlineSvg(value.metadata.inlineSvg)
       if (value.metadata.color) setColor(value.metadata.color?.hex)
     }
@@ -51,7 +45,7 @@ const useInputSetup = (
     setSanityPathFocus(objectInputProps.onPathFocus)
     setSanityToast(sanityToast)
     setSanityUserCanEdit(!objectInputProps.readOnly)
-    setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
+    setIconifyEndpoint(pluginOptions?.customEndpoint ?? DEFAULT_API_URL)
     if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
     if (pluginOptions?.storeInlineSvg) {
       setPluginOptionStoreInlineSvg(pluginOptions.storeInlineSvg)

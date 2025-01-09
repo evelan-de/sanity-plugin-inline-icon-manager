@@ -4,12 +4,12 @@ import DomPurify from 'dompurify'
 
 // eslint-disable-next-line import/no-cycle
 import { AppStoreType } from '../store/context'
-import { INITIAL_HEIGHT, INITIAL_ROTATE, INITIAL_WIDTH } from './constants'
+import { INITIAL_HEIGHT, INITIAL_WIDTH } from './constants'
 import { toastError } from './toastUtils'
 
 export type AppStoreTypePartial = Pick<
   AppStoreType,
-  'sanityValue' | 'rotate' | 'size' | 'color' | 'sanityToast' | 'iconifyEndpoint'
+  'sanityValue' | 'color' | 'sanityToast' | 'iconifyEndpoint'
 >
 
 const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisations) => {
@@ -19,18 +19,6 @@ const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisa
   return html
 }
 
-const getIconCustomisations = (value?: AppStoreTypePartial, saveIcon?: string) => {
-  if (!value) return undefined
-
-  const customisations = {
-    width: saveIcon ? INITIAL_WIDTH : value.size.width,
-    height: saveIcon ? INITIAL_HEIGHT : value.size.height,
-    rotate: saveIcon ? INITIAL_ROTATE : value.rotate,
-  }
-
-  return customisations
-}
-
 const generateSearchParams = (
   original: boolean,
   appState: AppStoreTypePartial,
@@ -38,9 +26,6 @@ const generateSearchParams = (
 ): string => {
   const searchParams = new URLSearchParams()
   if (!original) {
-    if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
-    if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
-    if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
     if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
   }
   if (download) {
@@ -87,20 +72,14 @@ export const generateSvgHttpUrl = (
 
 export const generateSvgHtml = async (
   appState: AppStoreTypePartial,
-  original?: boolean,
   saveIcon?: string,
 ): Promise<string> => {
   try {
-    const icon = saveIcon || appState.sanityValue?.icon
+    const icon = saveIcon ?? appState.sanityValue?.icon
 
     if (!icon) throw Error('Unable to find the icon.')
 
-    let customizations
-    if (!original) {
-      customizations = getIconCustomisations(appState, saveIcon)
-    }
-
-    let html = await buildIconHtml(icon, customizations)
+    let html = await buildIconHtml(icon)
     if (!html) throw Error('Unable to generate Svg Html')
     if (appState.color?.hex) html = html.replaceAll('currentColor', appState.color?.hex)
     return DomPurify.sanitize(html)
@@ -110,12 +89,9 @@ export const generateSvgHtml = async (
   }
 }
 
-export const generateSvgDataUrl = async (
-  appState: AppStoreTypePartial,
-  original?: boolean,
-): Promise<void | string> => {
+export const generateSvgDataUrl = async (appState: AppStoreTypePartial): Promise<void | string> => {
   try {
-    const html = await generateSvgHtml(appState, original)
+    const html = await generateSvgHtml(appState)
     if (!html) return undefined
     const base64 = svgToData(html)
     if (!base64) throw Error('Unable to generate Svg Data URL')

@@ -5,7 +5,6 @@ import IconManagerQueryRequest from './IconManagerQueryRequest'
 
 export type IconManagerIconInfo = {
   icon: string
-  iconName: string
   collection?: IconifyInfoEnhanced
 }
 

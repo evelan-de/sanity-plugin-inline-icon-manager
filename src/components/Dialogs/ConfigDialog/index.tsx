@@ -7,8 +7,6 @@ import Footer from './Footer'
 import Header from './Header'
 import InlineSvg from './InlineSvg'
 import Preview from './Preview'
-import Rotate from './Rotate'
-import Size from './Size'
 
 const ConfigDialog = () => {
   const isConfigDialogOpen = useAppStoreContext((s) => s.isConfigDialogOpen)
@@ -27,8 +25,6 @@ const ConfigDialog = () => {
     >
       <Card marginY={4} marginX={[4, 4, 6, 7]}>
         <Flex direction='column' gap={4}>
-          <Rotate />
-          <Size />
           {storeInlineSvg ? null : <InlineSvg />}
           <Color />
         </Flex>

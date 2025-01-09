@@ -135,11 +135,6 @@ You can use the exported `IconInlineRenderer` component to render the icon as an
 {
   icon: 'bi:check2-circle',
   metadata: {
-    size: {
-      width: 20,
-      height: 20,
-    },
-    rotate: 0,
     color: {
       hex: '#6aceeb'
     },
@@ -412,14 +407,7 @@ export default defineConfig({
     _type: 'icon.manager',
     icon: string
     metadata: {
-      iconName: string
-      url: string
       inlineSvg: string
-      rotate: 0 | 1 | 2 | 3
-      size: {
-        width: number
-        height: number
-      }
       color: {
         hex: string
         rgba: {
