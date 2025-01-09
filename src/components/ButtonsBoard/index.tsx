@@ -1,4 +1,4 @@
-import { BookIcon, InfoOutlineIcon, TrashIcon } from '@sanity/icons'
+import { BookIcon, TrashIcon } from '@sanity/icons'
 import { Button, Flex } from '@sanity/ui'
 
 import { useAppStoreContext } from '../../store/context'
@@ -6,7 +6,6 @@ import CustomizeIcon from '../icons/CustomizeIcon'
 import ButtonTooltip from './ButtonTooltip'
 
 const ButtonsBoard = () => {
-  const openInfoDialog = useAppStoreContext((s) => s.openInfoDialog)
   const openConfigDialog = useAppStoreContext((s) => s.openConfigDialog)
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
@@ -14,16 +13,6 @@ const ButtonsBoard = () => {
 
   return (
     <Flex direction='column'>
-      <ButtonTooltip tooltipText='Show Info'>
-        <Button
-          mode='bleed'
-          tone='primary'
-          radius={6}
-          icon={<InfoOutlineIcon width={25} height={25} />}
-          style={{ cursor: 'pointer' }}
-          onClick={openInfoDialog}
-        />
-      </ButtonTooltip>
       <ButtonTooltip tooltipText='Customize Icon'>
         <Button
           mode='bleed'
