@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.4...v1.2.5) (2025-01-10)
+
+### Bug Fixes
+
+- remove additional icon manager fields ([e017dc6](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/e017dc66b76d1fa0b58609cf9452c8432b6159b1))
+- remove info dialog button and related imports ([6188ddc](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/6188ddc8eb203ae800b84233ce7fb239c5e8ef59))
+
 ## [1.2.4](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.3...v1.2.4) (2025-01-07)
 
 ### Bug Fixes
