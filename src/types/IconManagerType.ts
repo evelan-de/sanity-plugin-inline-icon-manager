@@ -22,14 +22,11 @@ export const iconManagerSizeSchema = z.object({
 export type IconManagerSize = z.infer<typeof iconManagerSizeSchema>
 
 // removed collenctionName, collectionId, flip, hflip, vflip, downloadUrl 6:48 01/07/25
+// removed url, iconName, size, rotate - 01/10/25
 export const iconManagerSchema = z.object({
   icon: z.string(),
   metadata: z.object({
-    url: z.string(),
     inlineSvg: z.string().optional(),
-    iconName: z.string(),
-    size: iconManagerSizeSchema,
-    rotate: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
     color: iconManagerColorSchema.optional(),
   }),
 })

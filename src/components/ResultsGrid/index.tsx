@@ -47,7 +47,6 @@ const ResultsGrid = ({ items, collection }: ResultsGridProps) => {
             <ResultsGridItem
               key={item.icon}
               icon={item.icon}
-              iconName={item.iconName}
               onClick={() => saveIcon({ ...item, collection: collection ?? item.collection })}
             />
           ))}

@@ -3,42 +3,8 @@ import { defineField } from 'sanity'
 const metadataFields = [
   defineField({
     type: 'string',
-    name: 'url',
-    title: 'Url',
-  }),
-  defineField({
-    type: 'string',
     name: 'inlineSvg',
     title: 'Inline Svg',
-  }),
-  defineField({
-    type: 'string',
-    name: 'iconName',
-    title: 'Icon Name',
-  }),
-  defineField({
-    type: 'object',
-    name: 'size',
-    title: 'Custom Size',
-    fields: [
-      defineField({
-        type: 'number',
-        name: 'width',
-        title: 'Width',
-        validation: (Rule) => Rule.min(0),
-      }),
-      defineField({
-        type: 'number',
-        name: 'height',
-        title: 'Height',
-        validation: (Rule) => Rule.min(0),
-      }),
-    ],
-  }),
-  defineField({
-    type: 'number',
-    name: 'rotate',
-    title: 'Rotate',
   }),
   defineField({
     type: 'object',

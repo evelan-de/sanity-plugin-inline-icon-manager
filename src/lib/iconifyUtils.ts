@@ -10,7 +10,7 @@ export const parseSearchResults = (results: IconManagerQueryResponse): IconManag
   return results.icons.reduce((acc, curr) => {
     const iconInfo = curr.split(':')
     const collection = { code: iconInfo[0], ...results.collections[iconInfo[0]] }
-    acc.push({ icon: curr, iconName: iconInfo[1], collection })
+    acc.push({ icon: curr, collection })
     return acc
   }, [] as IconManagerIconInfo[])
 }

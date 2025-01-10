@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react'
-import { Flex, Text } from '@sanity/ui'
+import { Flex } from '@sanity/ui'
 
 import { IconManagerType } from '../../types/IconManagerType'
 
@@ -8,16 +8,9 @@ interface IconPreviewProps {
   icon?: string
   width?: string | number
   height?: string | number
-  hideText?: boolean
 }
 
-const IconPreview = ({
-  icon,
-  value,
-  width = 50,
-  height = 50,
-  hideText = false,
-}: IconPreviewProps) => {
+const IconPreview = ({ icon, value, width = 50, height = 50 }: IconPreviewProps) => {
   if (icon)
     return (
       <Icon
@@ -35,28 +28,22 @@ const IconPreview = ({
   if (!value?.icon) return null
 
   const {
-    metadata: { rotate, color, size },
+    metadata: { color },
   } = value
 
   return (
     <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
         icon={value.icon}
-        {...(rotate && { rotate })}
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          ...(color && color.hex && { color: color.hex }),
+          ...(color?.hex && { color: color.hex }),
         }}
         width={width}
         height={height}
       />
-      {!hideText && (
-        <Text size={0} style={{ opacity: 0.8 }}>
-          {size.width} x {size.height}
-        </Text>
-      )}
     </Flex>
   )
 }

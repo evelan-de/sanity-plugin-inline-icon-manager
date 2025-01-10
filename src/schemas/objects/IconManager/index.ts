@@ -23,8 +23,8 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any 
       },
       prepare(value) {
         return {
-          title: value.metadata?.iconName || value.icon || '???',
-          subtitle: value.metadata.collectionName || undefined,
+          title: value.icon ?? '???',
+          subtitle: value.metadata.collectionName ?? undefined,
           media: mediaPreview(value),
         }
       },

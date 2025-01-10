@@ -4,11 +4,10 @@ import IconPreview from '../IconPreview'
 
 interface ResultsGridItemProps {
   icon: string
-  iconName?: string
   onClick: () => void
 }
 
-const ResultsGridItem = ({ icon, iconName, onClick }: ResultsGridItemProps) => {
+const ResultsGridItem = ({ icon, onClick }: ResultsGridItemProps) => {
   return (
     <Flex
       justify='center'
@@ -22,7 +21,7 @@ const ResultsGridItem = ({ icon, iconName, onClick }: ResultsGridItemProps) => {
         content={
           <Flex direction='column' padding={2} gap={2}>
             <Text size={1} weight='bold'>
-              {iconName ?? icon}
+              {icon}
             </Text>
           </Flex>
         }

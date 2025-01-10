@@ -81,11 +81,11 @@ export const getIconsFromCollection = (
   const addIcon = (icon: string) => {
     if (!icons.has(icon)) {
       icons.add(icon)
-      output.push({ icon: `${collection.prefix}:${icon}`, iconName: icon })
+      output.push({ icon: `${collection.prefix}:${icon}` })
     }
   }
 
-  // loop trough uncategorized
+  // loop through uncategorized
   if (collection.uncategorized) {
     collection.uncategorized?.forEach(addIcon)
   }
@@ -98,7 +98,7 @@ export const getIconsFromCollection = (
     })
   }
 
-  return sort(output, 'iconName')
+  return output.sort((a, b) => a.icon.localeCompare(b.icon))
 }
 
 export const filterIcons = (
@@ -108,9 +108,5 @@ export const filterIcons = (
   if (!searchTerm || !icons) return icons
 
   const lowerCaseSearchTerm = searchTerm.toLowerCase()
-  return icons.filter(
-    ({ icon, iconName }) =>
-      icon.toLowerCase().includes(lowerCaseSearchTerm) ||
-      iconName.toLowerCase().includes(lowerCaseSearchTerm),
-  )
+  return icons.filter(({ icon }) => icon.toLowerCase().includes(lowerCaseSearchTerm))
 }

@@ -4,8 +4,6 @@ import { useAppStoreContext } from '../store/context'
 
 const useSvgUtils = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
-  const rotate = useAppStoreContext((s) => s.rotate)
-  const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)
   const iconifyEndpoint = useAppStoreContext((s) => s.iconifyEndpoint)
   const sanityToast = useAppStoreContext((s) => s.sanityToast)
@@ -13,26 +11,18 @@ const useSvgUtils = () => {
   const onGenerateSvgHtml = () => {
     return generateSvgHtml({
       sanityValue,
-      rotate,
-      size,
       color,
       iconifyEndpoint,
       sanityToast,
     })
   }
 
-  const onCopyHtmlToClipboard = (original?: boolean) => {
-    copyHtmlToClipboard(
-      { sanityValue, rotate, size, color, iconifyEndpoint, sanityToast },
-      original,
-    )
+  const onCopyHtmlToClipboard = () => {
+    copyHtmlToClipboard({ sanityValue, color, iconifyEndpoint, sanityToast })
   }
 
-  const onCopyDataUrlToClipboard = (original?: boolean) => {
-    copyDataUrlToClipboard(
-      { sanityValue, rotate, size, color, iconifyEndpoint, sanityToast },
-      original,
-    )
+  const onCopyDataUrlToClipboard = () => {
+    copyDataUrlToClipboard({ sanityValue, color, iconifyEndpoint, sanityToast })
   }
 
   return {

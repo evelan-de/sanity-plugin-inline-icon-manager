@@ -17,18 +17,12 @@ export const copy2Clipboard = async (
   }
 }
 
-export const copyHtmlToClipboard = async (
-  appState: AppStoreTypePartial,
-  original?: boolean,
-): Promise<void> => {
-  const html = await generateSvgHtml(appState, original)
+export const copyHtmlToClipboard = async (appState: AppStoreTypePartial): Promise<void> => {
+  const html = await generateSvgHtml(appState)
   if (html) copy2Clipboard(html, appState.sanityToast)
 }
 
-export const copyDataUrlToClipboard = async (
-  appState: AppStoreTypePartial,
-  original?: boolean,
-): Promise<void> => {
-  const dataUrl = await generateSvgDataUrl(appState, original)
+export const copyDataUrlToClipboard = async (appState: AppStoreTypePartial): Promise<void> => {
+  const dataUrl = await generateSvgDataUrl(appState)
   if (dataUrl) copy2Clipboard(dataUrl, appState.sanityToast)
 }
