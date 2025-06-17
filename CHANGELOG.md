@@ -27,6 +27,17 @@ All notable changes to this project will be documented in this file. See
 - remove some metadata extra fields ([c44a462](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/c44a4626c838a3927a22cb3bedb842013f4ebac3))
 - removed icon properties marker ([13d9a24](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/13d9a243a5d91ca5f58bdd8fc8f21cb414b78ddb))
 
+## [1.2.2](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.1...v1.2.2) (2025-06-17)
+
+### Bug Fixes
+
+- added react 19 as peerDependency ([a195ee2](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/a195ee2d596faa62ccea7057b0fe02bb3ed532c8))
+- **dependencies:** upgraded zod to v3.23.8 ([3167bc8](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/3167bc8c90376d3c823f2760912d9ac58ad43249))
+- remove additional icon manager fields ([e4ad885](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/e4ad8856640d2491d587197be6217806aadacf59))
+- remove info dialog button and related imports ([d3a80c7](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/d3a80c7babe3d918e3bb04d6ebc92d9582539332))
+- remove some metadata extra fields ([c44a462](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/c44a4626c838a3927a22cb3bedb842013f4ebac3))
+- removed icon properties marker ([13d9a24](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/13d9a243a5d91ca5f58bdd8fc8f21cb414b78ddb))
+
 ## [1.2.5](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.4...v1.2.5) (2025-01-10)
 
 ### Bug Fixes
