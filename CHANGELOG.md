@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.6...v1.2.7) (2025-06-17)
+
+### Bug Fixes
+
+- final fix for versioning ([a04af02](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/a04af0236174630204229faba8c0ae0687e11dbf))
+- versioning ([0932a49](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/0932a4970ab7aa3396b52a187860f8ea1b34376f))
+
 ## [1.2.3](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.2...v1.2.3) (2025-06-17)
 
 ### Bug Fixes
