@@ -3,9 +3,7 @@ import { FormEvent, useCallback } from 'react'
 
 import { useAppStoreContext } from '../../store/context'
 
-interface FilterPaletteProps {}
-
-const FilterPalette = (props: FilterPaletteProps) => {
+const FilterPalette = () => {
   const filterPalette = useAppStoreContext((s) => s.filterPalette)
   const setFilterPalette = useAppStoreContext((s) => s.setFilterPalette)
 

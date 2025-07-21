@@ -81,7 +81,7 @@ export const createConfigureSlice: StateCreator<
       }
       return { color: { hex, rgba } }
     }),
-  clearColor: () => set((s) => ({ color: undefined })),
+  clearColor: () => set(() => ({ color: undefined })),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch

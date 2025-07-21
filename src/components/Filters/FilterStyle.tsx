@@ -3,9 +3,7 @@ import { FormEvent, useCallback } from 'react'
 
 import { useAppStoreContext } from '../../store/context'
 
-interface FilterStyleProps {}
-
-const FilterStyle = (props: FilterStyleProps) => {
+const FilterStyle = () => {
   const filterStyle = useAppStoreContext((s) => s.filterStyle)
   const setFilterStyle = useAppStoreContext((s) => s.setFilterStyle)
 

@@ -24,7 +24,6 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "@sanity/eslint-config-studio",
   ],
   rules: {
      "@typescript-eslint/consistent-type-assertions": [
@@ -37,6 +36,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off", // Disable React import requirement for JSX
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {

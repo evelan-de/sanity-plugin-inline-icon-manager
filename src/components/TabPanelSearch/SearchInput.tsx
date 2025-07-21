@@ -6,9 +6,7 @@ import { useAppStoreContext } from '../../store/context'
 import { TextFilterCollection } from '../../style'
 import FilterBadge from '../Filters/FilterBadge'
 
-interface SearchInputProps {}
-
-const SearchInput = (props: SearchInputProps) => {
+const SearchInput = () => {
   const searchTerm = useAppStoreContext((s) => s.searchTerm)
   const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
   const countFiltersApplied = useAppStoreContext((s) => s.countFiltersApplied())

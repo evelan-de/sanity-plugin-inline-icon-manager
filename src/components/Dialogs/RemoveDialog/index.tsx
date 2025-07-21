@@ -4,9 +4,7 @@ import { Box, Dialog, Text } from '@sanity/ui'
 import { useAppStoreContext } from '../../../store/context'
 import Footer from './Footer'
 
-interface RemoveDialogProps {}
-
-const RemoveDialog = (props: RemoveDialogProps) => {
+const RemoveDialog = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const isRemoveDialogOpen = useAppStoreContext((s) => s.isRemoveDialogOpen)
 
