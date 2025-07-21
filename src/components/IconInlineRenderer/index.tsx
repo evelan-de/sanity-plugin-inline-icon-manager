@@ -1,5 +1,5 @@
 import parse from 'html-react-parser'
-import { sanitize } from 'isomorphic-dompurify'
+import DOMPurify from 'isomorphic-dompurify'
 import { FC } from 'react'
 
 import { IconManagerPartialType } from '../../types/IconManagerType'
@@ -23,7 +23,7 @@ export const IconInlineRenderer: FC<IconInlineRendererProps> = (props) => {
     // Add in the classNames to the inline svg string
     const svgRender = inlineSvg.replace('<svg', `<svg class="${className}"`)
 
-    return parse(sanitize(svgRender))
+    return parse(DOMPurify.sanitize(svgRender))
   }
 
   return null

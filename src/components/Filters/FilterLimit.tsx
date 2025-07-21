@@ -3,9 +3,7 @@ import { FormEvent, useCallback } from 'react'
 
 import { useAppStoreContext } from '../../store/context'
 
-interface FilterLimitProps {}
-
-const FilterLimit = (props: FilterLimitProps) => {
+const FilterLimit = () => {
   const limit = useAppStoreContext((s) => s.limit)
   const setLimit = useAppStoreContext((s) => s.setLimit)
 

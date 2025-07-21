@@ -1,4 +1,5 @@
 import { Badge, Card, Text } from '@sanity/ui'
+// eslint-disable-next-line import/no-named-as-default
 import styled from 'styled-components'
 
 export const PaginationButton = styled.button`
@@ -87,7 +88,7 @@ export const StyledColorPicker = styled(Card)`
     height: 15px;
   }
 `
-
+// background-color: ${(p) => p.theme.color.base.border};
 export const StyledColorPaletteWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -96,17 +97,17 @@ export const StyledColorPaletteWrapper = styled.div`
   margin-bottom: 10px;
   border-radius: 2px;
   max-width: 272px;
-  background-color: ${(p) => p.theme.color.base.skeleton.to};
+  background-color: ${(p) => (p.theme as any).color.base.border};
 `
 
 interface StyledColorPaletteBoxProps {
-  bgColor: string
+  $bgColor: string
 }
 export const StyledColorPaletteBox = styled.button<StyledColorPaletteBoxProps>`
   width: 20px;
   height: 20px;
   border-radius: 2px;
-  background: ${(p) => p.bgColor};
+  background: ${(p) => p.$bgColor};
   cursor: pointer;
-  border: 1px solid ${(p) => p.theme.color.base.fg};
+  border: 1px solid ${(p) => (p.theme as any).color.base.fg};
 `

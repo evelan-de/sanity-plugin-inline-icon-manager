@@ -4,9 +4,7 @@ import { Box, Text, Tooltip } from '@sanity/ui'
 import { useAppStoreContext } from '../../../store/context'
 import { StyledColorPaletteBox, StyledColorPaletteWrapper } from '../../../style'
 
-interface ColorPaletteProps {}
-
-const ColorPalette = (props: ColorPaletteProps) => {
+const ColorPalette = () => {
   const customPalette = useAppStoreContext((s) => s.customPalette)
   const setColor = useAppStoreContext((s) => s.setColor)
 
@@ -30,7 +28,7 @@ const ColorPalette = (props: ColorPaletteProps) => {
         >
           <StyledColorPaletteBox
             key={currColor.hex}
-            bgColor={currColor.hex}
+            $bgColor={currColor.hex}
             onClick={() => setColor(currColor.hex)}
           />
         </Tooltip>

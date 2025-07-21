@@ -1,13 +1,10 @@
 import { Icon } from '@iconify/react'
 import { InfoOutlineIcon } from '@sanity/icons'
-import { Card, Flex, Text, Tooltip, useTheme } from '@sanity/ui'
+import { Card, Flex, Text, Tooltip } from '@sanity/ui'
 
 import { useAppStoreContext } from '../../../store/context'
 
-const PREVIEW_SIZE_LIMIT = 300
-
 const Preview = () => {
-  const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
   const color = useAppStoreContext((s) => s.color)
