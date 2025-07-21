@@ -63,13 +63,13 @@
   "sideEffects": false,
   "scripts": {
     "build": "plugin-kit verify-package --silent && pkg-utils build --strict --check --clean",
-    "clean": "rimraf dist",
     "format": "prettier --write --cache --ignore-unknown .",
     "link-watch": "plugin-kit link-watch",
     "lint": "eslint .",
-    "prepublishOnly": "run-s build",
+    "lint-fix": "eslint --fix .",
+    "prepublishOnly": "npm run build",
     "watch": "pkg-utils watch --strict",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@iconify/react": "4.1.1",
