@@ -46,6 +46,7 @@ Powered by [Iconify](https://iconify.design/)
 - Collections tab
 - Icon Inline Renderer component
 - Limit Collections option
+- AI-powered icon suggestions based on natural language prompts
 
 <br /><br />
 
@@ -375,6 +376,22 @@ The search dialog now offers a 'Tabs view' where you can choose to search for yo
 <p align="center">
   <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
 </p>
+
+<br /><br />
+
+## 🤖 AI Icon Suggestions
+
+The plugin includes an AI-powered icon suggestion feature that allows you to discover relevant icons using natural language prompts. Simply describe what you're looking for, and the AI will suggest appropriate icons from various icon libraries.
+
+### Key Features
+
+- Natural language prompts to find icons (e.g., "shopping cart for e-commerce")
+- Real-time streaming of suggestions as they're generated
+- Automatic validation to ensure only existing icons are suggested
+- Customizable AI model selection
+- Detailed reasoning for each suggested icon
+
+For detailed documentation on the AI suggestion feature, see [AIIconSuggestion.md](./docs/AIIconSuggestion.md) in the docs folder.
 
 <br /><br />
 

@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-no-bind */
-import { BookIcon, SearchIcon } from '@sanity/icons'
+import { BookIcon, SearchIcon, SparklesIcon } from '@sanity/icons'
 import { Tab, TabList } from '@sanity/ui'
 import { useState } from 'react'
 
+import TabPanelAI from '../TabPanelAI'
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'
 
 const Tabs = () => {
-  const [tab, setTab] = useState<'search' | 'collection'>('search')
+  const [tab, setTab] = useState<'search' | 'collection' | 'ai'>('search')
 
   return (
     <>
@@ -28,9 +29,18 @@ const Tabs = () => {
           label='Collections'
           onClick={() => setTab('collection')}
         />
+        <Tab
+          id='ai-tab'
+          aria-controls='ai-panel'
+          selected={tab === 'ai'}
+          icon={SparklesIcon}
+          label='AI Suggestions'
+          onClick={() => setTab('ai')}
+        />
       </TabList>
       <TabContentSearch hidden={tab !== 'search'} />
       <TabPanelCollection hidden={tab !== 'collection'} />
+      <TabPanelAI hidden={tab !== 'ai'} />
     </>
   )
 }
