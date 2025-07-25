@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.8...v1.3.0) (2025-07-25)
+
+### Features
+
+- **ai:** add AI icon suggestion feature with documentation and polish ([a3245ce](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/a3245ce49798968455b7c71969646b7fdc2d3cbf))
+
 ## [1.2.8](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.2.7...v1.2.8) (2025-07-21)
 
 ### Bug Fixes
