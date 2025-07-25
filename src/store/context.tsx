@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useRef } from 'react'
 import { createStore, StoreApi, useStore } from 'zustand'
 
+import { AISlice, createAISlice } from './Slices/AISlice'
 import { CollectionsSlice, createCollectionsSlice } from './Slices/CollectionsSlice'
 import { ConfigureSlice, createConfigureSlice } from './Slices/ConfigureSlice'
 import { createDialogSlice, DialogSlice } from './Slices/DialogSlice'
@@ -17,7 +18,8 @@ export type AppStoreType = SanitySlice &
   ResultsSlice &
   ConfigureSlice &
   CollectionsSlice &
-  IconSlice
+  IconSlice &
+  AISlice
 
 const createMyStore = () =>
   createStore<AppStoreType>((...a) => ({
@@ -29,6 +31,7 @@ const createMyStore = () =>
     ...createConfigureSlice(...a),
     ...createCollectionsSlice(...a),
     ...createIconSlice(...a),
+    ...createAISlice(...a),
   }))
 
 const AppStoreContext = createContext<StoreApi<AppStoreType> | null>(null)
