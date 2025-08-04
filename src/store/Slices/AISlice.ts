@@ -9,31 +9,6 @@ export interface AISuggestion {
   confidence?: number
 }
 
-// Adjust accordingly if you want to add more models, for now these models offer the Object Generation API
-// Reference: https://ai-sdk.dev/docs/foundations/providers-and-models#model-capabilities
-export type AIModel =
-  | 'gpt-4.1'
-  | 'gpt-4.1-mini'
-  | 'gpt-4.1-nano'
-  | 'gpt-4o'
-  | 'gpt-4o-mini'
-  | 'o1'
-  | 'o3'
-  | 'o3-mini'
-  | 'o4-mini'
-
-export const AI_MODELS: { value: AIModel; label: string }[] = [
-  { value: 'gpt-4.1', label: 'GPT-4.1' },
-  { value: 'gpt-4.1-mini', label: 'GPT-4.1 Mini' },
-  { value: 'gpt-4.1-nano', label: 'GPT-4.1 Nano' },
-  { value: 'gpt-4o', label: 'GPT-4o' },
-  { value: 'gpt-4o-mini', label: 'GPT-4o Mini' },
-  { value: 'o1', label: 'o1' },
-  { value: 'o3', label: 'o3' },
-  { value: 'o3-mini', label: 'o3-mini' },
-  { value: 'o4-mini', label: 'o4-mini' },
-]
-
 export interface AISlice {
   // State
   aiPrompt: string
@@ -41,7 +16,9 @@ export interface AISlice {
   isAILoading: boolean
   aiError: string | null
   isStreaming: boolean
-  selectedModel: AIModel
+  selectedModel: string
+  aiSecretsNamespace: string | null
+  hasCustomSecretsNamespace: boolean
 
   // Actions
   setAIPrompt: (prompt: string) => void
@@ -49,7 +26,9 @@ export interface AISlice {
   setAILoading: (loading: boolean) => void
   setAIError: (error: string | null) => void
   setStreaming: (streaming: boolean) => void
-  setSelectedModel: (model: AIModel) => void
+  setSelectedModel: (model: string) => void
+  setAISecretsNamespace: (namespace: string) => void
+  setHasCustomSecretsNamespace: (hasCustomSecretsNamespace: boolean) => void
   clearAISuggestions: () => void
   resetAIState: () => void
 }
@@ -60,7 +39,9 @@ const initialAIState = {
   isAILoading: false,
   aiError: null,
   isStreaming: false,
-  selectedModel: 'gpt-4.1-mini' as AIModel,
+  selectedModel: 'gpt-4.1-mini',
+  aiSecretsNamespace: null,
+  hasCustomSecretsNamespace: false,
 }
 
 export const createAISlice: StateCreator<AISlice> = (set) => ({
@@ -78,9 +59,10 @@ export const createAISlice: StateCreator<AISlice> = (set) => ({
 
   setStreaming: (streaming: boolean) => set({ isStreaming: streaming }),
 
-  setSelectedModel: (model: AIModel) => set({ selectedModel: model }),
-
-  clearAISuggestions: () => set({ aiSuggestions: [], aiError: null }),
-
+  setSelectedModel: (model: string) => set({ selectedModel: model }),
+  setAISecretsNamespace: (namespace: string) => set({ aiSecretsNamespace: namespace }),
+  setHasCustomSecretsNamespace: (hasCustomSecretsNamespace: boolean) =>
+    set({ hasCustomSecretsNamespace }),
+  clearAISuggestions: () => set({ aiSuggestions: [] }),
   resetAIState: () => set(initialAIState),
 })

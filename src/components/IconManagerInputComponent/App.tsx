@@ -1,6 +1,7 @@
 import { Box } from '@sanity/ui'
 import { ObjectInputProps } from 'sanity'
 
+import useAISetup from '../../hooks/useAISetup'
 import useInputSetup from '../../hooks/useInputSetup'
 import { useAppStoreContext } from '../../store/context'
 import IconManagerPluginOptions from '../../types/IconManagerPluginOptions'
@@ -23,6 +24,7 @@ const IconManagerInputComponent = ({
   pluginOptions,
 }: IconManagerInputComponentProps) => {
   useInputSetup(objectInputProps, pluginOptions)
+  useAISetup(pluginOptions) // Initialize AI configuration
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
 
   return (

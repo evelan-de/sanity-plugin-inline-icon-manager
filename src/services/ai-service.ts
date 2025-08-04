@@ -1,11 +1,19 @@
-import { createOpenAI } from '@ai-sdk/openai'
+/**
+ * @file ai-service.ts
+ *
+ * AI service that uses the extensible provider system.
+ * Supports multiple AI providers and models through the provider registry.
+ */
+
 import { generateObject, streamObject } from 'ai'
 import { z } from 'zod'
 
 import { DEFAULT_API_URL } from '../lib/constants'
-import { AIModel, AISuggestion } from '../store/Slices/AISlice'
+import { AISuggestion } from '../store/Slices/AISlice'
+import { AILanguageEngineType } from '../types/ai-config'
+import { getLanguageModel } from './ai-provider-registry'
 
-// Define the schema for AI response
+// Define the schema for AI response (same as original)
 const IconSuggestionSchema = z.object({
   suggestions: z.array(
     z.object({
@@ -31,22 +39,18 @@ export class AIIconService {
   private static iconValidationCache: Record<string, boolean> = {}
 
   /**
-   * Generate icon suggestions based on user prompt
+   * Generate icon suggestions using the extensible provider system
    */
   static async generateIconSuggestions(
     prompt: string,
-    apiKey: string,
-    model: AIModel = 'gpt-4o-mini',
+    engine: AILanguageEngineType,
     iconifyEndpoint: string = DEFAULT_API_URL,
   ): Promise<AISuggestion[]> {
-    if (!apiKey) {
-      throw new Error('OpenAI API key is required')
-    }
-
     try {
-      const openaiProvider = createOpenAI({ apiKey })
+      const model = getLanguageModel(engine)
+
       const { object } = await generateObject({
-        model: openaiProvider(model),
+        model,
         schema: IconSuggestionSchema,
         prompt: AIIconService.buildPrompt(prompt),
       })
@@ -77,23 +81,16 @@ export class AIIconService {
    */
   static async *streamIconSuggestions(
     prompt: string,
-    apiKey: string,
-    model: AIModel = 'gpt-4.1-mini',
+    engine: AILanguageEngineType,
     iconifyEndpoint: string = DEFAULT_API_URL,
   ): AsyncGenerator<AISuggestion[], void, unknown> {
-    if (!apiKey) {
-      throw new Error('OpenAI API key is required')
-    }
-
     try {
-      const openaiProvider = createOpenAI({ apiKey })
+      const model = getLanguageModel(engine)
 
       const { partialObjectStream } = streamObject({
-        model: openaiProvider(model),
+        model,
         schema: IconSuggestionSchema,
         prompt: AIIconService.buildPrompt(prompt),
-        // temperature: 0.7, // Slightly higher temperature for more varied completions
-        // maxTokens: 1024, // Ensure enough tokens for complete reasoning
       })
 
       let previousCount = 0
@@ -227,8 +224,7 @@ export class AIIconService {
       if (yieldedSuggestions.size === 0) {
         const fallbackSuggestions = await AIIconService.generateIconSuggestions(
           prompt,
-          apiKey,
-          model,
+          engine,
           iconifyEndpoint,
         )
         if (fallbackSuggestions.length > 0) {
@@ -236,9 +232,62 @@ export class AIIconService {
         }
       }
     } catch (error) {
-      const errorMessage = AIIconService.getStreamingErrorMessage(error, model)
+      const errorMessage = AIIconService.getStreamingErrorMessage(error, engine.model.toString())
       throw new Error(errorMessage)
     }
+  }
+
+  /**
+   * Build the AI prompt for icon suggestions
+   */
+  static buildPrompt(userPrompt: string): string {
+    return `
+      <purpose>
+        You are an AI assistant specialized in suggesting relevant icons based on user descriptions. Your goal is to provide accurate, contextually appropriate icon suggestions from popular icon libraries.
+      </purpose>
+
+      <guidance>
+        - Focus on finding icons that best match the user's intent and context
+        - Prioritize commonly used and well-designed icons
+        - Consider both literal and metaphorical representations
+        - Ensure icon names are accurate and exist in the specified libraries
+      </guidance>
+
+      <instructions>
+        For each icon suggestion, provide:
+        1. A clear, descriptive name for the icon
+        2. The correct technical provider code (setPrefix)
+        3. The human-readable provider name
+        4. The exact icon identifier used by the provider
+        5. A brief explanation of why this icon fits the request
+      </instructions>
+
+      <contexts>
+        Popular icon providers and their prefixes:
+        - Lucide (lucide): Modern, clean line icons
+        - Heroicons (heroicons): Tailwind CSS icons, outline and solid variants
+        - Tabler Icons (tabler): Free SVG icons with consistent style
+        - Material Design Icons (mdi): Google's material design icon set
+        - Feather Icons (feather): Simply beautiful open source icons
+        - Font Awesome (fa): Comprehensive icon library
+        - Bootstrap Icons (bi): Official Bootstrap icon library
+        - Phosphor Icons (ph): Flexible icon family
+        - Remix Icons (ri): Neutral-style system symbols
+      </contexts>
+
+      <focus-areas>
+        - Accuracy: Ensure all suggested icons actually exist
+        - Relevance: Match the user's specific needs and context
+        - Variety: Provide options from different providers when appropriate
+        - Quality: Prioritize well-designed, popular icons
+      </focus-areas>
+
+      <user-prompt>
+        <![CDATA[${userPrompt}]]>
+      </user-prompt>
+
+      Generate relevant icon suggestions based on the user's request. The number of suggestions should match what the user explicitly requests, or default to 6 suggestions if no specific number is mentioned.
+    `
   }
 
   /**
@@ -258,37 +307,6 @@ export class AIIconService {
       (suggestion): suggestion is Partial<AISuggestion> =>
         suggestion !== undefined && suggestion !== null && typeof suggestion === 'object',
     )
-  }
-
-  /**
-   * Validate if an icon exists in the Iconify API
-   */
-  private static async validateIcon(
-    setPrefix: string,
-    iconName: string,
-    iconifyEndpoint: string = DEFAULT_API_URL,
-  ): Promise<boolean> {
-    // Create a cache key
-    const cacheKey = `${setPrefix}:${iconName}`
-
-    // Check if we have a cached result
-    if (cacheKey in AIIconService.iconValidationCache) {
-      return AIIconService.iconValidationCache[cacheKey]
-    }
-
-    try {
-      const response = await fetch(`${iconifyEndpoint}/${setPrefix}/${iconName}.svg`, {
-        method: 'HEAD', // Use HEAD to check existence without downloading content
-      })
-
-      // Cache the result
-      AIIconService.iconValidationCache[cacheKey] = response.ok
-      return response.ok
-    } catch {
-      // Cache the negative result too
-      AIIconService.iconValidationCache[cacheKey] = false
-      return false
-    }
   }
 
   /**
@@ -324,160 +342,79 @@ export class AIIconService {
     }
 
     if (error.message.includes('API key')) {
-      return 'Invalid OpenAI API key. Please check your OPENAI_API_KEY environment variable.'
+      return 'Invalid API key. Please check your AI provider API key configuration.'
     }
 
     if (error.message.includes('model')) {
       return (
         `Model '${model}' is not available or doesn't support streaming. ` +
-        "Try using 'gpt-4o-mini' instead."
+        'Try using a different model.'
       )
     }
 
     if (error.message.includes('quota') || error.message.includes('billing')) {
-      return 'OpenAI API quota exceeded. Please check your OpenAI account billing.'
+      return 'API quota exceeded. Please check your AI provider account billing.'
     }
 
     return `Failed to stream icon suggestions: ${error.message}`
   }
 
-  private static buildPrompt(userPrompt: string): string {
-    return `
-      <prompt>
-        <purpose>
-          You are an expert icon designer and UX specialist. Based on the user's prompt, suggest relevant icons from popular icon libraries from iconify. Generate the number of icons explicitly requested in the prompt, or default to 6 icons if no specific number is mentioned.
-        </purpose>
+  /**
+   * Validate if an icon exists using Iconify API
+   */
+  static async validateIcon(
+    setPrefix: string,
+    iconName: string,
+    iconifyEndpoint: string = DEFAULT_API_URL,
+  ): Promise<boolean> {
+    const cacheKey = `${setPrefix}:${iconName}`
 
-        <guidance>
-          Use the instructions below to generate icon suggestions that are relevant to the user's prompt.
-          Consider semantic relevance, common UI/UX patterns, icon clarity, and variety in your suggestions.
-          Return suggestions ordered by relevance and confidence.
-          Provide complete, well-formed reasoning for each suggestion - do not truncate or abbreviate explanations.
-          Use a valid and up-to-date set prefix name and icon name.
-          Icon names typically follow kebab-case format (e.g., 'shopping-cart', 'user-circle', 'arrow-right').
-          Avoid suggesting icons with complex or uncommon naming patterns.
-          Prefer widely-used icons from popular icon sets that are more likely to exist.
-        </guidance>
+    // Check cache first
+    if (cacheKey in AIIconService.iconValidationCache) {
+      return AIIconService.iconValidationCache[cacheKey]
+    }
 
-        <instructions>
-          <instruction>Choose the most appropriate icon name that matches the user's intent</instruction>
-          <instruction>Use the technical-name (e.g., 'lucide', 'heroicons', 'mdi') for setPrefix field - this must be a valid Iconify set prefix</instruction>
-          <instruction>Use the display-name (e.g., 'Lucide', 'Heroicons', 'Material Design Icons') for iconProviderDisplayName field</instruction>
-          <instruction>Provide the exact icon name/identifier for the 'name' field - this must be the icon name WITHOUT the prefix (e.g., 'home', 'user', 'settings')</instruction>
-          <instruction>NEVER include the prefix in the 'name' field - it should be just the icon identifier</instruction>
-          <instruction>Use kebab-case for multi-word icon names (e.g., 'shopping-cart', not 'shoppingCart' or 'shopping_cart')</instruction>
-          <instruction>Stick to common, widely-used icons that are more likely to exist in the icon sets</instruction>
-          <instruction>Avoid overly specific or complex icon names that might not exist</instruction>
-          <instruction>For each icon provider, follow their typical naming conventions (e.g., 'mdi' uses 'account' not 'user')</instruction>
-          <instruction>Provide a complete, 1-2 sentence reasoning for each icon explaining why it fits the prompt</instruction>
-          <instruction>Ensure reasoning is complete and not cut off mid-sentence</instruction>
-          <instruction>Keep reasoning concise but informative (20-40 words)</instruction>
-        </instructions>
+    try {
+      const response = await fetch(`${iconifyEndpoint}/${setPrefix}/${iconName}.svg`, {
+        method: 'HEAD',
+      })
 
-        <contexts>
-          <context name="icon-providers">
-            <provider>
-              <technical-name>lucide</technical-name>
-              <display-name>Lucide</display-name>
-              <description>Simple, clean icons with descriptive names</description>
-            </provider>
-            <provider>
-              <technical-name>heroicons</technical-name>
-              <display-name>Heroicons</display-name>
-              <description>Solid and outline variants, web-focused</description>
-            </provider>
-            <provider>
-              <technical-name>tabler</technical-name>
-              <display-name>Tabler Icons</display-name>
-              <description>Extensive collection with consistent style</description>
-            </provider>
-            <provider>
-              <technical-name>feather</technical-name>
-              <display-name>Feather Icons</display-name>
-              <description>Minimalist, stroke-based icons</description>
-            </provider>
-            <provider>
-              <technical-name>ph</technical-name>
-              <display-name>Phosphor Icons</display-name>
-              <description>Versatile with multiple weights</description>
-            </provider>
-            <provider>
-              <technical-name>mdi</technical-name>
-              <display-name>Material Design Icons</display-name>
-              <description>Comprehensive icon set with material design principles</description>
-            </provider>
-            <provider>
-              <technical-name>ri</technical-name>
-              <display-name>Remix Icon</display-name>
-              <description>Neutral-style system symbols for interfaces</description>
-            </provider>
-            <provider>
-              <technical-name>fa6-solid</technical-name>
-              <display-name>Font Awesome 6 Solid</display-name>
-              <description>Popular solid style icons from Font Awesome</description>
-            </provider>
-            <provider>
-              <technical-name>fa6-regular</technical-name>
-              <display-name>Font Awesome 6 Regular</display-name>
-              <description>Popular outline style icons from Font Awesome</description>
-            </provider>
-            <provider>
-              <technical-name>carbon</technical-name>
-              <display-name>Carbon</display-name>
-              <description>IBM's Carbon Design System icons</description>
-            </provider>
-            <provider>
-              <technical-name>ion</technical-name>
-              <display-name>Ionicons</display-name>
-              <description>Beautifully crafted icons for web, iOS, and Android apps</description>
-            </provider>
-            <provider>
-              <technical-name>bi</technical-name>
-              <display-name>Bootstrap Icons</display-name>
-              <description>Free, high quality icons from the Bootstrap team</description>
-            </provider>
-            <provider>
-              <technical-name>fluent</technical-name>
-              <display-name>Fluent UI Icons</display-name>
-              <description>Microsoft's Fluent Design System icons</description>
-            </provider>
-          </context>
-        </contexts>
+      const exists = response.ok
+      AIIconService.iconValidationCache[cacheKey] = exists
+      return exists
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      AIIconService.iconValidationCache[cacheKey] = false
+      return false
+    }
+  }
 
-        <focus-areas>
-          <area>Semantic relevance to the user's prompt</area>
-          <area>Common UI/UX patterns and conventions</area>
-          <area>Icon clarity and recognizability</area>
-          <area>Variety in suggestions while maintaining relevance</area>
-          <area>Complete, well-formed reasoning explanations</area>
-        </focus-areas>
+  /**
+   * Clear the icon validation cache
+   */
+  static clearValidationCache(): void {
+    AIIconService.iconValidationCache = {}
+  }
 
-        <sample-output>
-          {
-            "suggestions": [
-              {
-                "iconName": "Home",
-                "setPrefix": "mdi",
-                "iconProviderDisplayName": "Material Design Icons",
-                "name": "home",
-                "reasoning": "The home icon universally represents a main page or dashboard in web applications. It's instantly recognizable to users and follows standard navigation conventions."
-              },
-              {
-                "iconName": "Shopping Cart",
-                "setPrefix": "lucide",
-                "iconProviderDisplayName": "Lucide",
-                "name": "shopping-cart",
-                "reasoning": "This icon clearly communicates e-commerce functionality. It's perfect for representing a cart or checkout process that users will immediately understand."
-              }
-            ]
-          }
-        </sample-output>
+  /**
+   * Get cache statistics for debugging
+   */
+  static getCacheStats(): {
+    totalCached: number
+    validIcons: number
+    invalidIcons: number
+  } {
+    const entries = Object.entries(AIIconService.iconValidationCache)
+    const validIcons = entries.filter(([, isValid]) => isValid).length
+    const invalidIcons = entries.filter(([, isValid]) => !isValid).length
 
-        <user-prompt><![CDATA[${userPrompt}]]></user-prompt>
-      </prompt>
-    `
+    return {
+      totalCached: entries.length,
+      validIcons,
+      invalidIcons,
+    }
   }
 }
 
-// Export class for static usage
+// Export for static usage
 export const aiIconService = AIIconService
