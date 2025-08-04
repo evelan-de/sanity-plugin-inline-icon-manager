@@ -28,10 +28,10 @@ const AISuggestionCard = ({ suggestion }: AISuggestionCardProps) => {
     <Card padding={3} radius={2} shadow={1} tone='default'>
       <Flex direction='column' gap={3} style={{ height: '100%' }}>
         {/* Icon Preview */}
-        <Flex justify='center' align='center' style={{ minHeight: '48px' }}>
+        <Flex justify='center' align='center' style={{ minHeight: '64px' }}>
           <div
             style={{
-              fontSize: '32px',
+              fontSize: '64px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -39,8 +39,8 @@ const AISuggestionCard = ({ suggestion }: AISuggestionCardProps) => {
           >
             <IconPreview
               icon={`${suggestion.setPrefix}:${suggestion.name}`}
-              width={32}
-              height={32}
+              width={64}
+              height={64}
             />
           </div>
         </Flex>
@@ -51,7 +51,9 @@ const AISuggestionCard = ({ suggestion }: AISuggestionCardProps) => {
             {suggestion.iconName}
           </Text>
 
-          <Text size={2}>{suggestion.iconProviderDisplayName}</Text>
+          <Text size={1} style={{ marginTop: '8px' }}>
+            {suggestion.iconProviderDisplayName}
+          </Text>
 
           <Text size={1} muted style={{ lineHeight: 1.4 }}>
             {suggestion.reasoning}

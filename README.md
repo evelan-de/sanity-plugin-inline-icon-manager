@@ -186,6 +186,33 @@ This is the main configuration of the plugin. The available options are:
 
   // Optional flag for storing the icons as an inline svg by default
   storeInlineSvg?: string
+
+  // AI-powered icon suggestion configuration
+  ai?: {
+    // Custom secrets namespace for sharing AI configurations across projects
+    secretsNamespace?: string
+    
+    // Default AI model configuration
+    defaultModel?: {
+      model: string      // Model name (e.g., 'gpt-4o-mini')
+      keyName: string    // Provider key name (e.g., 'openaiKey')
+    }
+    
+    // Custom AI providers (optional - extends default providers)
+    providers?: [
+      {
+        name: string           // Provider display name
+        keyName: string        // Secret key name for this provider
+        keyTitle: string       // Display title for the API key input
+        models: [
+          {
+            modelName: string    // Technical model name
+            displayName: string  // User-friendly model name
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 
@@ -381,17 +408,54 @@ The search dialog now offers a 'Tabs view' where you can choose to search for yo
 
 ## 🤖 AI Icon Suggestions
 
-The plugin includes an AI-powered icon suggestion feature that allows you to discover relevant icons using natural language prompts. Simply describe what you're looking for, and the AI will suggest appropriate icons from various icon libraries.
+The plugin includes a powerful AI-powered icon suggestion feature that allows you to discover relevant icons using natural language prompts. Simply describe what you're looking for, and the AI will suggest appropriate icons from various icon libraries.
 
 ### Key Features
 
-- Natural language prompts to find icons (e.g., "shopping cart for e-commerce")
-- Real-time streaming of suggestions as they're generated
-- Automatic validation to ensure only existing icons are suggested
-- Customizable AI model selection
-- Detailed reasoning for each suggested icon
+- **Natural language prompts** to find icons (e.g., "shopping cart for e-commerce")
+- **Real-time streaming** of suggestions as they're generated
+- **Automatic validation** to ensure only existing icons are suggested
+- **Customizable AI model selection** with support for multiple providers
+- **Detailed reasoning** for each suggested icon
+- **Extensible provider system** for custom AI configurations
 
-For detailed documentation on the AI suggestion feature, see [AIIconSuggestion.md](./docs/AIIconSuggestion.md) in the docs folder.
+### 🔧 AI Extensibility & Configuration
+
+The plugin now supports a **fully extensible AI provider system** that allows you to:
+
+- **Use multiple AI providers** (OpenAI, DeepSeek, custom providers)
+- **Share AI configurations** across projects using custom secret namespaces
+- **Configure custom models** and provider-specific settings
+- **Maintain backward compatibility** with existing OpenAI-only setups
+
+#### Quick Examples
+
+```typescript
+// Default usage (no changes required)
+export default defineConfig({
+  plugins: [iconManager()]
+})
+
+// Custom AI configuration
+export default defineConfig({
+  plugins: [
+    iconManager({
+      ai: {
+        secretsNamespace: 'my-team-ai', // Shared across projects
+        providers: [
+          // Add custom providers, models, etc.
+        ]
+      }
+    })
+  ]
+})
+```
+
+### Documentation
+
+- **Basic Usage**: [AIIconSuggestion.md](./docs/AIIconSuggestion.md) - Getting started with AI suggestions
+- **Advanced Configuration**: [AIExtensibilityGuide.md](./docs/AIExtensibilityGuide.md) - Complete guide to AI extensibility
+- **Implementation Plan**: [AIExtensibilityPlan.md](./docs/AIExtensibilityPlan.md) - Technical implementation details
 
 <br /><br />
 

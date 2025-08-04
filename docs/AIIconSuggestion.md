@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AI Icon Suggestion feature is a powerful addition to the Sanity Inline Icon Manager plugin that allows users to discover and select icons based on natural language prompts. Using OpenAI's GPT models, the feature analyzes user prompts and suggests relevant icons from various icon libraries supported by Iconify. This documentation provides a comprehensive overview of the feature's architecture, functionality, and implementation details.
+The AI Icon Suggestion feature is a powerful addition to the Sanity Inline Icon Manager plugin that allows users to discover and select icons based on natural language prompts. Using an extensible AI provider system (supporting OpenAI, DeepSeek, and custom providers), the feature analyzes user prompts and suggests relevant icons from various icon libraries supported by Iconify. This documentation provides a comprehensive overview of the feature's architecture, functionality, and implementation details.
 
 ## Table of Contents
 
@@ -26,22 +26,38 @@ src/
 │   └── TabPanelAI/
 │       ├── index.tsx              # Main AI tab panel component
 │       ├── AIPromptInput.tsx      # Prompt input and streaming UI
-│       └── AISuggestionCard.tsx   # Individual icon suggestion card
+│       ├── AISuggestionCard.tsx   # Individual icon suggestion card
+│       ├── AISuggestionsGrid.tsx  # Grid display for icon suggestions
+│       └── AISettingsDialog.tsx   # AI provider configuration dialog
 ├── services/
-│   └── ai-service.ts              # Core AI service for icon suggestions
-├── store/
+│   ├── ai-service.ts              # Core AI service for icon suggestions
+│   ├── ai-provider-registry.ts    # Extensible AI provider registry
+│   ├── ai-config-resolver.ts      # Configuration resolution and validation
+│   └── ai-system-initializer.ts   # AI system initialization
+├── hooks/
+│   ├── useAISecrets.ts            # AI secrets management hook
+│   ├── useAISettings.ts           # AI settings and readiness hook
+│   └── useAISetup.ts              # AI system setup hook
+├── config/
+│   ├── defaultAIProviders.ts      # Default AI provider configurations
+│   └── aiSecretsConfig.ts         # AI secrets interface definitions
+├── types/
+│   ├── ai-config.ts               # AI configuration type definitions
+│   └── ai-plugin-config.ts        # Plugin-specific AI configuration
+└── store/
     └── Slices/
         └── AISlice.ts             # Zustand state management for AI features
 ```
 
 ### Data Flow
 
-1. User enters a prompt in the AI tab
-2. The prompt is sent to the AI service
-3. The AI service generates icon suggestions using OpenAI
-4. Each suggestion is validated against the Iconify API
-5. Valid suggestions are displayed to the user
-6. User can select an icon to use in their document
+1. **Plugin Initialization**: AI system initializes with configured providers (OpenAI, DeepSeek, custom)
+2. **User Input**: User enters a prompt in the AI tab and selects a model
+3. **AI Processing**: The AI service uses the extensible provider system to generate suggestions
+4. **Streaming Response**: Suggestions are streamed in real-time as they're generated
+5. **Icon Validation**: Each suggestion is validated against the Iconify API
+6. **UI Updates**: Valid suggestions are progressively displayed in the grid
+7. **Selection**: User can select an icon to use in their document
 
 ## Key Components
 
@@ -148,9 +164,9 @@ const IconSuggestionSchema = z.object({
       iconProviderDisplayName: z.string(),
       name: z.string(),
       reasoning: z.string(),
-    })
+    }),
   ),
-});
+})
 ```
 
 ## User Interface
@@ -202,29 +218,70 @@ This cache stores the results of previous validation checks, allowing the servic
 
 ## Configuration
 
+### Plugin Configuration
+
+The AI feature can be configured through the plugin options:
+
+```typescript
+import { defineConfig } from 'sanity'
+import { iconManager } from 'sanity-plugin-inline-icon-manager'
+
+export default defineConfig({
+  plugins: [
+    iconManager({
+      ai: {
+        // Custom secrets namespace for sharing across projects
+        secretsNamespace: 'my-company-ai',
+
+        // Default model configuration
+        defaultModel: {
+          model: 'gpt-4o-mini',
+          keyName: 'openaiKey',
+        },
+
+        // Custom providers (optional)
+        providers: [
+          {
+            name: 'OpenAI',
+            keyName: 'openaiKey',
+            keyTitle: 'OpenAI API Key',
+            models: [
+              { modelName: 'gpt-4o-mini', displayName: 'GPT-4o Mini' },
+              { modelName: 'gpt-4o', displayName: 'GPT-4o' },
+            ],
+          },
+        ],
+      },
+    }),
+  ],
+})
+```
+
 ### API Key Management
 
-The OpenAI API key is managed securely using Sanity's studio-secrets pattern:
+The AI provider API keys are managed securely using Sanity's studio-secrets pattern:
 
-1. Users can set their API key via a custom settings dialog
-2. The API key is stored securely in the Sanity studio configuration
-3. The key is never exposed in client-side code or stored in plain text
+1. Users can configure API keys via the AI settings dialog
+2. Keys are stored securely in the Sanity studio configuration
+3. Keys are never exposed in client-side code or stored in plain text
+4. Support for multiple providers (OpenAI, DeepSeek, custom)
+
+### Supported Providers
+
+The system supports multiple AI providers out of the box:
+
+- **OpenAI**: GPT-4o, GPT-4o-mini, GPT-4-turbo, and other models
+- **DeepSeek**: DeepSeek-V2.5 and other DeepSeek models
+- **Custom Providers**: Extensible system for adding new AI providers
 
 ### Model Selection
 
-Users can select from various OpenAI models:
+Users can select from available models based on configured providers. The model selection affects:
 
-- GPT-4.1
-- GPT-4.1 Mini
-- GPT-4.1 Nano
-- GPT-4o
-- GPT-4o Mini
-- o1
-- o3
-- o3-mini
-- o4-mini
-
-The model selection affects the quality, speed, and cost of icon suggestions.
+- **Quality**: More advanced models provide better icon suggestions
+- **Speed**: Smaller models respond faster
+- **Cost**: Different models have different pricing structures
+- **Availability**: Model availability depends on your API provider
 
 ## Prompt Engineering
 
@@ -340,7 +397,7 @@ const { stream } = await streamObject({
   model: openaiProvider(model),
   schema: IconSuggestionSchema,
   prompt: AIIconService.buildPrompt(prompt),
-});
+})
 
 for await (const chunk of stream) {
   // Process each chunk of suggestions
@@ -370,12 +427,12 @@ static async validateIcon(
       `${iconifyEndpoint}/${setPrefix}/${iconName}.svg`,
       { method: 'HEAD' }
     );
-    
+
     const exists = response.ok;
-    
+
     // Cache the result
     AIIconService.iconValidationCache.set(cacheKey, exists);
-    
+
     return exists;
   } catch (error) {
     console.error(`Error validating icon ${setPrefix}:${iconName}:`, error);
@@ -391,7 +448,7 @@ To ensure that the AI provides complete reasoning for each suggestion, the servi
 ```typescript
 private static isReasoningComplete(reasoning: string | undefined): boolean {
   if (!reasoning) return false;
-  
+
   // Check if reasoning ends with a sentence-ending punctuation
   return /[.!?]$/.test(reasoning.trim());
 }
