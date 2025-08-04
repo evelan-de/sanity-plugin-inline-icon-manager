@@ -186,6 +186,33 @@ This is the main configuration of the plugin. The available options are:
 
   // Optional flag for storing the icons as an inline svg by default
   storeInlineSvg?: string
+
+  // AI-powered icon suggestion configuration
+  ai?: {
+    // Custom secrets namespace for sharing AI configurations across projects
+    secretsNamespace?: string
+    
+    // Default AI model configuration
+    defaultModel?: {
+      model: string      // Model name (e.g., 'gpt-4o-mini')
+      keyName: string    // Provider key name (e.g., 'openaiKey')
+    }
+    
+    // Custom AI providers (optional - extends default providers)
+    providers?: [
+      {
+        name: string           // Provider display name
+        keyName: string        // Secret key name for this provider
+        keyTitle: string       // Display title for the API key input
+        models: [
+          {
+            modelName: string    // Technical model name
+            displayName: string  // User-friendly model name
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 
