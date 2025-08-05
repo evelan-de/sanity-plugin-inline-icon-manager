@@ -2,6 +2,7 @@
 import { Button, Flex, Grid, Popover, Text } from '@sanity/ui'
 import { useRef, useState } from 'react'
 
+import { useTranslation } from '../../../hooks/useTranslation'
 import { useAppStoreContext } from '../../../store/context'
 import ColorPicker from './ColorPicker'
 
@@ -11,6 +12,7 @@ const Color = () => {
   const clearColor = useAppStoreContext((s) => s.clearColor)
   const [isColorOpen, setIsColorOpen] = useState(false)
   const ref = useRef(null)
+  const { t } = useTranslation()
 
   if (!sanityValue) return null
 
@@ -23,7 +25,7 @@ const Color = () => {
       ref={ref}
     >
       <Text weight='bold' size={1} style={{ width: '100px' }}>
-        Color:
+        {t('config-dialog.color.title')}:
       </Text>
       <Grid columns={1} style={{ width: '100%' }}>
         <Flex gap={1} align='center'>
@@ -50,10 +52,10 @@ const Color = () => {
           </Popover>
           {color && (
             <Button
-              text='Clear color'
+              text={t('config-dialog.color.button.clear-color')}
               mode='bleed'
               tone='primary'
-              title='Set the color to "currentColor"'
+              title={t('config-dialog.color.button.title')}
               fontSize={0}
               padding={1}
               style={{ cursor: 'pointer' }}

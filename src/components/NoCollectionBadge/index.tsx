@@ -1,6 +1,10 @@
 import { Badge, Flex } from '@sanity/ui'
 
+import { useTranslation } from '../../hooks/useTranslation'
+
 export default function NoCollectionBadge() {
+  const { t } = useTranslation()
+
   return (
     <Flex marginY={4} justify='center'>
       <Badge
@@ -12,9 +16,9 @@ export default function NoCollectionBadge() {
         style={{ textAlign: 'center' }}
         radius={0}
       >
-        No available collections.
+        {t('no-collection-badge.title')}
         <br />
-        Check your plugin configuration.
+        {t('no-collection-badge.description')}
       </Badge>
     </Flex>
   )

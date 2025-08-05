@@ -1,5 +1,6 @@
 import { Box, Card, Flex, Grid, Spinner, Text } from '@sanity/ui'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 import AISuggestionCard from './AISuggestionCard'
 
@@ -10,6 +11,8 @@ const AISuggestionsGrid = () => {
   const aiError = useAppStoreContext((s) => s.aiError)
   const aiPrompt = useAppStoreContext((s) => s.aiPrompt)
 
+  const { t } = useTranslation()
+
   // Show loading state
   if (isAILoading && aiSuggestions.length === 0) {
     return (
@@ -17,11 +20,11 @@ const AISuggestionsGrid = () => {
         <Flex direction='column' align='center' gap={3}>
           <Spinner muted />
           <Text size={2} muted align='center'>
-            Generating icon suggestions...
+            {t('ai-suggestions-grid.loading')}
           </Text>
           {aiPrompt && (
             <Text size={1} muted align='center'>
-              Analyzing: &quot;{aiPrompt}&quot;
+              {t('ai-suggestions-grid.analyzing')}: &quot;{aiPrompt}&quot;
             </Text>
           )}
         </Flex>
@@ -35,7 +38,7 @@ const AISuggestionsGrid = () => {
       <Card padding={4} radius={2} tone='critical'>
         <Flex direction='column' gap={2}>
           <Text size={2} weight='semibold'>
-            Error generating suggestions
+            {t('ai-suggestions-grid.error')}
           </Text>
           <Text size={1} muted>
             {aiError}
@@ -52,11 +55,10 @@ const AISuggestionsGrid = () => {
         <Flex direction='column' align='center' gap={3}>
           <Text size={3}>✨</Text>
           <Text size={2} weight='semibold' align='center'>
-            AI-Powered Icon Suggestions
+            {t('ai-suggestions-grid.empty.title')}
           </Text>
           <Text size={1} muted align='center' style={{ maxWidth: '400px' }}>
-            Describe what you&apos;re looking for and AI will suggest the most relevant icons from
-            popular icon libraries.
+            {t('ai-suggestions-grid.empty.description')}
           </Text>
         </Flex>
       </Card>
@@ -71,13 +73,13 @@ const AISuggestionsGrid = () => {
           {/* Header with streaming indicator */}
           <Flex justify='space-between' align='center'>
             <Text size={2} weight='semibold'>
-              AI Suggestions ({aiSuggestions.length})
+              {t('ai-suggestions-grid.title')} ({aiSuggestions.length})
             </Text>
             {isStreaming && (
               <Flex align='center' gap={2}>
                 <Spinner size={1} />
                 <Text size={1} muted>
-                  Generating more...
+                  {t('ai-suggestions-grid.streaming')}
                 </Text>
               </Flex>
             )}

@@ -260,12 +260,6 @@ export function useAISettings(props?: {
 - **Global Default Selection**: Allow setting global default model for icon suggestions
 - **Real-time Validation**: Validate model availability based on current secrets
 
-**File: `src/components/AIProviderStatus.tsx`** (New)
-- **Provider Health Check**: Display configured providers and their status
-- **Missing Key Indicators**: Visual indicators for missing API keys
-- **Quick Setup Actions**: Direct links to provider setup and validation
-- **Configuration Overview**: Summary of active providers and default models
-
 ### Phase 6: Documentation & Migration
 
 #### 6.1 Enhanced Documentation

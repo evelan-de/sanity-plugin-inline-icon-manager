@@ -3,6 +3,7 @@ import { Box, Button, Card, Flex, Select, Text, TextArea } from '@sanity/ui'
 import { useCallback, useMemo, useState } from 'react'
 
 import { useAISettings, useAvailableModels } from '../../hooks/useAISettings'
+import { useTranslation } from '../../hooks/useTranslation'
 import { aiIconService } from '../../services/ai-service'
 import { useAppStoreContext } from '../../store/context'
 import { AISuggestion } from '../../store/Slices/AISlice'
@@ -10,6 +11,7 @@ import AISettingsDialog from '../AISettingsDialog'
 
 const AIPromptInput = () => {
   const [localPrompt, setLocalPrompt] = useState('')
+  const { t } = useTranslation()
 
   const aiPrompt = useAppStoreContext((s) => s.aiPrompt)
   const isAILoading = useAppStoreContext((s) => s.isAILoading)
@@ -71,13 +73,13 @@ const AIPromptInput = () => {
       event.preventDefault()
 
       if (!localPrompt.trim()) {
-        setAIError('Please enter a prompt')
+        setAIError(t('ai-prompt-input.error.prompt-required'))
         return
       }
 
       // Check if AI configuration is available
       if (aiSettings.error || !aiSettings.engine) {
-        setAIError('AI configuration not available. Please configure your API keys in settings.')
+        setAIError(t('ai-prompt-input.error.ai-settings-required'))
         return
       }
 
@@ -111,7 +113,9 @@ const AIPromptInput = () => {
         setAILoading(false)
       } catch (error) {
         console.error('Error generating suggestions:', error)
-        setAIError(error instanceof Error ? error.message : 'Failed to generate suggestions')
+        setAIError(
+          error instanceof Error ? error.message : t('ai-prompt-input.error.fail-submission'),
+        )
         setStreaming(false)
         setAILoading(false)
       }
@@ -126,6 +130,7 @@ const AIPromptInput = () => {
       setStreaming,
       clearAISuggestions,
       setAISuggestions,
+      t,
     ],
   )
 
@@ -164,18 +169,18 @@ const AIPromptInput = () => {
             <Flex align='center' justify='space-between' gap={3}>
               <Text size={1}>
                 {hasApiKey
-                  ? 'AI API key is configured. You can now use AI-powered icon suggestions.'
-                  : 'AI API key not configured. You need to configure your API key before using AI features.'}
+                  ? t('ai-prompt-input.api-key-configured')
+                  : t('ai-prompt-input.api-key-not-configured')}
               </Text>
               <AISettingsDialog namespace={aiSecretsNamespace || undefined} />
             </Flex>
           </Card>
         )}
         <Text size={1} weight='medium'>
-          Describe the icon you need
+          {t('ai-prompt-input.describe-icon')}
         </Text>
         <TextArea
-          placeholder="Describe the icon (e.g., 'A shopping cart for e-commerce', 'A settings gear with notification badge')"
+          placeholder={t('ai-prompt-input.prompt-placeholder')}
           value={localPrompt}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -183,14 +188,12 @@ const AIPromptInput = () => {
           style={{ flex: 1 }}
         />
         <Text size={0} muted>
-          The AI will attempt to generate 6 icons by default (only valid icons will be shown). You
-          can request a specific number by saying &quot;Generate X icon suggestions&quot; in your
-          prompt.
+          {t('ai-prompt-input.generate-icons')}
         </Text>
         <Flex justify='space-between' align='center' gap={3}>
           <Button
             icon={SearchIcon}
-            text='Generate'
+            text={t('ai-prompt-input.button.generate')}
             tone='primary'
             onClick={handleSubmit}
             disabled={isDisabled || !localPrompt.trim() || !hasApiKey}
@@ -213,7 +216,7 @@ const AIPromptInput = () => {
         </Flex>
         {aiPrompt && (
           <Text size={1} muted>
-            Current prompt: &quot;{aiPrompt}&quot;
+            {t('ai-prompt-input.current-prompt')}: &quot;{aiPrompt}&quot;
           </Text>
         )}
       </Flex>

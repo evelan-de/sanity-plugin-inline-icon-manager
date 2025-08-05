@@ -2,6 +2,7 @@ import { Button, Card, Flex, Text } from '@sanity/ui'
 import { useCallback } from 'react'
 
 import IconPreview from '../../components/IconPreview'
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 import { AISuggestion } from '../../store/Slices/AISlice'
 
@@ -10,6 +11,7 @@ interface AISuggestionCardProps {
 }
 
 const AISuggestionCard = ({ suggestion }: AISuggestionCardProps) => {
+  const { t } = useTranslation()
   const saveIcon = useAppStoreContext((s) => s.saveIcon)
   const closeSearchDialog = useAppStoreContext((s) => s.closeSearchDialog)
 
@@ -62,7 +64,7 @@ const AISuggestionCard = ({ suggestion }: AISuggestionCardProps) => {
 
         {/* Select Button */}
         <Button
-          text='Select Icon'
+          text={t('ai-suggestion-card.button.select-icon')}
           tone='primary'
           mode='default'
           onClick={handleSelectIcon}

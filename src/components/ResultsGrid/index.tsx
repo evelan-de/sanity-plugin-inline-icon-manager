@@ -2,6 +2,7 @@
 import { Badge, Card, Grid, Label } from '@sanity/ui'
 
 import usePagination from '../../hooks/usePagination'
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 import { IconifyInfoEnhanced } from '../../types/IconifyInfoEnhanced'
 import { IconManagerIconInfo } from '../../types/IconManagerQueryResponse'
@@ -16,6 +17,7 @@ interface ResultsGridProps {
 const ResultsGrid = ({ items, collection }: ResultsGridProps) => {
   const { currentItems, ...paginationBag } = usePagination<IconManagerIconInfo>(items)
   const saveIcon = useAppStoreContext((s) => s.saveIcon)
+  const { t } = useTranslation()
 
   if (!items) return null
 
@@ -34,7 +36,7 @@ const ResultsGrid = ({ items, collection }: ResultsGridProps) => {
           textAlign: 'center',
         }}
       >
-        <Label style={{ padding: '10px' }}>No icons found!</Label>
+        <Label style={{ padding: '10px' }}>{t('results-grid.no-icons-found')}</Label>
       </Badge>
     )
 

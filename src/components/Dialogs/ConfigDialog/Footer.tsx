@@ -1,6 +1,7 @@
 import { Button, Flex } from '@sanity/ui'
 
 import useSvgUtils from '../../../hooks/useSvgUtils'
+import { useTranslation } from '../../../hooks/useTranslation'
 import { useAppStoreContext } from '../../../store/context'
 import SvgButtonsBoard from '../../SvgButtonsBoard'
 
@@ -8,6 +9,8 @@ const Footer = () => {
   const { onCopyHtmlToClipboard, onCopyDataUrlToClipboard } = useSvgUtils()
   const clearConfiguration = useAppStoreContext((s) => s.clearConfiguration)
   const saveConfiguration = useAppStoreContext((s) => s.saveConfiguration)
+  const { t } = useTranslation()
+
   return (
     <Flex
       direction={['column', 'column', 'column', 'row']}
@@ -24,8 +27,8 @@ const Footer = () => {
       </Flex>
       <Flex align='center' gap={2}>
         <Button
-          text='Clear'
-          title='Clear Configuration'
+          text={t('config-dialog.footer.button.clear')}
+          title={t('config-dialog.footer.button.clear-configuration')}
           mode='bleed'
           tone='critical'
           fontSize={2}
@@ -33,8 +36,8 @@ const Footer = () => {
           onClick={clearConfiguration}
         />
         <Button
-          text='Save'
-          title='Save Configuration'
+          text={t('config-dialog.footer.button.save')}
+          title={t('config-dialog.footer.button.save-configuration')}
           mode='bleed'
           tone='positive'
           fontSize={2}

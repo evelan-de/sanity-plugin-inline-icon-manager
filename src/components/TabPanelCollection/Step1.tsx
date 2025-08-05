@@ -3,11 +3,13 @@ import { LaunchIcon } from '@sanity/icons'
 import { Box, Flex, Text } from '@sanity/ui'
 import { useDeferredValue, useState } from 'react'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
 const Step1 = () => {
+  const { t } = useTranslation()
   const selectedCollection = useAppStoreContext((s) => s.selectedCollection)
   const clearSelectedCollection = useAppStoreContext((s) => s.clearSelectedCollection)
   const [searchTerm, setSearchTerm] = useState('')
@@ -45,13 +47,17 @@ const Step1 = () => {
             style={{ textDecoration: 'none', fontStyle: 'italic' }}
           >
             <Text muted size={2}>
-              by {selectedCollection?.collection.author.name}
+              {t('step-1.author-name', { authorName: selectedCollection?.collection.author.name })}
             </Text>
             <LaunchIcon width={12} style={{ color: 'initial' }} />
           </Flex>
         </Flex>
       </Flex>
-      <Input placeholder='Filter icons...' term={searchTerm} onChange={setSearchTerm} />
+      <Input
+        placeholder={t('step-1.input-placeholder')}
+        term={searchTerm}
+        onChange={setSearchTerm}
+      />
       <IconsGrid searchTerm={deferredSearchTerm} />
     </>
   )

@@ -2,12 +2,14 @@
 import { Flex, Switch, Text } from '@sanity/ui'
 
 import useSvgUtils from '../../../hooks/useSvgUtils'
+import { useTranslation } from '../../../hooks/useTranslation'
 import { useAppStoreContext } from '../../../store/context'
 
 const InlineSvg = () => {
   const { onGenerateSvgHtml } = useSvgUtils()
   const inlineSvg = useAppStoreContext((s) => s.inlineSvg)
   const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
+  const { t } = useTranslation()
 
   const onChangeInlineSvg = async () => {
     setInlineSvg(inlineSvg ? undefined : await onGenerateSvgHtml())
@@ -21,7 +23,7 @@ const InlineSvg = () => {
       style={{ width: '100%' }}
     >
       <Text weight='bold' size={1} style={{ width: '100px' }}>
-        Inline Svg:
+        {t('config-dialog.inline-svg.title')}:
       </Text>
       <Flex style={{ width: '100%' }}>
         <Switch checked={!!inlineSvg} onChange={onChangeInlineSvg} />

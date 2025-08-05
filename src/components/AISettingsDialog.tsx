@@ -10,6 +10,7 @@ import { Box, Button, Dialog, Flex, Text, TextInput, useToast } from '@sanity/ui
 import React, { FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useAISecrets } from '../hooks/useAISecrets'
+import { useTranslation } from '../hooks/useTranslation'
 import { aiProviderRegistry } from '../services/ai-provider-registry'
 
 interface AISettingsDialogProps {
@@ -26,6 +27,7 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
   const [keys, setKeys] = useState<Record<string, string>>({})
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const toast = useToast()
+  const { t } = useTranslation()
 
   // Get available providers (memoized to prevent infinite re-renders)
   const providers = useMemo(() => aiProviderRegistry.getProviders(), [])
@@ -80,8 +82,8 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
       // Show success toast
       toast.push({
         status: 'success',
-        title: 'AI Settings Saved',
-        description: 'Your AI configuration has been updated successfully',
+        title: t('ai-settings-dialog.toast.success.title'),
+        description: t('ai-settings-dialog.toast.success.description'),
       })
 
       setIsDialogOpen(false)
@@ -92,11 +94,11 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
       // Show error toast
       toast.push({
         status: 'error',
-        title: 'Save Failed',
-        description: 'Failed to save AI settings. Please try again.',
+        title: t('ai-settings-dialog.toast.error.title'),
+        description: t('ai-settings-dialog.toast.error.description'),
       })
     }
-  }, [keys, storeSecrets, toast, setIsDialogOpen, onSave])
+  }, [keys, storeSecrets, toast, setIsDialogOpen, onSave, t])
 
   /**
    * Handle mouse down to stop propagation
@@ -161,14 +163,14 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
         mode='ghost'
         onClick={openDialog}
         selected={isDialogOpen}
-        text='Configure AI API Key'
+        text={t('ai-settings-dialog.dialog-trigger-button')}
         icon={<CogIcon />}
       />
 
       {/* Settings dialog */}
       {isDialogOpen && (
         <Dialog
-          header='AI Settings'
+          header={t('ai-settings-dialog.dialog-header-title')}
           id='ai-settings'
           onClose={handleClose}
           zOffset={1001}
@@ -180,13 +182,13 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
             {/* Provider API Keys Section */}
             <Box>
               <Text size={2} weight='semibold' style={{ marginBottom: '1rem' }}>
-                API Keys
+                {t('ai-settings-dialog.api-keys-title')}
               </Text>
 
               {providers.length === 0 ? (
                 <Box padding={3}>
                   <Text muted size={1}>
-                    No AI providers configured
+                    {t('ai-settings-dialog.no-providers')}
                   </Text>
                 </Box>
               ) : (
@@ -200,7 +202,9 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
                         fontSize={2}
                         onChange={createKeyChangeHandler(provider.keyName)}
                         padding={3}
-                        placeholder={`Enter your ${provider.keyTitle}`}
+                        placeholder={t('ai-settings-dialog.provider-placeholder', {
+                          providerKeyTitle: provider.keyTitle,
+                        })}
                         disabled={loading}
                         value={keys[provider.keyName] || ''}
                         type='password'
@@ -217,7 +221,7 @@ function AISettingsDialog({ namespace, onSave, onClose }: AISettingsDialogProps)
               disabled={loading}
               tone='primary'
               type='button'
-              text='Save Settings'
+              text={t('ai-settings-dialog.button-save')}
             />
           </Flex>
         </Dialog>

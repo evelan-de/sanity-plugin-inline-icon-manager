@@ -2,12 +2,14 @@ import { Icon } from '@iconify/react'
 import { InfoOutlineIcon } from '@sanity/icons'
 import { Card, Flex, Text, Tooltip } from '@sanity/ui'
 
+import { useTranslation } from '../../../hooks/useTranslation'
 import { useAppStoreContext } from '../../../store/context'
 
 const Preview = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
   const color = useAppStoreContext((s) => s.color)
+  const { t } = useTranslation()
 
   if (!sanityValue) return null
 
@@ -16,7 +18,7 @@ const Preview = () => {
       <Tooltip
         content={
           <Text size={0} style={{ padding: '5px' }}>
-            Preview limited to 300x300, but your custom size is preserved.
+            {t('config-dialog.preview.tooltip.content')}
           </Text>
         }
         fallbackPlacements={['right', 'left']}
@@ -32,7 +34,7 @@ const Preview = () => {
           }}
         >
           <InfoOutlineIcon />
-          &nbsp;&nbsp;Preview:
+          &nbsp;&nbsp;{t('config-dialog.preview.tooltip.text')}:
         </Text>
       </Tooltip>
 

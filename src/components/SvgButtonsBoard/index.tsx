@@ -1,5 +1,6 @@
 import { Button } from '@sanity/ui'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import DataUrlIcon from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
 import ButtonTooltip from './ButtonTooltip'
@@ -13,9 +14,11 @@ const SvgButtonsBoard = ({
   onCopyHtmlToClipboard,
   onCopyDataUrlToClipboard,
 }: SvgButtonsBoardProps) => {
+  const { t } = useTranslation()
+
   return (
     <>
-      <ButtonTooltip tooltipText='Copy svg html to clipboard'>
+      <ButtonTooltip tooltipText={t('svg-buttons-board.tooltip.copy-html')}>
         <Button
           mode='bleed'
           tone='primary'
@@ -24,7 +27,7 @@ const SvgButtonsBoard = ({
           onClick={onCopyHtmlToClipboard}
         />
       </ButtonTooltip>
-      <ButtonTooltip tooltipText='Copy svg Data URL to clipboard'>
+      <ButtonTooltip tooltipText={t('svg-buttons-board.tooltip.copy-data-url')}>
         <Button
           mode='bleed'
           tone='primary'

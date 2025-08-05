@@ -299,23 +299,6 @@ function MyCustomTool() {
 }
 ```
 
-### Provider Status Component
-
-Monitor the health of your AI providers:
-
-```typescript
-import { AIProviderStatus } from 'sanity-plugin-inline-icon-manager'
-
-function MyDashboard() {
-  return (
-    <AIProviderStatus 
-      detailed={true}
-      onSetupClick={() => openSettingsDialog()}
-    />
-  )
-}
-```
-
 ### Language Model Selector
 
 Allow users to select from available models:
