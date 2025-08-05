@@ -1,6 +1,7 @@
 import { SearchIcon } from '@sanity/icons'
 import { Box, Button, Card, Flex, Select, Text, TextArea } from '@sanity/ui'
 import { useCallback, useMemo, useState } from 'react'
+import { useCurrentLocale } from 'sanity'
 
 import { useAISettings, useAvailableModels } from '../../hooks/useAISettings'
 import { useTranslation } from '../../hooks/useTranslation'
@@ -12,6 +13,7 @@ import AISettingsDialog from '../AISettingsDialog'
 const AIPromptInput = () => {
   const [localPrompt, setLocalPrompt] = useState('')
   const { t } = useTranslation()
+  const { id: locale } = useCurrentLocale()
 
   const aiPrompt = useAppStoreContext((s) => s.aiPrompt)
   const isAILoading = useAppStoreContext((s) => s.isAILoading)
@@ -95,6 +97,7 @@ const AIPromptInput = () => {
           localPrompt,
           aiSettings.engine, // Use dynamic engine configuration
           iconifyEndpoint,
+          locale,
         )
 
         for await (const partialSuggestions of stream) {
@@ -124,6 +127,7 @@ const AIPromptInput = () => {
       localPrompt,
       aiSettings,
       iconifyEndpoint,
+      locale,
       setAIPrompt,
       setAILoading,
       setAIError,

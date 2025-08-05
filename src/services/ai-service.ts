@@ -45,6 +45,7 @@ export class AIIconService {
     prompt: string,
     engine: AILanguageEngineType,
     iconifyEndpoint: string = DEFAULT_API_URL,
+    locale: string = 'en-US',
   ): Promise<AISuggestion[]> {
     try {
       const model = getLanguageModel(engine)
@@ -52,7 +53,7 @@ export class AIIconService {
       const { object } = await generateObject({
         model,
         schema: IconSuggestionSchema,
-        prompt: AIIconService.buildPrompt(prompt),
+        prompt: AIIconService.buildPrompt(prompt, locale),
       })
 
       // Validate all suggestions before returning
@@ -83,6 +84,7 @@ export class AIIconService {
     prompt: string,
     engine: AILanguageEngineType,
     iconifyEndpoint: string = DEFAULT_API_URL,
+    locale: string = 'en-US',
   ): AsyncGenerator<AISuggestion[], void, unknown> {
     try {
       const model = getLanguageModel(engine)
@@ -90,7 +92,7 @@ export class AIIconService {
       const { partialObjectStream } = streamObject({
         model,
         schema: IconSuggestionSchema,
-        prompt: AIIconService.buildPrompt(prompt),
+        prompt: AIIconService.buildPrompt(prompt, locale),
       })
 
       let previousCount = 0
@@ -226,6 +228,7 @@ export class AIIconService {
           prompt,
           engine,
           iconifyEndpoint,
+          locale,
         )
         if (fallbackSuggestions.length > 0) {
           yield fallbackSuggestions
@@ -240,7 +243,7 @@ export class AIIconService {
   /**
    * Build the AI prompt for icon suggestions
    */
-  static buildPrompt(userPrompt: string): string {
+  static buildPrompt(userPrompt: string, locale: string = 'en-US'): string {
     return `
       <purpose>
         You are an AI assistant specialized in suggesting relevant icons based on user descriptions. Your goal is to provide accurate, contextually appropriate icon suggestions from popular icon libraries.
@@ -260,6 +263,9 @@ export class AIIconService {
         3. The human-readable provider name
         4. The exact icon identifier used by the provider
         5. A brief explanation of why this icon fits the request
+
+        IMPORTANT: Write the reasoning explanation (field #5) in the following language: ${locale}
+        All other fields should remain in English regardless of the locale.
       </instructions>
 
       <contexts>
@@ -280,13 +286,14 @@ export class AIIconService {
         - Relevance: Match the user's specific needs and context
         - Variety: Provide options from different providers when appropriate
         - Quality: Prioritize well-designed, popular icons
+        - Localization: The reasoning explanation MUST be written in ${locale} language
       </focus-areas>
 
       <user-prompt>
         <![CDATA[${userPrompt}]]>
       </user-prompt>
 
-      Generate relevant icon suggestions based on the user's request. The number of suggestions should match what the user explicitly requests, or default to 6 suggestions if no specific number is mentioned.
+      Generate relevant icon suggestions based on the user's request. The number of suggestions should match what the user explicitly requests, or default to 6 suggestions if no specific number is mentioned. Remember to write the reasoning field in ${locale} language.
     `
   }
 
