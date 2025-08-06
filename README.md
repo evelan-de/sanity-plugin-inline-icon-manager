@@ -619,14 +619,18 @@ Here is the default English bundle:
   'ai-settings-dialog.api-keys-title': 'API Keys',
   'ai-settings-dialog.no-providers': 'No AI providers configured',
   'ai-settings-dialog.provider-placeholder': 'Enter your {{providerKeyTitle}}',
-  'ai-settings-dialog.button-save': 'Save Settings'
+  'ai-settings-dialog.button-save': 'Save Settings',
+
+  // Schemas
+  // IconManager schema
+  'icon-manager.schema.title': 'Icon',
 }
 ```
 
 </details>
 <br/>
 
-If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `icon.manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
+If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `@evelan-de/sanity-plugin-inline-icon-manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
 
 <br/>
 
@@ -636,7 +640,7 @@ import { defineLocaleResourceBundle } from 'sanity'
 const myEnglishOverride = defineLocaleResourceBundle({
   // make sure the `locale` language code corresponds to the one you want to override
   locale: 'en-US',
-  namespace: 'icon.manager',
+  namespace: '@evelan-de/sanity-plugin-inline-icon-manager',
   resources: {
     'app-states.empty-state.select-icon': 'Select your icon',
   },
