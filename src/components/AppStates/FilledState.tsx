@@ -1,11 +1,13 @@
 import { Badge, Card, Flex, Text, Tooltip } from '@sanity/ui'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 import ButtonsBoard from '../ButtonsBoard'
 import IconPreview from '../IconPreview'
 import CustomizeIcon from '../icons/CustomizeIcon'
 
 const FilledState = () => {
+  const { t } = useTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
 
@@ -19,7 +21,7 @@ const FilledState = () => {
           <Tooltip
             content={
               <Card padding={2}>
-                <Text size={1}>Icon has been customized</Text>
+                <Text size={1}>{t('app-states.filled-state.icon-customized')}</Text>
               </Card>
             }
           >

@@ -1,6 +1,7 @@
 import { BookIcon, TrashIcon } from '@sanity/icons'
 import { Button, Flex } from '@sanity/ui'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 import CustomizeIcon from '../icons/CustomizeIcon'
 import ButtonTooltip from './ButtonTooltip'
@@ -10,10 +11,11 @@ const ButtonsBoard = () => {
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
+  const { t } = useTranslation()
 
   return (
     <Flex direction='column'>
-      <ButtonTooltip tooltipText='Customize Icon'>
+      <ButtonTooltip tooltipText={t('buttons-board.tooltip.customize-icon')}>
         <Button
           mode='bleed'
           tone='positive'
@@ -24,7 +26,7 @@ const ButtonsBoard = () => {
           disabled={!sanityUserCanEdit}
         />
       </ButtonTooltip>
-      <ButtonTooltip tooltipText='Change Icon'>
+      <ButtonTooltip tooltipText={t('buttons-board.tooltip.change-icon')}>
         <Button
           mode='bleed'
           tone='primary'
@@ -35,7 +37,7 @@ const ButtonsBoard = () => {
           disabled={!sanityUserCanEdit}
         />
       </ButtonTooltip>
-      <ButtonTooltip tooltipText='Delete Icon'>
+      <ButtonTooltip tooltipText={t('buttons-board.tooltip.delete-icon')}>
         <Button
           mode='bleed'
           tone='critical'

@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react'
 import { Box, Card, Flex, Grid, Text } from '@sanity/ui'
 import { memo, useMemo } from 'react'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { filterCollections } from '../../lib/collectionsUtils'
 import { stringifyHeight } from '../../lib/iconifyUtils'
 import { useAppStoreContext } from '../../store/context'
@@ -13,6 +14,7 @@ interface CollectionsGridProps {
 }
 
 const CollectionsGrid = ({ searchTerm }: CollectionsGridProps) => {
+  const { t } = useTranslation()
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
   const searchCollection = useAppStoreContext((s) => s.searchCollection)
   const filteredCollections = useMemo(() => {
@@ -50,7 +52,9 @@ const CollectionsGrid = ({ searchTerm }: CollectionsGridProps) => {
                             {collection.name}
                           </Text>
                           <Text as='i' muted size={1}>
-                            by {collection.author.name}
+                            {t('collections-grid.author-name', {
+                              authorName: collection.author.name,
+                            })}
                           </Text>
                         </Flex>
                         <Card tone='transparent' paddingX={3} paddingY={2}>

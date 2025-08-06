@@ -1,5 +1,6 @@
 import { Flex, Text } from '@sanity/ui'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { PaginationButton } from '../../style'
 
 interface PaginationProps {
@@ -17,6 +18,8 @@ const Pagination = ({
   setNextPage,
   setPrevPage,
 }: PaginationProps) => {
+  const { t } = useTranslation()
+
   if (!totalPages) return null
 
   return (
@@ -29,7 +32,7 @@ const Pagination = ({
       style={{ minHeight: '22px' }}
     >
       <Text as='i' size={1}>
-        {totalItems} {totalItems === 1 ? 'icon' : 'icons'} found
+        {totalItems} {t('pagination.total-items.icon', { count: totalItems })}
       </Text>
       {totalPages > 1 && (
         <Flex gap={2} align='center'>

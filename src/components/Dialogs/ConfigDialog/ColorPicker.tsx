@@ -4,6 +4,7 @@ import { FormEvent } from 'react'
 import { RgbaColorPicker } from 'react-colorful'
 
 import useClickOutside from '../../../hooks/useClickOutside'
+import { useTranslation } from '../../../hooks/useTranslation'
 import { useAppStoreContext } from '../../../store/context'
 import { StyledColorPicker } from '../../../style'
 import ColorPalette from './ColorPalette'
@@ -16,6 +17,7 @@ const ColorPicker = ({ onClickOutsideHandler }: ColorPickerProps) => {
   const pickerRef = useClickOutside<HTMLDivElement>(onClickOutsideHandler)
   const color = useAppStoreContext((s) => s.color)
   const setColor = useAppStoreContext((s) => s.setColor)
+  const { t } = useTranslation()
 
   const handleHexInput = (event: FormEvent<HTMLInputElement>) => {
     setColor(event.currentTarget.value)
@@ -36,7 +38,7 @@ const ColorPicker = ({ onClickOutsideHandler }: ColorPickerProps) => {
       <ColorPalette />
       <Flex gap={1} align='center'>
         <Text weight='bold' size={0} style={{ width: '50px' }}>
-          HEX
+          {t('config-dialog.color-picker.hex')}
         </Text>
         <TextInput
           value={color?.hex || ''}
@@ -47,7 +49,7 @@ const ColorPicker = ({ onClickOutsideHandler }: ColorPickerProps) => {
       </Flex>
       <Flex gap={1} align='center' marginTop={2}>
         <Text weight='bold' size={0} style={{ width: '50px' }}>
-          RGBA
+          {t('config-dialog.color-picker.rgba')}
         </Text>
         <TextInput
           type='number'

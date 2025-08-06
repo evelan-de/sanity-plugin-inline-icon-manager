@@ -1,11 +1,13 @@
 import { Flex, Select, Text } from '@sanity/ui'
 import { FormEvent, useCallback } from 'react'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { useAppStoreContext } from '../../store/context'
 
 const FilterPalette = () => {
   const filterPalette = useAppStoreContext((s) => s.filterPalette)
   const setFilterPalette = useAppStoreContext((s) => s.setFilterPalette)
+  const { t } = useTranslation()
 
   const onSetFilterPalette = useCallback(
     (event: FormEvent<HTMLSelectElement>) => {
@@ -17,11 +19,11 @@ const FilterPalette = () => {
   return (
     <Flex align='center'>
       <Text weight='bold' size={1} style={{ width: '100px' }}>
-        Palette:
+        {t('filter-palette.title')}:
       </Text>
       <Flex style={{ width: '100%' }}>
         <Select onChange={onSetFilterPalette} value={filterPalette} fontSize={1}>
-          <option value=''>Select...</option>
+          <option value=''>{t('filter-palette.select')}</option>
           <option value='1'>Polychrome</option>
           <option value='0'>Monochrome</option>
         </Select>

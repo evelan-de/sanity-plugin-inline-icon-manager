@@ -2,10 +2,12 @@ import { Box, Button } from '@sanity/ui'
 import { useCallback, useState } from 'react'
 import { ChangeList, DiffProps, ObjectDiff } from 'sanity'
 
+import { useTranslation } from '../../hooks/useTranslation'
 import { IconManagerType } from '../../types/IconManagerType'
 
 const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
+  const { t } = useTranslation()
 
   const onClickDetailsHandler = useCallback(() => {
     setIsDetailsOpen((state) => !state)
@@ -19,7 +21,11 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
       <Button
         mode='ghost'
         tone='primary'
-        text={`${isDetailsOpen ? 'Hide' : 'Show'} details`}
+        text={`${
+          isDetailsOpen
+            ? t('icon-diff-change-list.button.hide-details')
+            : t('icon-diff-change-list.button.show-details')
+        }`}
         onClick={onClickDetailsHandler}
         style={{ cursor: 'pointer' }}
       />
