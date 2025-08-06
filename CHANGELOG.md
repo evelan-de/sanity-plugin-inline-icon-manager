@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.4.0...v1.5.0) (2025-08-06)
+
+### Features
+
+- add IconManagerFieldComponent and update README namespace ([1e9aac3](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/1e9aac3dd24ff17153d6a7dd9647ea7a3db81558))
+- **ai:** add locale support to AI icon suggestions ([b353932](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/b3539321e8cc349e99b83b5fa3232166728436b8))
+- **i18n:** add localization support ([7132c68](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/7132c68250fd00e28f44e0fde868124ac4513bc0))
+
 ## [1.4.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.3.0...v1.4.0) (2025-08-04)
 
 ### Features
