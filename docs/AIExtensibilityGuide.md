@@ -2,13 +2,13 @@
 
 ## Overview
 
-The Sanity Inline Icon Manager plugin now supports an extensible AI provider system that allows you to:
+The Sanity Inline Icon Manager plugin supports an extensible AI provider system that allows you to:
 
-- **Use multiple AI providers** (OpenAI, DeepSeek, custom providers)
+- **OpenAI support by default** - Works out of the box with OpenAI
+- **Extensible architecture** - Add custom providers (DeepSeek, Claude, etc.) in your projects
 - **Share AI configurations** across projects using custom secret namespaces
-- **Maintain backward compatibility** with existing OpenAI-only setups
-- **Extend with custom providers** for your specific needs
-- **Simple configuration** with plugin-level defaults
+- **Type-safe configuration** with full TypeScript support
+- **Simple configuration** with sensible defaults
 
 ## Quick Start
 
@@ -49,47 +49,55 @@ export default defineConfig({
 })
 ```
 
-### Advanced Multi-Provider Setup
+### Advanced Multi-Provider Setup (External Projects)
+
+**Note**: The plugin only includes OpenAI by default. To use multiple providers, define custom types in your project:
 
 ```typescript
 import { defineConfig } from 'sanity'
-import { iconManager, createCustomProvider } from 'sanity-plugin-inline-icon-manager'
-import { createOpenAI } from '@ai-sdk/openai'
-import { createDeepSeek } from '@ai-sdk/deepseek'
+import { iconManager, type AIProvider } from 'sanity-plugin-inline-icon-manager'
+import { createOpenAI, type OpenAIProvider } from '@ai-sdk/openai'
+import { createDeepSeek, type DeepSeekProvider } from '@ai-sdk/deepseek'
+
+// Define custom provider types for your project
+type CustomProviderType = OpenAIProvider | DeepSeekProvider
+type CustomAIProvider = AIProvider<CustomProviderType>
+
+const customProviders: CustomAIProvider[] = [
+  // Enhanced OpenAI configuration
+  {
+    name: 'OpenAI',
+    keyName: 'openaiKey',
+    keyTitle: 'OpenAI API Key',
+    models: [
+      { type: 'language', modelName: 'gpt-4o' },
+      { type: 'language', modelName: 'gpt-4o-mini' },
+      { type: 'language', modelName: 'o1-mini' },
+    ],
+    createInstance: (apiKey) => createOpenAI({ 
+      apiKey, 
+      compatibility: 'strict' 
+    })
+  },
+  
+  // Add DeepSeek support
+  {
+    name: 'DeepSeek',
+    keyName: 'deepseekKey', 
+    keyTitle: 'DeepSeek API Key',
+    models: [
+      { type: 'language', modelName: 'deepseek-chat' }
+    ],
+    createInstance: (apiKey) => createDeepSeek({ apiKey })
+  }
+]
 
 export default defineConfig({
   plugins: [
     iconManager({
       ai: {
         secretsNamespace: 'shared-ai-config',
-        providers: [
-          // Enhanced OpenAI configuration
-          {
-            name: 'OpenAI',
-            keyName: 'openaiKey',
-            keyTitle: 'OpenAI API Key',
-            models: [
-              { type: 'language', modelName: 'gpt-4o' },
-              { type: 'language', modelName: 'gpt-4o-mini' },
-              { type: 'language', modelName: 'o1-mini' },
-            ],
-            createInstance: (apiKey) => createOpenAI({ 
-              apiKey, 
-              compatibility: 'strict' 
-            })
-          },
-          
-          // Add DeepSeek support
-          {
-            name: 'DeepSeek',
-            keyName: 'deepseekKey', 
-            keyTitle: 'DeepSeek API Key',
-            models: [
-              { type: 'language', modelName: 'deepseek-chat' }
-            ],
-            createInstance: (apiKey) => createDeepSeek({ apiKey })
-          }
-        ],
+        providers: customProviders,
         
         // Use DeepSeek as default (cost-effective)
         defaultModel: {
@@ -171,27 +179,22 @@ export default defineConfig({
 ### Example 2: Cost-Optimized Setup with DeepSeek
 
 ```typescript
-export default defineConfig({
-  plugins: [
-    iconManager({
-      ai: {
-        providers: [
-          {
-            name: 'DeepSeek',
-            keyName: 'deepseekKey',
-            keyTitle: 'DeepSeek API Key',
-            models: [{ type: 'language', modelName: 'deepseek-chat' }],
-            createInstance: (apiKey) => createDeepSeek({ apiKey })
-          }
-        ],
-        defaultModel: {
-          model: 'deepseek-chat',
-          keyName: 'deepseekKey'
-        }
-      }
-    })
-  ]
-})
+import { createDeepSeek } from '@ai-sdk/deepseek'
+import { type AIProvider } from 'sanity-plugin-inline-icon-manager'
+
+const costOptimizedProviders: AIProvider[] = [
+  {
+    name: 'DeepSeek',
+    keyName: 'deepseekKey',
+    keyTitle: 'DeepSeek API Key',
+    models: [{ type: 'language', modelName: 'deepseek-chat' }],
+    createInstance: (apiKey) => createDeepSeek({ apiKey })
+  }
+  defaultModel: {
+    model: 'deepseek-chat',
+    keyName: 'deepseekKey'
+  }
+]
 ```
 
 ### Example 3: Custom Provider Integration

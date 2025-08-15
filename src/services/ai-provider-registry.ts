@@ -5,12 +5,13 @@
  * Handles runtime provider registration, model instantiation, and lifecycle management.
  */
 
-import { LanguageModel, Provider } from 'ai'
+import { LanguageModel } from 'ai'
 
 import {
   AILanguageEngineType,
-  AIProvider,
   AIProviderRegistry,
+  BaseProviderType,
+  FlexibleAIProvider,
   ProviderCacheKey,
 } from '../types/ai-config'
 
@@ -19,13 +20,13 @@ import {
  * Manages provider instances with caching for performance
  */
 class AIProviderRegistryImpl implements AIProviderRegistry {
-  private providers: Map<string, AIProvider> = new Map()
-  private providerCache: Map<ProviderCacheKey, Provider> = new Map()
+  private providers: Map<string, FlexibleAIProvider> = new Map()
+  private providerCache: Map<ProviderCacheKey, BaseProviderType> = new Map()
 
   /**
    * Register a provider configuration
    */
-  registerProvider(provider: AIProvider): void {
+  registerProvider(provider: FlexibleAIProvider): void {
     if (!this.validateProvider(provider)) {
       throw new Error(`Invalid provider configuration: ${provider.name}`)
     }
@@ -36,7 +37,7 @@ class AIProviderRegistryImpl implements AIProviderRegistry {
   /**
    * Register multiple providers at once
    */
-  registerProviders(providers: AIProvider[]): void {
+  registerProviders(providers: FlexibleAIProvider[]): void {
     for (const provider of providers) {
       this.registerProvider(provider)
     }
@@ -45,14 +46,14 @@ class AIProviderRegistryImpl implements AIProviderRegistry {
   /**
    * Get all registered providers
    */
-  getProviders(): AIProvider[] {
+  getProviders(): FlexibleAIProvider[] {
     return Array.from(this.providers.values())
   }
 
   /**
    * Get provider by key name
    */
-  getProvider(keyName: string): AIProvider | undefined {
+  getProvider(keyName: string): FlexibleAIProvider | undefined {
     return this.providers.get(keyName)
   }
 
@@ -78,7 +79,7 @@ class AIProviderRegistryImpl implements AIProviderRegistry {
 
       try {
         providerInstance = provider.createInstance(engine.apiKey)
-        this.providerCache.set(cacheKey, providerInstance)
+        this.providerCache.set(cacheKey, providerInstance as BaseProviderType)
       } catch (error) {
         throw new Error(
           `Failed to create provider instance for ${provider.name}: ${
@@ -103,7 +104,8 @@ class AIProviderRegistryImpl implements AIProviderRegistry {
       )
     }
 
-    return providerInstance.languageModel(engine.model.modelName)
+    // Type assertion is safe here because we validated the provider supports language models
+    return (providerInstance as any).languageModel(engine.model.modelName)
   }
 
   /**
@@ -134,7 +136,7 @@ class AIProviderRegistryImpl implements AIProviderRegistry {
    * Validate provider configuration
    */
   // eslint-disable-next-line class-methods-use-this
-  validateProvider(provider: AIProvider): boolean {
+  validateProvider(provider: FlexibleAIProvider): boolean {
     try {
       // Basic validation
       if (!provider.name || typeof provider.name !== 'string') {
@@ -224,7 +226,7 @@ class AIProviderRegistryImpl implements AIProviderRegistry {
   /**
    * Find provider that contains a specific model
    */
-  findProviderForModel(modelName: string): AIProvider | undefined {
+  findProviderForModel(modelName: string): FlexibleAIProvider | undefined {
     for (const provider of this.providers.values()) {
       if (provider.models.some((model) => model.modelName === modelName)) {
         return provider
@@ -244,7 +246,7 @@ export const aiProviderRegistry = new AIProviderRegistryImpl()
  * Initialize the provider registry with default providers
  * This should be called during plugin initialization
  */
-export function initializeProviderRegistry(providers: AIProvider[]): void {
+export function initializeProviderRegistry(providers: FlexibleAIProvider[]): void {
   // Clear existing providers
   aiProviderRegistry.clearCache()
 

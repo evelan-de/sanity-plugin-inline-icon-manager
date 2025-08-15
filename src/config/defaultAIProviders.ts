@@ -6,9 +6,8 @@
  */
 
 import { createOpenAI } from '@ai-sdk/openai'
-import { Provider } from 'ai'
 
-import { AIProvider } from '../types/ai-config'
+import { FlexibleAIProvider } from '../types/ai-config'
 
 /**
  * Default AI provider configurations
@@ -16,7 +15,7 @@ import { AIProvider } from '../types/ai-config'
  * These providers are available by default and can be extended or overridden
  * by consuming projects through plugin configuration.
  */
-export const defaultAIProviders: readonly AIProvider[] = [
+export const defaultAIProviders: readonly FlexibleAIProvider[] = [
   {
     name: 'OpenAI',
     keyName: 'openaiKey',
@@ -24,19 +23,15 @@ export const defaultAIProviders: readonly AIProvider[] = [
     models: [
       {
         type: 'language',
-        modelName: 'gpt-4o',
+        modelName: 'gpt-5',
       },
       {
         type: 'language',
-        modelName: 'gpt-4o-mini',
+        modelName: 'gpt-5-mini',
       },
       {
         type: 'language',
-        modelName: 'gpt-4-turbo',
-      },
-      {
-        type: 'language',
-        modelName: 'gpt-4',
+        modelName: 'gpt-5-nano',
       },
       {
         type: 'language',
@@ -52,32 +47,19 @@ export const defaultAIProviders: readonly AIProvider[] = [
       },
       {
         type: 'language',
-        modelName: 'gpt-4.5-preview',
+        modelName: 'gpt-4o',
       },
       {
         type: 'language',
         modelName: 'o1',
       },
-      {
-        type: 'language',
-        modelName: 'o3-mini',
-      },
-      {
-        type: 'language',
-        modelName: 'o4-mini',
-      },
     ],
     createInstance: (apiKey: string) =>
       createOpenAI({
         apiKey,
-        /**
-         * OpenAI compatibility mode. Should be set to `strict` when using the OpenAI API,
-         * and `compatible` when using 3rd party providers.
-         */
-        compatibility: 'strict', // OpenAI compatibility mode
-      }) as Provider,
+      }),
   },
-] as const satisfies readonly AIProvider[]
+] as const satisfies readonly FlexibleAIProvider[]
 
 /**
  * Default model selection for icon suggestions
@@ -97,7 +79,7 @@ export const DEFAULT_AI_SECRETS_NAMESPACE = 'sanity-plugin-inline-icon-manager-a
 /**
  * Get default provider by key name
  */
-export function getDefaultProvider(keyName: string): AIProvider | undefined {
+export function getDefaultProvider(keyName: string): FlexibleAIProvider | undefined {
   return defaultAIProviders.find((provider) => provider.keyName === keyName)
 }
 
@@ -118,7 +100,7 @@ export function isValidDefaultModel(modelName: string): boolean {
 /**
  * Get provider that contains a specific model
  */
-export function getProviderForModel(modelName: string): AIProvider | undefined {
+export function getProviderForModel(modelName: string): FlexibleAIProvider | undefined {
   return defaultAIProviders.find((provider) =>
     provider.models.some((model) => model.modelName === modelName),
   )
