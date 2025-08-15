@@ -52,7 +52,7 @@ Powered by [Iconify](https://iconify.design/)
 - Collections tab
 - Icon Inline Renderer component
 - Limit Collections option
-- AI-powered icon suggestions based on natural language prompts
+- AI-powered icon suggestions based on natural language prompts (OpenAI by default, extensible for other providers)
 
 <br /><br />
 
@@ -193,7 +193,7 @@ This is the main configuration of the plugin. The available options are:
   // Optional flag for storing the icons as an inline svg by default
   storeInlineSvg?: string
 
-  // AI-powered icon suggestion configuration
+  // AI-powered icon suggestion configuration (OpenAI by default)
   ai?: {
     // Custom secrets namespace for sharing AI configurations across projects
     secretsNamespace?: string

@@ -3,12 +3,16 @@
  *
  * Core type definitions for the extensible AI provider system.
  * Based on reference implementation patterns for multi-provider AI support.
+ * Supports dynamic provider types (OpenAI, DeepSeek, etc.) and language models only.
  */
 
-import { LanguageModel, Provider } from 'ai'
+import type { OpenAIProvider } from '@ai-sdk/openai'
+import type { ProviderV1 } from '@ai-sdk/provider'
+import { LanguageModel } from 'ai'
 
 /**
  * Base model type for language models used in icon suggestions
+ * Note: This plugin only supports language models, not image models
  */
 export type LanguageModelType = {
   type: 'language'
@@ -16,24 +20,44 @@ export type LanguageModelType = {
 }
 
 /**
+ * Base provider type that all AI providers must extend
+ * Uses the standard Provider interface from the '@ai-sdk/provider' package
+ */
+export type BaseProviderType = ProviderV1
+
+/**
+ * Default supported provider types - OpenAI only by default
+ * External projects can extend this through module augmentation or custom types
+ */
+export type ProviderType = OpenAIProvider
+
+/**
  * AI Provider configuration interface
  * Defines how external projects can register custom AI providers
+ * Generic type parameter allows for specific provider types while maintaining safety
  */
-export type AIProvider = {
+export type AIProvider<T extends BaseProviderType = ProviderType> = {
   /** Display name for the provider (e.g., "OpenAI", "DeepSeek") */
   name: string
   /** Secret key name for API key storage (e.g., "openaiKey", "deepseekKey") */
   keyName: string
   /** Human-readable title for settings UI (e.g., "OpenAI API Key") */
   keyTitle: string
-  /** Available models for this provider */
+  /** Available models for this provider (language models only) */
   models: LanguageModelType[]
   /** Function to create provider instance with API key */
-  createInstance: (apiKey: string) => Provider
+  createInstance: (apiKey: string) => T
 }
 
 /**
+ * Flexible AIProvider type that can handle any provider extending BaseProviderType
+ * This allows external projects to add custom providers while maintaining type safety
+ */
+export type FlexibleAIProvider = AIProvider<BaseProviderType>
+
+/**
  * Runtime type definitions derived from provider configurations
+ * These types are designed to work with const assertions for type safety
  */
 export type AIModelType = LanguageModelType
 export type AIModelNameType = string
@@ -65,7 +89,7 @@ export interface AIPluginConfig {
   secretsNamespace?: string
 
   /** Custom provider configurations (optional - uses defaults if not provided) */
-  providers?: AIProvider[]
+  providers?: FlexibleAIProvider[]
 
   /** Default model selection (optional - uses internal default if not provided) */
   defaultModel?: AIModelChoiceType
@@ -92,13 +116,13 @@ export type ProviderCacheKey = `${string}:${string}` // keyName:apiKey
  */
 export interface AIProviderRegistry {
   /** Register a provider configuration */
-  registerProvider(provider: AIProvider): void
+  registerProvider(provider: FlexibleAIProvider): void
 
   /** Get all registered providers */
-  getProviders(): AIProvider[]
+  getProviders(): FlexibleAIProvider[]
 
   /** Get provider by key name */
-  getProvider(keyName: string): AIProvider | undefined
+  getProvider(keyName: string): FlexibleAIProvider | undefined
 
   /** Get language model instance */
   getLanguageModel(engine: AILanguageEngineType): LanguageModel
@@ -107,5 +131,5 @@ export interface AIProviderRegistry {
   clearCache(): void
 
   /** Validate provider configuration */
-  validateProvider(provider: AIProvider): boolean
+  validateProvider(provider: FlexibleAIProvider): boolean
 }

@@ -10,7 +10,7 @@ import {
   defaultAIProviders,
   defaultModelChoice,
 } from '../config/defaultAIProviders'
-import { AIModelChoiceType, AIPluginConfig, AIProvider } from '../types/ai-config'
+import { AIModelChoiceType, AIPluginConfig, FlexibleAIProvider } from '../types/ai-config'
 import { AIInlineIconManagerConfig } from '../types/ai-plugin-config'
 
 /**
@@ -18,7 +18,7 @@ import { AIInlineIconManagerConfig } from '../types/ai-plugin-config'
  */
 export interface ResolvedAIConfig {
   /** Merged provider configurations */
-  providers: AIProvider[]
+  providers: FlexibleAIProvider[]
   /** Resolved secrets namespace */
   secretsNamespace: string
   /** Resolved default model choice */
@@ -68,8 +68,8 @@ export function resolveAIConfig(pluginConfig?: AIInlineIconManagerConfig): Resol
 function resolveProviders(
   aiConfig: AIPluginConfig | undefined,
   result: ResolvedAIConfig,
-): AIProvider[] {
-  const providers: AIProvider[] = []
+): FlexibleAIProvider[] {
+  const providers: FlexibleAIProvider[] = []
   const providerNames = new Set<string>()
   const keyNames = new Set<string>()
 
@@ -249,23 +249,27 @@ function validateProvider(provider: unknown): ProviderValidation {
  * Get provider by key name from resolved configuration
  */
 export function getProviderByKeyName(
-  providers: AIProvider[],
+  providers: FlexibleAIProvider[],
   keyName: string,
-): AIProvider | undefined {
+): FlexibleAIProvider | undefined {
   return providers.find((provider) => provider.keyName === keyName)
 }
 
 /**
  * Get all model names from resolved providers
  */
-export function getAllModelNames(providers: AIProvider[]): string[] {
+export function getAllModelNames(providers: FlexibleAIProvider[]): string[] {
   return providers.flatMap((provider) => provider.models.map((model) => model.modelName))
 }
 
 /**
  * Check if a model exists in the resolved providers
  */
-export function isValidModel(providers: AIProvider[], modelName: string, keyName: string): boolean {
+export function isValidModel(
+  providers: FlexibleAIProvider[],
+  modelName: string,
+  keyName: string,
+): boolean {
   const provider = getProviderByKeyName(providers, keyName)
   if (!provider) return false
 

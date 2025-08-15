@@ -5,4 +5,4 @@ export { mediaPreview } from './plugin/mediaPreview'
 export { IconManager } from './plugin/plugin'
 
 // export some ai types
-export { type AIProvider } from './types/ai-config'
+export { type AIProvider, type FlexibleAIProvider, type ProviderType } from './types/ai-config'
