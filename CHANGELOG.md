@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.5.0...v1.6.0) (2025-08-15)
+
+### Features
+
+- **ai:** support extensible AI providers (OpenAI default) ([41afc07](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/41afc075bca40c3af9c9c70c8549961d9868a503))
+
 ## [1.5.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.4.0...v1.5.0) (2025-08-06)
 
 ### Features
