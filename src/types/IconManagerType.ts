@@ -33,8 +33,15 @@ export const iconManagerSchema = z.object({
 
 export type IconManagerType = z.infer<typeof iconManagerSchema>
 
-export const iconManagerPartialSchema = iconManagerSchema
-  .deepPartial()
-  .extend({ _type: z.literal('icon.manager') })
+export const iconManagerPartialSchema = z.object({
+  icon: z.string().optional(),
+  metadata: z
+    .object({
+      inlineSvg: z.string().optional(),
+      color: iconManagerColorSchema.optional(),
+    })
+    .optional(),
+  _type: z.literal('icon.manager'),
+})
 
 export type IconManagerPartialType = z.infer<typeof iconManagerPartialSchema>
