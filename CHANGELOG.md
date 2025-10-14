@@ -5,6 +5,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.0 (2025-10-14)
+
+- Merge pull request #14 from evelan-de/chore/zod-v4 ([34caaaa](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/34caaaa)), closes [#14](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/issues/14)
+- feat: upgrades zod to v4 ([9c7ec11](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/9c7ec11))
+
 ## [1.6.0](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/compare/v1.5.0...v1.6.0) (2025-08-15)
 
 ### Features
