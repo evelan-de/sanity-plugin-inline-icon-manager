@@ -7,7 +7,7 @@
  */
 
 import type { OpenAIProvider } from '@ai-sdk/openai'
-import type { ProviderV1 } from '@ai-sdk/provider'
+import type { ProviderV2 } from '@ai-sdk/provider'
 import { LanguageModel } from 'ai'
 
 /**
@@ -23,7 +23,7 @@ export type LanguageModelType = {
  * Base provider type that all AI providers must extend
  * Uses the standard Provider interface from the '@ai-sdk/provider' package
  */
-export type BaseProviderType = ProviderV1
+export type BaseProviderType = ProviderV2
 
 /**
  * Default supported provider types - OpenAI only by default
