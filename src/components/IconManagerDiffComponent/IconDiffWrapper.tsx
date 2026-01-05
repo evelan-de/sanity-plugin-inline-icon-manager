@@ -1,5 +1,6 @@
 import { DocumentIcon } from '@sanity/icons'
 import { Badge, Box, Flex, Text } from '@sanity/ui'
+import type React from 'react'
 import { DiffCard, DiffProps, DiffTooltip, ObjectDiff } from 'sanity'
 
 import { useTranslation } from '../../hooks/useTranslation'
@@ -57,6 +58,8 @@ const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
 
   return (
     <DiffTooltip diff={props.diff}>
+      {/* React 19 JSX typing conflicts with DiffCard's forwarded ref signature; suppress until upstream types update */}
+      {/* @ts-expect-error React 19 JSX compatibility */}
       <DiffCard diff={props.diff}>
         <Box padding={2}>
           <Flex align='center' gap={3}>

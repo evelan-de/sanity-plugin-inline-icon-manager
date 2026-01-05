@@ -1,6 +1,8 @@
-import { defineConfig } from '@sanity/pkg-utils'
+// CommonJS-compatible config to avoid ESM import issues during build
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { defineConfig } = require('@sanity/pkg-utils')
 
-export default defineConfig({
+module.exports = defineConfig({
   dist: 'dist',
   tsconfig: 'tsconfig.dist.json',
 
