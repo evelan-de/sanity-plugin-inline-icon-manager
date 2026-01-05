@@ -5,6 +5,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.1 (2026-01-05)</small>
+
+- Merge branch 'main' of https://github.com/evelan-de/sanity-plugin-inline-icon-manager ([9ebc59d](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/9ebc59d))
+- fix: moves react to peer dependency ([3a8f9e9](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/3a8f9e9))
+
 ## 2.0.0 (2026-01-05)
 
 - feat!: upgrade to sanity v5 and react 19 ([c6a5d5d](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/c6a5d5d))
