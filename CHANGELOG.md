@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0 (2026-01-05)
+
+- feat!: upgrade to sanity v5 and react 19 ([c6a5d5d](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/c6a5d5d))
+- Merge branch 'main' of https://github.com/evelan-de/sanity-plugin-inline-icon-manager ([34b6a77](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/34b6a77))
+
+### BREAKING CHANGE
+
+- Bump Sanity to v5 and React/ReactDOM/react-is to 19.
+  Consumers must align runtime and peer dependencies before upgrading.
+
 ## 1.7.0 (2025-10-14)
 
 - Merge pull request #14 from evelan-de/chore/zod-v4 ([34caaaa](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/34caaaa)), closes [#14](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/issues/14)
