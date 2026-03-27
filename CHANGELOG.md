@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 (2026-03-27)
+
+- Merge pull request #15 from evelan-de/chore/upgrade-latest-dependencies ([e285828](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/e285828)), closes [#15](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/issues/15)
+- chore: add Claude Code configuration and documentation ([1951221](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/1951221))
+- chore: upgrade dependencies and fix formatting issues ([d7a64b5](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/d7a64b5))
+- chore: upgrade zustand to v5.0.5 ([b2dcfcf](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/b2dcfcf))
+- feat: add workflow permissions and remove NPM_TOKEN from semantic-release ([580cc50](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/580cc50))
+
 ## <small>2.0.1 (2026-01-05)</small>
 
 - Merge branch 'main' of https://github.com/evelan-de/sanity-plugin-inline-icon-manager ([9ebc59d](https://github.com/evelan-de/sanity-plugin-inline-icon-manager/commit/9ebc59d))
