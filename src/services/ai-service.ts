@@ -135,10 +135,10 @@ export class AIIconService {
             // Check if suggestion is complete and reasoning looks complete
             const isComplete = Boolean(
               suggestion.iconName &&
-                suggestion.setPrefix &&
-                suggestion.name &&
-                suggestion.reasoning &&
-                suggestion.iconProviderDisplayName,
+              suggestion.setPrefix &&
+              suggestion.name &&
+              suggestion.reasoning &&
+              suggestion.iconProviderDisplayName,
             )
 
             // Check if reasoning appears to be a complete sentence

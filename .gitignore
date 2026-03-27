@@ -63,3 +63,5 @@ types.js
 
 sanity-install.sh
 todo.todo
+
+/.claude/settings.local.json
