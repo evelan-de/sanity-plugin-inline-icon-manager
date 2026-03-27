@@ -83,7 +83,7 @@
     "isomorphic-dompurify": "2.26.0",
     "react-colorful": "5.6.1",
     "zod": "4.1.12",
-    "zustand": "4.4.1"
+    "zustand": "5.0.5"
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.1",
