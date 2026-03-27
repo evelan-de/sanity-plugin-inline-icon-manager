@@ -59,7 +59,6 @@ const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
   return (
     <DiffTooltip diff={props.diff}>
       {/* React 19 JSX typing conflicts with DiffCard's forwarded ref signature; suppress until upstream types update */}
-      {/* @ts-expect-error React 19 JSX compatibility */}
       <DiffCard diff={props.diff}>
         <Box padding={2}>
           <Flex align='center' gap={3}>
